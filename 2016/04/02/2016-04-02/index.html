@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>关于position属性sticky | Misic-月落音阑</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="sticky是CSS3中的新增position属性，对象在常态时遵循常规流，它就像是relative和fixed的合体，当在屏幕中时按常规流排版，当卷动到屏幕外时则表现如fixed。该属性的表现是现实中你见到的吸附效果。
+当不使用sticky时HTML结构如下123456&amp;lt;div class=&quot;div2&quot;&amp;gt;    green&amp;lt;/div&amp;gt;    &amp;lt;div class=&quot;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于position属性sticky">
+<meta property="og:url" content="http://misic.moe/2016/04/02/2016-04-02/index.html">
+<meta property="og:site_name" content="Misic-月落音阑">
+<meta property="og:description" content="sticky是CSS3中的新增position属性，对象在常态时遵循常规流，它就像是relative和fixed的合体，当在屏幕中时按常规流排版，当卷动到屏幕外时则表现如fixed。该属性的表现是现实中你见到的吸附效果。
+当不使用sticky时HTML结构如下123456&amp;lt;div class=&quot;div2&quot;&amp;gt;    green&amp;lt;/div&amp;gt;    &amp;lt;div class=&quot;">
+<meta property="og:image" content="http://misic.moe/2016/04/02/2016-04-02/ac1.gif">
+<meta property="og:image" content="http://misic.moe/2016/04/02/2016-04-02/ac2.gif">
+<meta property="og:updated_time" content="2017-02-07T15:05:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于position属性sticky">
+<meta name="twitter:description" content="sticky是CSS3中的新增position属性，对象在常态时遵循常规流，它就像是relative和fixed的合体，当在屏幕中时按常规流排版，当卷动到屏幕外时则表现如fixed。该属性的表现是现实中你见到的吸附效果。
+当不使用sticky时HTML结构如下123456&amp;lt;div class=&quot;div2&quot;&amp;gt;    green&amp;lt;/div&amp;gt;    &amp;lt;div class=&quot;">
+<meta name="twitter:image" content="http://misic.moe/2016/04/02/2016-04-02/ac1.gif">
+  
+    <link rel="alternate" href="/atom.xml" title="Misic-月落音阑" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Misic-月落音阑</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">关于如何在二次元与二进制之间穿行的探索</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://misic.moe"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2016-04-02" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/02/2016-04-02/" class="article-date">
+  <time datetime="2016-04-02T13:23:00.000Z" itemprop="datePublished">2016-04-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      关于position属性sticky
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>sticky是CSS3中的新增position属性，对象在常态时遵循常规流，它就像是relative和fixed的合体，当在屏幕中时按常规流排版，当卷动到屏幕外时则表现如fixed。该属性的表现是现实中你见到的吸附效果。</p>
+<h2 id="当不使用sticky时"><a href="#当不使用sticky时" class="headerlink" title="当不使用sticky时"></a>当不使用sticky时</h2><p>HTML结构如下<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div2"</span>&gt;</span></div><div class="line">    green</div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span>    </div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div1"</span>&gt;</span></div><div class="line">	red</div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>CSS如下<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.div1</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">background</span>: green;</div><div class="line">	<span class="attribute">margin-left</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">margin-top</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">top</span>: <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.div2</span>&#123;</div><div class="line">	<span class="attribute">position</span>: absolute;</div><div class="line">	<span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">background</span>: red;</div><div class="line">	<span class="attribute">margin-left</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">margin-top</span>: <span class="number">200px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>表现如下</p>
+<p><img src="/2016/04/02/2016-04-02/ac1.gif" alt=""></p>
+<h2 id="使用stick时"><a href="#使用stick时" class="headerlink" title="使用stick时"></a>使用stick时</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.div1</span>&#123;</div><div class="line">	<span class="attribute">position</span>: -webkit-sticky;  </div><div class="line">	<span class="attribute">position</span>: -moz-sticky;  </div><div class="line">	<span class="attribute">position</span>: -ms-sticky;  </div><div class="line">	<span class="attribute">position</span>: sticky;</div><div class="line">	<span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">background</span>: green;</div><div class="line">	<span class="attribute">margin-left</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">margin-top</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">top</span>: <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.div2</span>&#123;</div><div class="line">	<span class="attribute">position</span>: absolute;</div><div class="line">	<span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">background</span>: red;</div><div class="line">	<span class="attribute">margin-left</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">margin-top</span>: <span class="number">200px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>表现形式如下</p>
+<p><img src="/2016/04/02/2016-04-02/ac2.gif" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://misic.moe/2016/04/02/2016-04-02/" data-id="ciyvo6jf20006qfqhkuww80bo" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/06/2016-04-06/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          关于HTTP2.0
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/11/23/2015-11-23/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">各版本IE与标准浏览器差异小结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/02/07/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/19/2016-10-19/">关于当&#39;f&#39;、&#39;i&#39;两字母放一起letter-spacing不生效的问题</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/06/2016-04-06/">关于HTTP2.0</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/02/2016-04-02/">关于position属性sticky</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/23/2015-11-23/">各版本IE与标准浏览器差异小结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 月落<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

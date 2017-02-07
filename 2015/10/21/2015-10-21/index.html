@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JS 内存泄露 | Misic-月落音阑</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="js内存泄露是指一块被分配的内存在浏览器进程结束前既不能使用，又不能回收的问题。在js中，内存是根据对象的创建分配给该对象的，并会在没有对该对象的引用时由浏览器收回。这种机制本身没有问题，问题在于浏览器在为 DOM 对象分配内存和恢复内存的方式。
+Internet Explorer 和 Mozilla Firefox 均使用引用计数来为 DOM 对象处理内存。在引用计数系统，每个所引用的对象都会保">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 内存泄露">
+<meta property="og:url" content="http://misic.moe/2015/10/21/2015-10-21/index.html">
+<meta property="og:site_name" content="Misic-月落音阑">
+<meta property="og:description" content="js内存泄露是指一块被分配的内存在浏览器进程结束前既不能使用，又不能回收的问题。在js中，内存是根据对象的创建分配给该对象的，并会在没有对该对象的引用时由浏览器收回。这种机制本身没有问题，问题在于浏览器在为 DOM 对象分配内存和恢复内存的方式。
+Internet Explorer 和 Mozilla Firefox 均使用引用计数来为 DOM 对象处理内存。在引用计数系统，每个所引用的对象都会保">
+<meta property="og:updated_time" content="2015-10-31T12:59:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS 内存泄露">
+<meta name="twitter:description" content="js内存泄露是指一块被分配的内存在浏览器进程结束前既不能使用，又不能回收的问题。在js中，内存是根据对象的创建分配给该对象的，并会在没有对该对象的引用时由浏览器收回。这种机制本身没有问题，问题在于浏览器在为 DOM 对象分配内存和恢复内存的方式。
+Internet Explorer 和 Mozilla Firefox 均使用引用计数来为 DOM 对象处理内存。在引用计数系统，每个所引用的对象都会保">
+  
+    <link rel="alternate" href="/atom.xml" title="Misic-月落音阑" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Misic-月落音阑</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">关于如何在二次元与二进制之间穿行的探索</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://misic.moe"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2015-10-21" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/10/21/2015-10-21/" class="article-date">
+  <time datetime="2015-10-21T14:16:00.000Z" itemprop="datePublished">2015-10-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JS 内存泄露
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>js内存泄露是指一块被分配的内存在浏览器进程结束前既不能使用，又不能回收的问题。在js中，内存是根据对象的创建分配给该对象的，并会在没有对该对象的引用时由浏览器收回。这种机制本身没有问题，问题在于浏览器在为 DOM 对象分配内存和恢复内存的方式。</p>
+<p>Internet Explorer 和 Mozilla Firefox 均使用引用计数来为 DOM 对象处理内存。在引用计数系统，每个所引用的对象都会保留一个计数，以获悉有多少对象正在引用它。如果计数为零，该对象就会被销毁，其占用的内存也会返回。</p>
+<h2 id="循环引用"><a href="#循环引用" class="headerlink" title="循环引用"></a>循环引用</h2><p>当两个对象互相引用时，就构成了循环引用，其中每个对象的引用计数值都被赋 1。在纯垃圾收集系统中，循环引用问题不大，若涉及到的两个对象中的一个对象被任何其他对象引用，那么这两个对象都将被垃圾收集。而在引用计数系统，这两 个对象都不能被销毁，原因是引用计数永远不能为零。在同时使用了垃圾收集和引用计数的混合系统中，将会发生泄漏，因为系统不能正确识别循环引用。在这种情况下，DOM 对象和 JavaScript 对象均不能被销毁。</p>
+<h4 id="闭包导致的循环引用"><a href="#闭包导致的循环引用" class="headerlink" title="闭包导致的循环引用"></a>闭包导致的循环引用</h4><p>闭包使内部变量在外部变量返回时也能保留对外部函数变量的引用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params">A</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> a = A;</div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">return</span> a;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>闭包非常易于隐藏 JavaScript 对象和 DOM 对象间的循环引用。如果一个构成闭包的函数对象被指定给了一个 DOM 节点的事件处理器，而对该节点的引用又被指定给函数对象作用域中的一个活动（或可变）对象，那么就存在一个循环引用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bindEvent</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> obj = <span class="built_in">document</span>.createElement(<span class="string">"XXX"</span>); </div><div class="line">	obj.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </div><div class="line">		<span class="comment">//Even if it's an empty function </span></div><div class="line">	&#125;</div><div class="line">	<span class="comment">// obj = null;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>解决方法：</p>
+<p>1、解除闭包关系，把事件处理函数定义到bindEvent()外边。</p>
+<p>2、或者在定义事件处理函数的外部函数中，删除对dom的引用（obj.onclick后面注释掉的一行）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> e = <span class="built_in">document</span>.getElementById(<span class="string">'e'</span>); </div><div class="line">e.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </div><div class="line">	alert(<span class="string">'元素e的内容是：'</span> + e.innerHTML); </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>解决方法：将<code>e.innerHTML</code>改为<code>this.innerHTML</code>就可以避免。</p>
+<h2 id="页面交叉泄漏"><a href="#页面交叉泄漏" class="headerlink" title="页面交叉泄漏"></a>页面交叉泄漏</h2><p>页面交叉泄漏其实是一种较小的泄漏,这种基于插入顺序而常常引起的泄漏问题，主要是由于对象创建过程中的临时对象未能被及时清理和释放造成的。它一般在动态创建页面元素，并将其添加到页面DOM中时发生。</p>
+<p>一个最简单的示例场景是我们动态创建两个对象，并创建一个子元素和父元素间的临时域。然后，当你将这两个父子结构元素构成的的树添加到页面DOM树中时，这两个元素将会继承页面DOM中的层次管理域对象，并泄漏之前创建的那个临时域对象。</p>
+<p>两种动态创建并添加元素到页面DOM中的方法：</p>
+<p>1、将每个子元素添加到它的直接父元素中，最后再将创建好的整棵子树添加到页面DOM中。当一些相关条件合适时，这种方法将会由于临时对象问题引起泄漏。</p>
+<p>2、自顶向下创建动态元素，并使它们被创建后立即加入到页面DOM结构中去。由于每个被加入的元素继承了页面DOM中的结构域对象，我们不需要创建任何的临时域。这是避免潜在内存泄漏发生的好方法。</p>
+<h2 id="貌似泄漏"><a href="#貌似泄漏" class="headerlink" title="貌似泄漏"></a>貌似泄漏</h2><p>在大多数时候，一些APIs的实际的行为和它们预期的行为可能会导致你错误的判断内存泄漏。貌似泄漏大多数时候总是出现在同一个页面的动态脚本操作中，而在从一个页面跳转到空白页面的时候发生是非常少见的。</p>
+<p>和DOM插入顺序问题那样，这个问题也需要依赖创建临时对象来产生”泄漏”。对一个脚本元素对象内部的脚本文本一而再再而三的反复重写，慢慢地你将开始泄漏各种已关联到被覆盖内容中的脚本引擎对象。特别地，和脚本调试有关的对象被作为完全的代码对象形式保留了下来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;html&gt; </div><div class="line">&lt;head&gt; </div><div class="line">&lt;script&gt; </div><div class="line">function LeakMemory() &#123; </div><div class="line">	// Do it a lot, look at Task Manager for memory response </div><div class="line">	for(i = 0; i &lt; 5000; i++) &#123;</div><div class="line">		hostElement.text = &quot;function foo() &#123; &#125;&quot;; </div><div class="line">	&#125;</div><div class="line">&#125; </div><div class="line">&lt;/script&gt; </div><div class="line">&lt;/head&gt; </div><div class="line">&lt;body&gt; </div><div class="line">	&lt;button onclick=&quot;LeakMemory()&quot;&gt;Memory Leaking Insert&lt;/button&gt; </div><div class="line">	&lt;script id=&quot;hostElement&quot;&gt;</div><div class="line">		function foo() &#123; &#125;</div><div class="line">	&lt;/script&gt; </div><div class="line">&lt;/body&gt; </div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p>如果你运行上面的示例代码并使用任务管理器查看，当从”泄漏”页面跳转到空白页面时，你并不会注意到任何脚本泄漏。因为这种脚本泄漏完全发生在页面内部，而且当你离开该页面时被使用的内存就会回收。对于我们原本所期望的行为来说这样的情况是糟糕的。你希望当重写了脚本内容后，原来的脚本对象就应该彻底的从页面中消失。但事实上，由于被覆盖的脚本对象可能已用作事件处理函数，并且还可能有一些未被清除的引用计数。正如你所看到的，这就是貌似泄漏。在表面上内存消耗量可能看起来非常的糟糕，但是这个原因是完全可以接受的。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://misic.moe/2015/10/21/2015-10-21/" data-id="ciyvo6jex0003qfqhv3co1r2h" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/11/08/2015-11-08/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          避免AngularJS自动字符转义
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/09/08/2015-09-08/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">CSS动画优化</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/02/07/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/19/2016-10-19/">关于当&#39;f&#39;、&#39;i&#39;两字母放一起letter-spacing不生效的问题</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/06/2016-04-06/">关于HTTP2.0</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/02/2016-04-02/">关于position属性sticky</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/23/2015-11-23/">各版本IE与标准浏览器差异小结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 月落<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

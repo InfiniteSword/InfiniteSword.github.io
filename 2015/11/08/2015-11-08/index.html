@@ -3,21 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hello World | Misic-月落音阑</title>
+  <title>避免AngularJS自动字符转义 | Misic-月落音阑</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="终于下手弄了这个博客，首先把以前写过的东西搬进来，在慢慢填补新内容。
-希望自己以谦虚、探求的态度对待知识。">
+  <meta name="description" content="今天在用ionic写东西的时候，发现加载的HTML模板直接显示出了源代码。百度之后才知道AngularJS有自动字符转义。
+示例HTML
+12345&amp;lt;ion-view view-title=&quot;示例&quot;&amp;gt;  &amp;lt;ion-content&amp;gt;    &amp;lt;div ng-bind-html=&quot;content&quot;&amp;gt;&amp;lt;/div&amp;gt;  &amp;lt;/ion-content&amp;gt;&amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://misic.moe/2017/02/07/hello-world/index.html">
+<meta property="og:title" content="避免AngularJS自动字符转义">
+<meta property="og:url" content="http://misic.moe/2015/11/08/2015-11-08/index.html">
 <meta property="og:site_name" content="Misic-月落音阑">
-<meta property="og:description" content="终于下手弄了这个博客，首先把以前写过的东西搬进来，在慢慢填补新内容。
-希望自己以谦虚、探求的态度对待知识。">
-<meta property="og:updated_time" content="2017-02-07T13:47:57.000Z">
+<meta property="og:description" content="今天在用ionic写东西的时候，发现加载的HTML模板直接显示出了源代码。百度之后才知道AngularJS有自动字符转义。
+示例HTML
+12345&amp;lt;ion-view view-title=&quot;示例&quot;&amp;gt;  &amp;lt;ion-content&amp;gt;    &amp;lt;div ng-bind-html=&quot;content&quot;&amp;gt;&amp;lt;/div&amp;gt;  &amp;lt;/ion-content&amp;gt;&amp;">
+<meta property="og:updated_time" content="2015-11-08T13:40:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="终于下手弄了这个博客，首先把以前写过的东西搬进来，在慢慢填补新内容。
-希望自己以谦虚、探求的态度对待知识。">
+<meta name="twitter:title" content="避免AngularJS自动字符转义">
+<meta name="twitter:description" content="今天在用ionic写东西的时候，发现加载的HTML模板直接显示出了源代码。百度之后才知道AngularJS有自动字符转义。
+示例HTML
+12345&amp;lt;ion-view view-title=&quot;示例&quot;&amp;gt;  &amp;lt;ion-content&amp;gt;    &amp;lt;div ng-bind-html=&quot;content&quot;&amp;gt;&amp;lt;/div&amp;gt;  &amp;lt;/ion-content&amp;gt;&amp;">
   
     <link rel="alternate" href="/atom.xml" title="Misic-月落音阑" type="application/atom+xml">
   
@@ -70,10 +73,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-2015-11-08" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/02/07/hello-world/" class="article-date">
-  <time datetime="2017-02-07T09:18:46.000Z" itemprop="datePublished">2017-02-07</time>
+    <a href="/2015/11/08/2015-11-08/" class="article-date">
+  <time datetime="2015-11-08T13:24:00.000Z" itemprop="datePublished">2015-11-08</time>
 </a>
     
   </div>
@@ -84,7 +87,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      避免AngularJS自动字符转义
     </h1>
   
 
@@ -92,13 +95,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>终于下手弄了这个博客，首先把以前写过的东西搬进来，在慢慢填补新内容。</p>
-<p>希望自己以谦虚、探求的态度对待知识。</p>
+        <p>今天在用ionic写东西的时候，发现加载的HTML模板直接显示出了源代码。百度之后才知道AngularJS有自动字符转义。</p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p>HTML</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ion-view</span> <span class="attr">view-title</span>=<span class="string">"示例"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">ion-content</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-bind-html</span>=<span class="string">"content"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ion-content</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ion-view</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>JS</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$scope.content = test;</div><div class="line"><span class="keyword">var</span> test = <span class="string">'&lt;div class="test"&gt;测试&lt;/div&gt;'</span>;</div></pre></td></tr></table></figure>
+<p>以上代码会直接在页面显示<code>&lt;div class=&quot;test&quot;&gt;测试&lt;/div&gt;</code></p>
+<h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h4><p>要输出HTML需要使用 $sce 安全机制，比如示例js可修改如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$scope.content = $sce.trustAsHtml(test);;</div><div class="line"><span class="keyword">var</span> test = <span class="string">'&lt;div class="test"&gt;测试&lt;/div&gt;'</span>;</div></pre></td></tr></table></figure>
+<p>这样就能在页面显示想要输出的内容了。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/02/07/hello-world/" data-id="ciyvo6jfa000aqfqh5vtrthx1" class="article-share-link">Partager</a>
+      <a data-url="http://misic.moe/2015/11/08/2015-11-08/" data-id="ciyvo6jey0004qfqh3c6a53e2" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -107,10 +117,19 @@
     
 <nav id="article-nav">
   
+    <a href="/2015/11/19/2015-11-19/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          console.log的细节问题
+        
+      </div>
+    </a>
   
-    <a href="/2016/10/19/2016-10-19/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2015/10/21/2015-10-21/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Ancien</strong>
-      <div class="article-nav-title">关于当&#39;f&#39;、&#39;i&#39;两字母放一起letter-spacing不生效的问题</div>
+      <div class="article-nav-title">JS 内存泄露</div>
     </a>
   
 </nav>

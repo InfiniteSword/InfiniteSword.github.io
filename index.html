@@ -96,7 +96,522 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/02/07/hello-world/" data-id="ciyvl16fg00004dqh2gwwmtnz" class="article-share-link">Partager</a>
+      <a data-url="http://misic.moe/2017/02/07/hello-world/" data-id="ciyvo6jfa000aqfqh5vtrthx1" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-10-19" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/19/2016-10-19/" class="article-date">
+  <time datetime="2016-10-19T12:55:00.000Z" itemprop="datePublished">2016-10-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/19/2016-10-19/">关于当&#39;f&#39;、&#39;i&#39;两字母放一起letter-spacing不生效的问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>如图，fi两字母在一起如胶似漆，letter-spacing设多大都不能把他们扯开。<br><img src="/2016/10/19/2016-10-19/1.png" alt=""><br>如果在f和i中间插入个注释倒是可以解决。</p>
+<p><img src="/2016/10/19/2016-10-19/21-00-26.jpg" alt=""><br>但是我们需要在css里将其解决，这里我们添加一个font-variant-ligatures: no-common-ligatures; 属性，就可以解决这个问题了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://misic.moe/2016/10/19/2016-10-19/" data-id="ciyvo6jf90009qfqhscud4jsa" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-04-06" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/06/2016-04-06/" class="article-date">
+  <time datetime="2016-04-06T05:30:00.000Z" itemprop="datePublished">2016-04-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/06/2016-04-06/">关于HTTP2.0</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>HTTP/2 是万维网（WWW）基础协议 HTTP 16年来的首次重大升级。正式版http2规格标准叫做RFC 7540，发布于2015年5月15日。</p>
+</blockquote>
+<h2 id="HTTP-1-1"><a href="#HTTP-1-1" class="headerlink" title="HTTP/1.1"></a>HTTP/1.1</h2><p>在 HTTP/1.0 下，每完成一次请求及响应，TCP 连接就会断开，然而客户端的每次请求都只能请求一个文件，在进行下一次请求是又得重新建立连接。可是 TCP 连接是有往返时延的，这样要加载一个页面就太慢了。</p>
+<p>于是在 HTTP/1.1 中，TCP 连接变得持♂久了，在完成整个页面的加载（同域名下的所有资源请求/响应完毕）之后才会断开连接，这样就减少了建立连接和关闭连接的消耗与延迟。</p>
+<p>HTTP/1.1 还允许客户端不用等待上一次请求结果返回，就可以发出下一次请求，但服务器端必须按照接收到客户端请求的先后顺序依次回送响应结果，以保证客户端能够区分出每次请求的响应内容，这样也显著地减少了整个下载过程所需要的时间（HTTP Pipelining）。</p>
+<h2 id="HTTP-1-1存在的一些问题"><a href="#HTTP-1-1存在的一些问题" class="headerlink" title="HTTP/1.1存在的一些问题"></a>HTTP/1.1存在的一些问题</h2><p>HTTP/1.1 对网络延迟非常敏感。虽然近几年来网络带宽增长非常快，然而我们却并没有看到网络延迟有对应程度的降低。HTTP 性能的关键在于低延迟而不是高带宽，大多数 HTTP 连接的时间都很短，而且是突发性的，但 TCP 只在长时间连接传输大块数据时效率才最高。</p>
+<p>由于 HTTP/1.1 允许 HTTP Pipelining 技术，然而你却并不知道服务器对前一个请求的响应需要多久，服务器毕竟是顺序处理请求，如果前一个请求非常耗时，那么后续请求都会受到影响（线头阻塞）。虽然某些情况下你可以选择新建一个 TCP 连接，浏览器一般也支持同时打开多个连接，然而新建 TCP 的开销特别大，并且并不能有效解决延迟问题。</p>
+<h2 id="Now-HTTP-2-0"><a href="#Now-HTTP-2-0" class="headerlink" title="Now, HTTP/2.0"></a>Now, HTTP/2.0</h2><h4 id="二进制分帧"><a href="#二进制分帧" class="headerlink" title="二进制分帧"></a>二进制分帧</h4><p>HTTP/2.0 是一个二进制协议。</p>
+<p>基于二进制的 HTTP/2.0 可以使成帧的使用变得更为便捷。在 HTTP/1.1 和其他基于文本的协议中，对帧的起始和结束识别起来相当复杂。而通过移除掉可选的空白符以及其他冗余后，再来实现这些会变得更容易。</p>
+<p><img src="/2016/04/06/2016-04-06/binary.png" alt=""></p>
+<p>如图，在高层 HTTP API 和低层 TCP 连接中引入了一个二进制分帧层，在二进制分帧层上， HTTP/2.0 会将所有传输的信息分割为更小的消息和帧,并对它们采用二进制格式的编码 ，其中HTTP/1.x 的首部信息会被封装到 Headers 帧， request body 则封装到 Data 帧里面。</p>
+<h4 id="帧"><a href="#帧" class="headerlink" title="帧"></a>帧</h4><p>HTTP/2 中数据传输的最小单位，因此 HTTP/2 中的帧不仅要细分表达 HTTP/1.x 中的各个部份，也优化了 HTTP/1.x 表达得不好的地方，同时还增加了 HTTP/1.x 表达不了的方式。</p>
+<p>每一帧都包含几个字段，有 length、type、flags、stream identifier、frame playload 等，其中 typ e代表帧的类型，在 HTTP/2 的标准中定义了10种不同的类型，包括上面所说的 HEADERS frame 和 DATA frame。此外还有</p>
+<ul>
+<li>PRIORITY（设置流的优先级）</li>
+<li>RST_STREAM（终止流）</li>
+<li>SETTINGS（设置此连接的参数）</li>
+<li>PUSH_PROMISE（服务器推送）</li>
+<li>PING（测量RTT）</li>
+<li>GOAWAY（终止连接）</li>
+<li>WINDOW_UPDATE（流量控制）</li>
+<li>CONTINUATION（继续传输头部数据）</li>
+</ul>
+<h4 id="流与多路复用"><a href="#流与多路复用" class="headerlink" title="流与多路复用"></a>流与多路复用</h4><p>HTTP/2 连接上传输的每个帧都关联到一个“流”（Stream），流是一个逻辑上的联合，一个独立的，双向的帧序列，可以通过一个 HTTP/2 的连接在服务端与客户端之间不断的交换数据。</p>
+<p>每个单独的 HTTP/2 连接都可以包含多个并发的流，这些流中交错的包含着来自两端的帧。流既可以被客户端/服务器端单方面的建立和使用，也可以被双方共享，或者被任意一边关闭。在流里面，每一帧发送的顺序非常关键。接收方会按照收到帧的顺序来进行处理。</p>
+<p>在一个 TCP 连接上，我们可以向对方不断发送一个个的消息，这里每一个消息看成是一帧，而每一帧有个 stream identifier 的字段标明这一帧属于哪个“流”，然后在对方接收时，根据 stream identifier 拼接每个“流”的所有帧组成一整块数据。</p>
+<p>在 HTTP/2.0 中，多个任务组并发地执行请求，这样即使前一个任务花费太多时间也不会影响之后任务的请求与响应（规避了线头阻塞）。</p>
+<p><em>由客户端发起的流 Stream ID 为奇数，由服务器发起的流 Stream ID 为偶数。</em></p>
+<p>关于流与多路复用：<a href="http://www.blogjava.net/yongboy/archive/2015/03/19/423611.html" target="_blank" rel="external">HTTP/2笔记之流和多路复用</a></p>
+<h4 id="优先级和依赖性"><a href="#优先级和依赖性" class="headerlink" title="优先级和依赖性"></a>优先级和依赖性</h4><p>既然 HTTP/2.0 存在多路复用，那会不会加载页面时先加载了许多无关紧要的内容而把关键的 css 等文件放在最后呢？</p>
+<p>然而事实是并不会╮(╯▽╰)╭，HTTP/2.0 中每个流都包含一个优先级（也就是“权重”），它被用来告诉对端哪个流更重要。当资源有限的时候，服务器会根据优先级来选择应该先发送哪些流。流的优先级用于发起流的终端（客户端/服务器）向对端（接收的一方）表达需要多大比重的资源支持，但这只是一个建议，不能强制要求对端一定会遵守。</p>
+<p>借助于 PRIORITY 帧，客户端同样可以告知服务器当前的流依赖于其他哪个流。该功能让客户端能建立一个优先级“树”，所有“子流”会依赖于“父流”的传输完成情况。</p>
+<p>虽然高优先级的帧应该优先发送，但却不会是绝对的，若是绝对遵守的话则可能引起阻塞问题（高优先级的请求、响应消耗太多时间影响之后资源的传输）。</p>
+<h4 id="头部压缩"><a href="#头部压缩" class="headerlink" title="头部压缩"></a>头部压缩</h4><p>HTTP 是一种无状态的协议，每个请求必须要携带服务器需要的所有细节，而不是让服务器保存住之前请求的元数据。因为 HTTP/2.0 并没有改变这个范式，所以它也必须要携带所有细节。当一个客户端从同一服务器请求了大量资源（例如页面的图片）的时候，所有这些请求看起来几乎都是一致的，而这些大量一致的东西则正好值得被压缩。</p>
+<p>HPACK ，HTTP/2 头部压缩，专为 HTTP/2.0 头部设计的压缩格式。在服务器和客户端各维护一个“首部表”，表中用索引代表首部名，或者首部键-值对，上一次发送两端都会记住已发送过哪些首部，下一次发送只需要传输差异的数据，相同的数据直接用索引表示即可。通信期间几乎不会改变的通用键-值对只需发送一次。</p>
+<p>如果首部发生变化了，那么只需要发送变化了数据在 Headers 帧里面，新增或修改的首部帧会被追加到“首部表”。首部表在 HTTP/2.0 的连接存续期内始终存在,由客户端和服务器共同渐进地更新 。</p>
+<p>关于头部压缩：<a href="https://imququ.com/post/header-compression-in-http2.html" target="_blank" rel="external">HTTP/2 头部压缩技术介绍</a></p>
+<h4 id="服务器推送"><a href="#服务器推送" class="headerlink" title="服务器推送"></a>服务器推送</h4><p>这个功能通常被称作“缓存推送”。主要的思想是：当一个客户端请求资源X，而服务器知道它很可能也需要资源Z的情况下，服务器可以在客户端发送请求前，主动将资源Z推送给客户端。这个功能帮助客户端将Z放进缓存以备将来之需。</p>
+<p>比如当服务器响应了一个 HTML 请求后，知道了客户端还会发送 CSS 请求、JS 请求，这时服务器可以采用推送的方式，主动发起资源，客户端可以选择缓存收到的资源，当然，也可以拒绝这个资源。</p>
+<p>服务器必须遵循请求-响应的循环，只能借着请求的响应来推送资源，也就是说，如果客户端没有发送请求，服务器是没法先手推送的。在整个过程中，有一种类型为 PUSH_PROMISE 的帧，当客户端解析到这个帧时，就会准备接收服务端将要推送的流。PUSH_PROMISE 帧必须在返回响应（DATA 帧）之前发送，因为万一客户端请求的恰好是服务器打算推送的资源，那传输过程就会混乱了。</p>
+<p>服务器推送需要客户端显式的允许服务器提供该功能。但即使如此，客户端依然能自主选择是否需要中断该推送的流。如果不需要的话，客户端可以通过发送一个 RST_STREAM 帧来中止。</p>
+<p><em>在http2里面，我们可以通过发送 RST_STREAM 帧来终止当前传输的消息并重新发送一个新的，从而避免浪费带宽和中断已有的连接</em></p>
+<h2 id="学习总结与思考"><a href="#学习总结与思考" class="headerlink" title="学习总结与思考"></a>学习总结与思考</h2><p>HTTP/2.0 具有许多 HTTP/1.x 所没有的优点，却不会改动 HTTP 的语义，HTTP 方法、状态码、URI 及首部字段等核心概念，致力于突破上一代标准的性能限制，改进传输性能，实现低延迟和高吞吐量。</p>
+<p>同时，许多针对 HTTP/1.x 的优化手段都不再必要，甚至有的会显得累赘。</p>
+<h4 id="CSS-Sprites-、拼接以及内联资源"><a href="#CSS-Sprites-、拼接以及内联资源" class="headerlink" title="CSS Sprites 、拼接以及内联资源"></a>CSS Sprites 、拼接以及内联资源</h4><p>CSS Sprites（雪碧图）是一种将很多较小的图片合并成一张大图，再将小图重新“切割”出来的技术，目的是为了减少请求，但在 HTTP/2.0 新起请求不费事，但拆分开来倒可以更好地利用浏览器缓存。</p>
+<p>Concatenation（拼接）是指一些前端工具可以帮助开发人员将大量的JavaScript文件合并为一个大的文件，从而让浏览器能只花费一个请求就将其下载完，而不是发无数请求去分别下载那些琐碎的JavaScript文件。同 Sprites 一样，在 HTTP/2.0 里并不必要，反而是增加了自己的工作量。</p>
+<p>Inlining （内联）是另外一种防止发送很多小图请求的技巧，比如将图片的原始数据嵌入在CSS文件里面的URL里。在 HTTP/2.0 里可以用服务器推送，也同样可以更好地利用缓存。</p>
+<h4 id="域名分区"><a href="#域名分区" class="headerlink" title="域名分区"></a>域名分区</h4><p>“域名分区”是把你的服务分散在尽可能多的主机上。在 HTTP1.x 上如果一个只用一个持久链接，请求只能一个一个顺序请求，为了高效地并行下载资源，浏览器允许我们打开多个 TCP 会话，但是一个域名下限制6个链接。为了突破这些限制，我们可以域名分区，提高并行下载资源能力。</p>
+<p>而在 HTTP/2.0 中,“域名分区”这种优化手段是无用的，因为资源都是并行交错发送，且没有限制，不需要额外的多域名并行下载。本来可以用一个连接完成，却要用多个连接，这样就有性能损耗了。</p>
+<p><em>本文仅为自己的学习笔记，加深学习印象，如有错误，求告知</em></p>
+<p>参考文章</p>
+<ul>
+<li><a href="http://aotu.io/notes/2016/03/17/http2-char/" target="_blank" rel="external">前端开发与 HTTP/2 的羁绊——安利篇</a></li>
+<li><a href="http://www.2cto.com/kf/201510/446824.html" target="_blank" rel="external">Web性能优化与Http2</a></li>
+<li><a href="http://www.alloyteam.com/2015/03/http2-0-di-qi-miao-ri-chang/" target="_blank" rel="external">HTTP2.0的奇妙日常</a></li>
+<li><a href="https://www.gitbook.com/book/ye11ow/http2-explained/details" target="_blank" rel="external">http2讲解</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://misic.moe/2016/04/06/2016-04-06/" data-id="ciyvo6jf80008qfqhn973ojtd" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-04-02" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/02/2016-04-02/" class="article-date">
+  <time datetime="2016-04-02T13:23:00.000Z" itemprop="datePublished">2016-04-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/02/2016-04-02/">关于position属性sticky</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>sticky是CSS3中的新增position属性，对象在常态时遵循常规流，它就像是relative和fixed的合体，当在屏幕中时按常规流排版，当卷动到屏幕外时则表现如fixed。该属性的表现是现实中你见到的吸附效果。</p>
+<h2 id="当不使用sticky时"><a href="#当不使用sticky时" class="headerlink" title="当不使用sticky时"></a>当不使用sticky时</h2><p>HTML结构如下<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div2"</span>&gt;</span></div><div class="line">    green</div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span>    </div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div1"</span>&gt;</span></div><div class="line">	red</div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>CSS如下<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.div1</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">background</span>: green;</div><div class="line">	<span class="attribute">margin-left</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">margin-top</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">top</span>: <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.div2</span>&#123;</div><div class="line">	<span class="attribute">position</span>: absolute;</div><div class="line">	<span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">background</span>: red;</div><div class="line">	<span class="attribute">margin-left</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">margin-top</span>: <span class="number">200px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>表现如下</p>
+<p><img src="/2016/04/02/2016-04-02/ac1.gif" alt=""></p>
+<h2 id="使用stick时"><a href="#使用stick时" class="headerlink" title="使用stick时"></a>使用stick时</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.div1</span>&#123;</div><div class="line">	<span class="attribute">position</span>: -webkit-sticky;  </div><div class="line">	<span class="attribute">position</span>: -moz-sticky;  </div><div class="line">	<span class="attribute">position</span>: -ms-sticky;  </div><div class="line">	<span class="attribute">position</span>: sticky;</div><div class="line">	<span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">background</span>: green;</div><div class="line">	<span class="attribute">margin-left</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">margin-top</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">top</span>: <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.div2</span>&#123;</div><div class="line">	<span class="attribute">position</span>: absolute;</div><div class="line">	<span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">background</span>: red;</div><div class="line">	<span class="attribute">margin-left</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">margin-top</span>: <span class="number">200px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>表现形式如下</p>
+<p><img src="/2016/04/02/2016-04-02/ac2.gif" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://misic.moe/2016/04/02/2016-04-02/" data-id="ciyvo6jf20006qfqhkuww80bo" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-11-23" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/23/2015-11-23/" class="article-date">
+  <time datetime="2015-11-23T08:05:00.000Z" itemprop="datePublished">2015-11-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/23/2015-11-23/">各版本IE与标准浏览器差异小结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这是看司徒正美的《JavaScript框架设计》时写的记录。包含但不深究低版本IE未实现的属性或方法。</p>
+<h4 id="类型判定"><a href="#类型判定" class="headerlink" title="类型判定"></a>类型判定</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">typeof</span> <span class="built_in">window</span>.alert; <span class="comment">// IE678 "object"</span></div><div class="line"></div><div class="line"><span class="comment">// 旧版本下IE下DOM与BOM对象的constructor属性是没有暴露出来的</span></div><div class="line">alert(<span class="built_in">window</span>.constructor); <span class="comment">// IE67 undefined</span></div><div class="line"></div><div class="line"><span class="comment">// IE下会有typeof返回unknow的情况</span></div><div class="line"></div><div class="line"><span class="comment">// 通过比较window和document可以判断IE</span></div><div class="line"><span class="built_in">window</span> == <span class="built_in">document</span>; <span class="comment">// IE678 true</span></div><div class="line"><span class="built_in">document</span> == <span class="built_in">window</span>; <span class="comment">// IE678 false</span></div></pre></td></tr></table></figure>
+<h4 id="字符串与数组"><a href="#字符串与数组" class="headerlink" title="字符串与数组"></a>字符串与数组</h4><p>IE6、IE7不支持用中括号取它的每一个字符，需要用charAt方法；IE6、IE7、IE8不支持垂直分表符。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> isIE678 = !+<span class="string">"\v1"</span>;</div></pre></td></tr></table></figure>
+<p>IE6、IE7下unshift不返回数组长度；splice在一个参数的情况下，IE6、IE7、IE8默认第二个参数为0，其他浏览器为数组的长度。</p>
+<h4 id="IE部分私有属性-amp-bug"><a href="#IE部分私有属性-amp-bug" class="headerlink" title="IE部分私有属性&amp;bug"></a>IE部分私有属性&amp;bug</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">ie = !!<span class="built_in">document</span>.recalc;</div><div class="line">ie = !!<span class="built_in">window</span>.VBArray;</div><div class="line">ie = !!<span class="built_in">window</span>.ActiveXObject;</div><div class="line">ie = !!<span class="built_in">window</span>.crearePopup;</div><div class="line">ie = <span class="comment">/*@cc_on!@*/</span>!<span class="number">1</span>; <span class="comment">// @cc_on开启IE中的条件编译，有效语法：/*@cc_on @*/</span></div><div class="line">ie = <span class="built_in">document</span>.expando; <span class="comment">// document.all在opera和firefox的老版本中也存在</span></div><div class="line">ie = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> v = <span class="number">3</span>, div = <span class="built_in">document</span>.creatElement(<span class="string">'div'</span>);</div><div class="line">    <span class="keyword">while</span> (div.innerHTML = <span class="string">'&lt;!--[if gt IE'</span> + (++v) +<span class="string">']&gt;&lt;br&gt;&lt;![endif]--&gt;'</span>, div.innerHTML);</div><div class="line">    <span class="keyword">return</span> v &gt; <span class="number">4</span> ? v : !v;</div><div class="line">&#125;)();</div><div class="line"></div><div class="line">ie67 = !<span class="string">"1"</span>[<span class="number">0</span>]; <span class="comment">//IE6、IE7的字符串不能使用数组下标</span></div><div class="line"></div><div class="line">ie678 = !+<span class="string">"\v1"</span>;</div><div class="line">ie678 = !-[<span class="number">1</span>, ];</div><div class="line">ie678 = (<span class="string">'\v'</span> == <span class="string">'v'</span>);</div><div class="line">ie678 = (<span class="string">'a~b'</span>.split(<span class="regexp">/(~)/</span>)[<span class="number">1</span>] == <span class="string">"b"</span>;</div><div class="line">ie678 = <span class="number">0.9</span>.toFixed(<span class="number">0</span>) == <span class="string">"0"</span>;</div><div class="line">ie678 = <span class="regexp">/\w/</span>.test(<span class="string">'\u0130'</span>);</div><div class="line">ie678 = <span class="number">0</span><span class="comment">//@cc_on+1;</span></div><div class="line"></div><div class="line">ie8 = <span class="built_in">window</span>.toStaticHTML;</div><div class="line">ie8 = !!<span class="built_in">window</span>.XDomainRequest;</div><div class="line"></div><div class="line">ie9 = <span class="built_in">window</span>.msPerformance;</div><div class="line">ie9 = <span class="built_in">document</span>.documentMode &amp;&amp; <span class="built_in">document</span>.documentMode === <span class="number">9</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> ieVersion = <span class="built_in">eval</span>(<span class="string">"''+/*@cc_on"</span> + <span class="string">"@_jscript_version@*/-0"</span>) * <span class="number">1</span>;</div><div class="line"><span class="comment">// 基于条件编译的浏览器嗅探脚本，IE会返回JS引擎的版本号，非IE返回0</span></div><div class="line">ie9 = ieVersion === <span class="number">5.9</span>;</div><div class="line">ie8 = ieVersion === <span class="number">5.8</span>;</div><div class="line">ie7 = ieVersion === <span class="number">5.7</span>;</div><div class="line">ie6 = ieVersion === <span class="number">5.6</span>;</div><div class="line">ie5 = ieVersion === <span class="number">5.5</span>;</div><div class="line"></div><div class="line">ie10 = <span class="built_in">window</span>.navigator.msPointerEnabled;</div><div class="line"></div><div class="line">ie11 = <span class="string">'-ms-scroll-limit'</span> <span class="keyword">in</span> <span class="built_in">document</span>.documentElement.style;</div><div class="line">ie11 = !!<span class="built_in">window</span>.MSInputMethodContext;</div></pre></td></tr></table></figure>
+<h4 id="DOM节点"><a href="#DOM节点" class="headerlink" title="DOM节点"></a>DOM节点</h4><p>IE6、IE7的input、iframe元素的name属性是只读的，但是在IE6~IE8下的<code>document.creatElement</code>允许用户连同属性一起生成，可以用来生成带有name属性的input和iframe元素。</p>
+<p>IE下有些元素节点的innerHTML是只读的，重写innerHTML会抛错，这些元素包括col、colgroup、frameset、head、html、style、table、tbody、tfoot、thead、title、tr。</p>
+<p>IE的innerHTML会忽略掉no-scope element【IE内部概念】。</p>
+<p>IE下对元素的复制【cloneNode】会复制元素写在标签内的属性与通过setAttribute设置的属性，且IE6~IE8还支持通过<code>ele.attr = &quot;xxx&quot;</code>设置的属性复制。</p>
+<p>removeChild在IE6~IE7中有内存泄露问题。</p>
+<p>IE6~IE8中存在一个叫DOM超空间【DOM hyperspace】的概念，当元素移出DOM树，又有JavaScript关联时元素不会消失，它被保存在一个叫超空间的地方。可以用是否存在parentNode来判定元素是否在超空间。</p>
+<p>【未完】</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://misic.moe/2015/11/23/2015-11-23/" data-id="ciyvo6jf40007qfqhr3geiqej" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-11-19" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/19/2015-11-19/" class="article-date">
+  <time datetime="2015-11-19T15:42:00.000Z" itemprop="datePublished">2015-11-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/19/2015-11-19/">console.log的细节问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>某个好友写了个遍历函数模仿数组方法forEach，发现把console.log作输入函数时会报如下错：</p>
+<p><em>Uncaught TypeError: Illegal invocation</em></p>
+<p>而将console.log放到另一个函数里包裹起来就能正常输出：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">_print</span> (<span class="params">x</span>)</span>&#123; </div><div class="line">    <span class="built_in">console</span>.log(x)</div><div class="line">&#125;</div><div class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].forEach(_print);</div><div class="line"><span class="comment">// 1</span></div><div class="line"><span class="comment">// 2</span></div><div class="line"><span class="comment">// 3</span></div></pre></td></tr></table></figure>
+<p>百度原因，发现与console.log的内部实现有关。</p>
+<p>console.log的运行上下文必须为console，当其this指针不是指向console时就会产生错误。所以要解决问题只需要在使用时把this指针绑回console就行了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].forEach(<span class="built_in">console</span>.log.bind(<span class="built_in">console</span>));</div><div class="line"><span class="comment">// 1 0 [1, 2, 3]</span></div><div class="line"><span class="comment">// 2 1 [1, 2, 3]</span></div><div class="line"><span class="comment">// 3 2 [1, 2, 3]</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://misic.moe/2015/11/19/2015-11-19/" data-id="ciyvo6jf00005qfqhs1biiw9o" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-11-08" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/08/2015-11-08/" class="article-date">
+  <time datetime="2015-11-08T13:24:00.000Z" itemprop="datePublished">2015-11-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/08/2015-11-08/">避免AngularJS自动字符转义</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天在用ionic写东西的时候，发现加载的HTML模板直接显示出了源代码。百度之后才知道AngularJS有自动字符转义。</p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p>HTML</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ion-view</span> <span class="attr">view-title</span>=<span class="string">"示例"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">ion-content</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-bind-html</span>=<span class="string">"content"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ion-content</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ion-view</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>JS</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$scope.content = test;</div><div class="line"><span class="keyword">var</span> test = <span class="string">'&lt;div class="test"&gt;测试&lt;/div&gt;'</span>;</div></pre></td></tr></table></figure>
+<p>以上代码会直接在页面显示<code>&lt;div class=&quot;test&quot;&gt;测试&lt;/div&gt;</code></p>
+<h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h4><p>要输出HTML需要使用 $sce 安全机制，比如示例js可修改如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$scope.content = $sce.trustAsHtml(test);;</div><div class="line"><span class="keyword">var</span> test = <span class="string">'&lt;div class="test"&gt;测试&lt;/div&gt;'</span>;</div></pre></td></tr></table></figure>
+<p>这样就能在页面显示想要输出的内容了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://misic.moe/2015/11/08/2015-11-08/" data-id="ciyvo6jey0004qfqh3c6a53e2" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-10-21" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/10/21/2015-10-21/" class="article-date">
+  <time datetime="2015-10-21T14:16:00.000Z" itemprop="datePublished">2015-10-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/21/2015-10-21/">JS 内存泄露</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>js内存泄露是指一块被分配的内存在浏览器进程结束前既不能使用，又不能回收的问题。在js中，内存是根据对象的创建分配给该对象的，并会在没有对该对象的引用时由浏览器收回。这种机制本身没有问题，问题在于浏览器在为 DOM 对象分配内存和恢复内存的方式。</p>
+<p>Internet Explorer 和 Mozilla Firefox 均使用引用计数来为 DOM 对象处理内存。在引用计数系统，每个所引用的对象都会保留一个计数，以获悉有多少对象正在引用它。如果计数为零，该对象就会被销毁，其占用的内存也会返回。</p>
+<h2 id="循环引用"><a href="#循环引用" class="headerlink" title="循环引用"></a>循环引用</h2><p>当两个对象互相引用时，就构成了循环引用，其中每个对象的引用计数值都被赋 1。在纯垃圾收集系统中，循环引用问题不大，若涉及到的两个对象中的一个对象被任何其他对象引用，那么这两个对象都将被垃圾收集。而在引用计数系统，这两 个对象都不能被销毁，原因是引用计数永远不能为零。在同时使用了垃圾收集和引用计数的混合系统中，将会发生泄漏，因为系统不能正确识别循环引用。在这种情况下，DOM 对象和 JavaScript 对象均不能被销毁。</p>
+<h4 id="闭包导致的循环引用"><a href="#闭包导致的循环引用" class="headerlink" title="闭包导致的循环引用"></a>闭包导致的循环引用</h4><p>闭包使内部变量在外部变量返回时也能保留对外部函数变量的引用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params">A</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> a = A;</div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">return</span> a;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>闭包非常易于隐藏 JavaScript 对象和 DOM 对象间的循环引用。如果一个构成闭包的函数对象被指定给了一个 DOM 节点的事件处理器，而对该节点的引用又被指定给函数对象作用域中的一个活动（或可变）对象，那么就存在一个循环引用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bindEvent</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> obj = <span class="built_in">document</span>.createElement(<span class="string">"XXX"</span>); </div><div class="line">	obj.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </div><div class="line">		<span class="comment">//Even if it's an empty function </span></div><div class="line">	&#125;</div><div class="line">	<span class="comment">// obj = null;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>解决方法：</p>
+<p>1、解除闭包关系，把事件处理函数定义到bindEvent()外边。</p>
+<p>2、或者在定义事件处理函数的外部函数中，删除对dom的引用（obj.onclick后面注释掉的一行）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> e = <span class="built_in">document</span>.getElementById(<span class="string">'e'</span>); </div><div class="line">e.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </div><div class="line">	alert(<span class="string">'元素e的内容是：'</span> + e.innerHTML); </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>解决方法：将<code>e.innerHTML</code>改为<code>this.innerHTML</code>就可以避免。</p>
+<h2 id="页面交叉泄漏"><a href="#页面交叉泄漏" class="headerlink" title="页面交叉泄漏"></a>页面交叉泄漏</h2><p>页面交叉泄漏其实是一种较小的泄漏,这种基于插入顺序而常常引起的泄漏问题，主要是由于对象创建过程中的临时对象未能被及时清理和释放造成的。它一般在动态创建页面元素，并将其添加到页面DOM中时发生。</p>
+<p>一个最简单的示例场景是我们动态创建两个对象，并创建一个子元素和父元素间的临时域。然后，当你将这两个父子结构元素构成的的树添加到页面DOM树中时，这两个元素将会继承页面DOM中的层次管理域对象，并泄漏之前创建的那个临时域对象。</p>
+<p>两种动态创建并添加元素到页面DOM中的方法：</p>
+<p>1、将每个子元素添加到它的直接父元素中，最后再将创建好的整棵子树添加到页面DOM中。当一些相关条件合适时，这种方法将会由于临时对象问题引起泄漏。</p>
+<p>2、自顶向下创建动态元素，并使它们被创建后立即加入到页面DOM结构中去。由于每个被加入的元素继承了页面DOM中的结构域对象，我们不需要创建任何的临时域。这是避免潜在内存泄漏发生的好方法。</p>
+<h2 id="貌似泄漏"><a href="#貌似泄漏" class="headerlink" title="貌似泄漏"></a>貌似泄漏</h2><p>在大多数时候，一些APIs的实际的行为和它们预期的行为可能会导致你错误的判断内存泄漏。貌似泄漏大多数时候总是出现在同一个页面的动态脚本操作中，而在从一个页面跳转到空白页面的时候发生是非常少见的。</p>
+<p>和DOM插入顺序问题那样，这个问题也需要依赖创建临时对象来产生”泄漏”。对一个脚本元素对象内部的脚本文本一而再再而三的反复重写，慢慢地你将开始泄漏各种已关联到被覆盖内容中的脚本引擎对象。特别地，和脚本调试有关的对象被作为完全的代码对象形式保留了下来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;html&gt; </div><div class="line">&lt;head&gt; </div><div class="line">&lt;script&gt; </div><div class="line">function LeakMemory() &#123; </div><div class="line">	// Do it a lot, look at Task Manager for memory response </div><div class="line">	for(i = 0; i &lt; 5000; i++) &#123;</div><div class="line">		hostElement.text = &quot;function foo() &#123; &#125;&quot;; </div><div class="line">	&#125;</div><div class="line">&#125; </div><div class="line">&lt;/script&gt; </div><div class="line">&lt;/head&gt; </div><div class="line">&lt;body&gt; </div><div class="line">	&lt;button onclick=&quot;LeakMemory()&quot;&gt;Memory Leaking Insert&lt;/button&gt; </div><div class="line">	&lt;script id=&quot;hostElement&quot;&gt;</div><div class="line">		function foo() &#123; &#125;</div><div class="line">	&lt;/script&gt; </div><div class="line">&lt;/body&gt; </div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p>如果你运行上面的示例代码并使用任务管理器查看，当从”泄漏”页面跳转到空白页面时，你并不会注意到任何脚本泄漏。因为这种脚本泄漏完全发生在页面内部，而且当你离开该页面时被使用的内存就会回收。对于我们原本所期望的行为来说这样的情况是糟糕的。你希望当重写了脚本内容后，原来的脚本对象就应该彻底的从页面中消失。但事实上，由于被覆盖的脚本对象可能已用作事件处理函数，并且还可能有一些未被清除的引用计数。正如你所看到的，这就是貌似泄漏。在表面上内存消耗量可能看起来非常的糟糕，但是这个原因是完全可以接受的。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://misic.moe/2015/10/21/2015-10-21/" data-id="ciyvo6jex0003qfqhv3co1r2h" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-09-08" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/08/2015-09-08/" class="article-date">
+  <time datetime="2015-09-08T13:39:00.000Z" itemprop="datePublished">2015-09-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/08/2015-09-08/">CSS动画优化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近写了个自定义样式的audio播放器，在设置外观的时候遇到了严重的卡顿问题，于是整理了下css的动画优化。</p>
+<p>部分内容收集自<a href="http://segmentfault.com/a/1190000000490328" target="_blank" rel="external">前端性能优化（CSS动画篇）</a>，<a href="http://www.w3cfuns.com/article-5598175-1-1.html" target="_blank" rel="external">高性能 CSS3 动画</a>。</p>
+<h2 id="关于页面绘制"><a href="#关于页面绘制" class="headerlink" title="关于页面绘制"></a>关于页面绘制</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>现代浏览器在使用CSS3动画时，以下四种情形绘制的效率较高，分别是：</p>
+<ul>
+<li>改变位置</li>
+<li>改变大小</li>
+<li>旋转</li>
+<li>改变透明度</li>
+</ul>
+<p>浏览器在渲染一个页面时会经过6个步骤：</p>
+<ul>
+<li>获取DOM后分割为多个图层</li>
+<li>对每个图层的节点计算样式结果（Recalculate style–样式重计算）</li>
+<li>为每个节点生成图形和位置（Layout–回流和重布局）</li>
+<li>将每个节点绘制填充到图层位图中（Paint Setup和Paint–重绘）</li>
+<li>图层作为纹理上传至GPU</li>
+<li>符合多个图层到页面上生成最终屏幕图像（Composite Layers–图层重组）</li>
+</ul>
+<p>Chrome中满足以下任意情况就会创建图层：</p>
+<ul>
+<li>3D或透视变换（perspective transform）CSS属性</li>
+<li>使用加速视频解码的<code>&lt;video&gt;</code>节点</li>
+<li>拥有3D（WebGL）上下文或加速的2D上下文的<code>&lt;canvas&gt;</code>节点</li>
+<li>混合插件（如Flash）</li>
+<li>对自己的opacity做CSS动画或使用一个动画webkit变换的元素</li>
+<li>拥有加速CSS过滤器的元素</li>
+<li>元素有一个包含复合层的后代节点（一个元素拥有一个子元素，该子元素在自己的层里）</li>
+<li>元素有一个z-index较低且包含一个复合层的兄弟元素（换句话说就是该元素在复合层上面渲染）</li>
+</ul>
+<p>如果图层中某个元素需要重绘，那么整个图层都需要重绘。比如一个图层包含很多节点，其中有个gif图，gif图的每一帧，都会重绘整个图层的其他节点，然后生成最终的图层位图。所以这需要通过特殊的方式来强制gif图属于自己一个图层（translateZ(0)或者translate3d(0,0,0)），CSS3的动画也是一样。（好在绝大部分情况浏览器自己会为CSS3动画的节点创建图层）</p>
+<h3 id="层和CSS动画"><a href="#层和CSS动画" class="headerlink" title="层和CSS动画"></a>层和CSS动画</h3><p>每一帧动画浏览器可能需要做如下工作：</p>
+<ul>
+<li>计算需要被加载到节点上的样式结果（Recalculate style–样式重计算）</li>
+<li>为每个节点生成图形和位置（Layout–回流和重布局）</li>
+<li>将每个节点填充到图层中（Paint Setup和Paint–重绘）</li>
+<li>组合图层到页面上（Composite Layers–图层重组）</li>
+</ul>
+<p>如果我们需要使得动画的性能提高，需要做的就是减少浏览器在动画运行时所需要做的工作。最好的情况是，改变的属性仅仅影响图层的组合，变换（transform）和透明度（opacity）就属于这种情况。</p>
+<p>现代浏览器如Chrome，Firefox，Safari和Opera都对变换和透明度采用硬件加速，但IE10+不是很确定是否硬件加速。</p>
+<h3 id="别使用CSS类名做状态标记"><a href="#别使用CSS类名做状态标记" class="headerlink" title="别使用CSS类名做状态标记"></a>别使用CSS类名做状态标记</h3><p>如果在网页中使用CSS的类来对节点做状态标记，当这些节点的状态标记类修改时，将会触发节点的重绘和重布局。所以在节点上使用CSS类来做状态标记代价会很大。【很多时候为了方便用这种方法，实际上却是很不可取的】</p>
+<h3 id="重布局与重绘"><a href="#重布局与重绘" class="headerlink" title="重布局与重绘"></a>重布局与重绘</h3><p>有些属性，当你改变他时，会需要对节点重新布局（这也意味着需要重新计算其他被影响的节点的位置和大小）。这种情况下，被影响的DOM树越大（可见节点），重绘所需要的时间就会越长，而渲染一帧动画的时间也相应变长。</p>
+<p>有些属性不会修改节点的大小和位置，不会触发重布局，但是节点内部的渲染效果进行了改变，所以只需要重绘就可以了。</p>
+<p>在重绘时，这些节点会被加载到GPU中进行重绘，这对移动设备如手机的影响还是很大的。因为CPU不如台式机或笔记本电脑，所以绘画巫妖的时间更长。而且CPU与GPU之间的有较大的带宽限制，所以纹理的上传需要一定时间。所以手机即使重绘也会很慢。</p>
+<h3 id="图层重组"><a href="#图层重组" class="headerlink" title="图层重组"></a>图层重组</h3><ul>
+<li>透明度【透明度并不触发重绘，因为透明度的改变仅仅是GPU简单降低了之前画好的纹理的alpha值达到的效果，当然，如果该图层之下还有图层，他们也会被透明化】</li>
+<li>使用translateZ(0)或者translate3d(0,0,0)使浏览器创建图层，可以消除在动画开始之前的图层创建时间，使得动画尽快开始（创建图层和绘制图层还是比较慢的），而且不会随着抗锯齿发生突变。不过这种方法需要节制，否则会因为创建过多的图层导致崩溃。</li>
+<li>Chrome中的抗锯齿，非根图层以及透明图层使用grayscale antialiasing而不是subpixel antialiasing，如果抗锯齿方法变化，这个效果将会非常显著。如果你打算预处理一个节点而不打算等到动画开始，可以通过这种强迫浏览器创建图层的方式进行。</li>
+<li>我们通过节点的transform可以修改节点的位置、旋转、大小等。我们平常会使用left和top属性来修改节点的位置，但正如上面所述，left和top会触发重布局，修改时的代价相当大。取而代之的更好方法是使用translate，这个不会触发重布局。【PC下，这些区别并不明显，而移动端这些优势就能体现出来】</li>
+</ul>
+<h2 id="关于移动端"><a href="#关于移动端" class="headerlink" title="关于移动端"></a>关于移动端</h2><p>相比PC端，移动端的css动画会出现很多性能问题，主要体现在卡顿与闪烁，而且移动端用js做动画也并不是一个很好的方案。那么要如何提升移动端css性能呢？</p>
+<ul>
+<li>使用translate变换比修改left等值的动画流畅度明显更高。</li>
+<li><p>使用<code>transform: translate3d(0, 0, 0);</code>能开启GPU加速，但是会增加内存使用。</p>
+<p>如果动画过程有闪烁（通常发生在动画开始的时候），可以尝试下面的Hack：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">-webkit-backface-visibility: hidden;</div><div class="line">-moz-backface-visibility: hidden;</div><div class="line">-ms-backface-visibility: hidden;</div><div class="line">backface-visibility: hidden;</div><div class="line"></div><div class="line">-webkit-perspective: 1000;</div><div class="line">-moz-perspective: 1000;</div><div class="line">-ms-perspective: 1000;</div><div class="line">perspective: 1000;</div></pre></td></tr></table></figure>
+<ul>
+<li>box-shadows&amp;gradients = 性能杀手</li>
+<li>尽量使动画元素脱离文档流</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://misic.moe/2015/09/08/2015-09-08/" data-id="ciyvo6jev0002qfqhkzbg9qem" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-08-27" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/27/2015-08-27/" class="article-date">
+  <time datetime="2015-08-27T14:15:00.000Z" itemprop="datePublished">2015-08-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/27/2015-08-27/">XSS相关</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>跨站脚本(Cross-site Scripting)即XSS，为不和层叠样式表(Cascading Style Sheets)的缩写混淆，故缩写为XSS。指攻击者向目标Web站点注入HTML标签或者脚本这类安全问题。</p>
+<p>在之前身边发生了某个关于注入的事件，记忆深刻…所以写下这篇来提醒自己。</p>
+<h3 id="关于XSS过滤"><a href="#关于XSS过滤" class="headerlink" title="关于XSS过滤"></a>关于XSS过滤</h3><p>说到XSS过滤，我们应该想到的是有多少种绕过过滤的方法。过滤<code>&lt;script&gt;</code>标签可以防止部分js代码的注入，但绝对并不周全。除了直接插入js代码，还有通过事件处理器插入js代码的方法，比如<code>&lt;body onload=&quot;xxx&quot;&gt;</code>以及<code>&lt;img src=&quot;&quot; onerror=&quot;xxx&quot;&gt;</code>等。对此，作为前端的学习者，避免使用内联的事件处理是必要的。</p>
+<p>有一个用js写的XSS攻击代码过滤模块，github地址: <em><a href="https://github.com/leizongmin/js-xss" target="_blank" rel="external">https://github.com/leizongmin/js-xss</a></em>，可以通过 <em>npm install xss</em> 来安装。</p>
+<p>###防止XSS攻击</p>
+<p>1 防止XSS攻击，通常是在使用不可信数据动态创建文档内容前移除HTML标签。如将<code>&lt;script&gt;</code>等标签的尖括号替换为它们对应的HTML实体。这种方法可归于输入过滤。通过html标签注入是较常见XSS注入攻击，入口常为表单元素以及内联样式表。通常表单项会经过正则匹配对提交内容进行过滤，PHP中可以使用htmlspecialchars或者htmlentities函数进行转义。</p>
+<p>2 对用户提交的数据进行重编码。在用户提交表单之后，将数据通过HtmlEncoder等工具编码后再输出到目标页面。重编码之后，攻击者输入的代码会被当做普通的文字，这样来防止浏览器执行代码。</p>
+<p>3 IE8中定义了一个toStaticHTML()方法，用于移除<code>&lt;script&gt;</code>标签以及其他潜在可执行内容而不修改不可执行的HTML。HTML5为<code>&lt;iframe&gt;</code>元素定义了一个sandbox属性。实现之后允许显示不可信的内容，并自动禁用脚本。</p>
+<p>4 防止攻击者获取cookie信息。避免在cookie中出现用户名、密码等隐私信息，将cookie通过算法进行多次散列再存放，以及将cookie与id进行绑定。其实在实际项目中，更多的是后台使用session来存储重要信息，而为了安全cookie只用来辅助存储非重要信息。</p>
+<p>5 在表单中添加hash值，在thinkphp中称为表单令牌的验证，这种处理除了防止表单的重复提交，也能防止从该页面之外的地方提交表单，即从某种方面防止了跨站攻击。</p>
+<p>6 使用验证码。</p>
+<p>7 避免漏洞 _(:з」∠)_</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://misic.moe/2015/08/27/2015-08-27/" data-id="ciyvo6jet0001qfqh0x1glar0" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -107,6 +622,10 @@
 
   
 
+
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 </section>
         
           <aside id="sidebar">
@@ -123,7 +642,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li></ul>
     </div>
   </div>
 
@@ -137,6 +656,22 @@
         
           <li>
             <a href="/2017/02/07/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/19/2016-10-19/">关于当&#39;f&#39;、&#39;i&#39;两字母放一起letter-spacing不生效的问题</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/06/2016-04-06/">关于HTTP2.0</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/02/2016-04-02/">关于position属性sticky</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/23/2015-11-23/">各版本IE与标准浏览器差异小结</a>
           </li>
         
       </ul>

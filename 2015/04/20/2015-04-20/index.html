@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>关于placeholder的兼容实现 | Misic-月落音阑</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今天写一个表单样式的时候遇到了js事件监听函数的兼容性问题，记录下来。
+由于input标签的placeholder属性在早期的ie浏览器是没有的，于是我采用js修改input标签的value值来模拟placeholder的效果。
+我的思路是先判断浏览器是否支持addEventListener,如果支持，则使用它，而且火狐和谷歌浏览器对placeholder属性都能很好地支持，不支持addEvent">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于placeholder的兼容实现">
+<meta property="og:url" content="http://misic.moe/2015/04/20/2015-04-20/index.html">
+<meta property="og:site_name" content="Misic-月落音阑">
+<meta property="og:description" content="今天写一个表单样式的时候遇到了js事件监听函数的兼容性问题，记录下来。
+由于input标签的placeholder属性在早期的ie浏览器是没有的，于是我采用js修改input标签的value值来模拟placeholder的效果。
+我的思路是先判断浏览器是否支持addEventListener,如果支持，则使用它，而且火狐和谷歌浏览器对placeholder属性都能很好地支持，不支持addEvent">
+<meta property="og:updated_time" content="2017-02-07T15:16:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于placeholder的兼容实现">
+<meta name="twitter:description" content="今天写一个表单样式的时候遇到了js事件监听函数的兼容性问题，记录下来。
+由于input标签的placeholder属性在早期的ie浏览器是没有的，于是我采用js修改input标签的value值来模拟placeholder的效果。
+我的思路是先判断浏览器是否支持addEventListener,如果支持，则使用它，而且火狐和谷歌浏览器对placeholder属性都能很好地支持，不支持addEvent">
+  
+    <link rel="alternate" href="/atom.xml" title="Misic-月落音阑" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Misic-月落音阑</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">关于如何在二次元与二进制之间穿行的探索</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://misic.moe"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2015-04-20" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/20/2015-04-20/" class="article-date">
+  <time datetime="2015-04-20T12:12:00.000Z" itemprop="datePublished">2015-04-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      关于placeholder的兼容实现
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天写一个表单样式的时候遇到了js事件监听函数的兼容性问题，记录下来。</p>
+<p>由于input标签的placeholder属性在早期的ie浏览器是没有的，于是我采用js修改input标签的value值来模拟placeholder的效果。</p>
+<p>我的思路是先判断浏览器是否支持addEventListener,如果支持，则使用它，而且火狐和谷歌浏览器对placeholder属性都能很好地支持，不支持addEventListener就使用attachEvent来添加事件，同时用js模拟placeholder效果。这样理应是没问题的，但是在ie9下的input里始终是空白的，ie10和ie8都会出现内容。</p>
+<p>反复检查代码之后，想到了一种可能性，于是把判断改成了先判断浏览器是否支持attachEvent，不支持则用另一个。果然，ie9下成功出现了placeholder的效果。</p>
+<p>如我想的一样，ie9已经开始支持addEventListener的事件监听，但是却并不支持placeholder属性，在我之前的思路里，它根本没有经过我模拟placeholder的代码。</p>
+<p>附代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="built_in">document</span>.attachEvent) &#123;</div><div class="line">	num.value = <span class="string">" Number"</span>;</div><div class="line">	email.value = <span class="string">" Email"</span>;</div><div class="line">	num.attachEvent(<span class="string">"onfocusin"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		num.value = <span class="string">""</span>;</div><div class="line">	&#125;);</div><div class="line">	num.attachEvent(<span class="string">"onfocusout"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		num.value = <span class="string">" Number"</span>;</div><div class="line">	&#125;);</div><div class="line">	email.attachEvent(<span class="string">"onfocusin"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		email.value = <span class="string">""</span>;</div><div class="line">	&#125;);</div><div class="line">	email.attachEvent(<span class="string">"onfocusout"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		email.value = <span class="string">" Email"</span>;</div><div class="line">	&#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://misic.moe/2015/04/20/2015-04-20/" data-id="ciyvo6jep0000qfqhz26i8c4c" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/08/27/2015-08-27/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          XSS相关
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/02/07/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/19/2016-10-19/">关于当&#39;f&#39;、&#39;i&#39;两字母放一起letter-spacing不生效的问题</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/06/2016-04-06/">关于HTTP2.0</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/02/2016-04-02/">关于position属性sticky</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/23/2015-11-23/">各版本IE与标准浏览器差异小结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 月落<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

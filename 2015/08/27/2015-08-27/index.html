@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>XSS相关 | Misic-月落音阑</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="跨站脚本(Cross-site Scripting)即XSS，为不和层叠样式表(Cascading Style Sheets)的缩写混淆，故缩写为XSS。指攻击者向目标Web站点注入HTML标签或者脚本这类安全问题。
+在之前身边发生了某个关于注入的事件，记忆深刻…所以写下这篇来提醒自己。
+关于XSS过滤说到XSS过滤，我们应该想到的是有多少种绕过过滤的方法。过滤&amp;lt;script&amp;gt;标签可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XSS相关">
+<meta property="og:url" content="http://misic.moe/2015/08/27/2015-08-27/index.html">
+<meta property="og:site_name" content="Misic-月落音阑">
+<meta property="og:description" content="跨站脚本(Cross-site Scripting)即XSS，为不和层叠样式表(Cascading Style Sheets)的缩写混淆，故缩写为XSS。指攻击者向目标Web站点注入HTML标签或者脚本这类安全问题。
+在之前身边发生了某个关于注入的事件，记忆深刻…所以写下这篇来提醒自己。
+关于XSS过滤说到XSS过滤，我们应该想到的是有多少种绕过过滤的方法。过滤&amp;lt;script&amp;gt;标签可以">
+<meta property="og:updated_time" content="2015-08-29T03:06:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="XSS相关">
+<meta name="twitter:description" content="跨站脚本(Cross-site Scripting)即XSS，为不和层叠样式表(Cascading Style Sheets)的缩写混淆，故缩写为XSS。指攻击者向目标Web站点注入HTML标签或者脚本这类安全问题。
+在之前身边发生了某个关于注入的事件，记忆深刻…所以写下这篇来提醒自己。
+关于XSS过滤说到XSS过滤，我们应该想到的是有多少种绕过过滤的方法。过滤&amp;lt;script&amp;gt;标签可以">
+  
+    <link rel="alternate" href="/atom.xml" title="Misic-月落音阑" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Misic-月落音阑</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">关于如何在二次元与二进制之间穿行的探索</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://misic.moe"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2015-08-27" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/27/2015-08-27/" class="article-date">
+  <time datetime="2015-08-27T14:15:00.000Z" itemprop="datePublished">2015-08-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      XSS相关
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>跨站脚本(Cross-site Scripting)即XSS，为不和层叠样式表(Cascading Style Sheets)的缩写混淆，故缩写为XSS。指攻击者向目标Web站点注入HTML标签或者脚本这类安全问题。</p>
+<p>在之前身边发生了某个关于注入的事件，记忆深刻…所以写下这篇来提醒自己。</p>
+<h3 id="关于XSS过滤"><a href="#关于XSS过滤" class="headerlink" title="关于XSS过滤"></a>关于XSS过滤</h3><p>说到XSS过滤，我们应该想到的是有多少种绕过过滤的方法。过滤<code>&lt;script&gt;</code>标签可以防止部分js代码的注入，但绝对并不周全。除了直接插入js代码，还有通过事件处理器插入js代码的方法，比如<code>&lt;body onload=&quot;xxx&quot;&gt;</code>以及<code>&lt;img src=&quot;&quot; onerror=&quot;xxx&quot;&gt;</code>等。对此，作为前端的学习者，避免使用内联的事件处理是必要的。</p>
+<p>有一个用js写的XSS攻击代码过滤模块，github地址: <em><a href="https://github.com/leizongmin/js-xss" target="_blank" rel="external">https://github.com/leizongmin/js-xss</a></em>，可以通过 <em>npm install xss</em> 来安装。</p>
+<p>###防止XSS攻击</p>
+<p>1 防止XSS攻击，通常是在使用不可信数据动态创建文档内容前移除HTML标签。如将<code>&lt;script&gt;</code>等标签的尖括号替换为它们对应的HTML实体。这种方法可归于输入过滤。通过html标签注入是较常见XSS注入攻击，入口常为表单元素以及内联样式表。通常表单项会经过正则匹配对提交内容进行过滤，PHP中可以使用htmlspecialchars或者htmlentities函数进行转义。</p>
+<p>2 对用户提交的数据进行重编码。在用户提交表单之后，将数据通过HtmlEncoder等工具编码后再输出到目标页面。重编码之后，攻击者输入的代码会被当做普通的文字，这样来防止浏览器执行代码。</p>
+<p>3 IE8中定义了一个toStaticHTML()方法，用于移除<code>&lt;script&gt;</code>标签以及其他潜在可执行内容而不修改不可执行的HTML。HTML5为<code>&lt;iframe&gt;</code>元素定义了一个sandbox属性。实现之后允许显示不可信的内容，并自动禁用脚本。</p>
+<p>4 防止攻击者获取cookie信息。避免在cookie中出现用户名、密码等隐私信息，将cookie通过算法进行多次散列再存放，以及将cookie与id进行绑定。其实在实际项目中，更多的是后台使用session来存储重要信息，而为了安全cookie只用来辅助存储非重要信息。</p>
+<p>5 在表单中添加hash值，在thinkphp中称为表单令牌的验证，这种处理除了防止表单的重复提交，也能防止从该页面之外的地方提交表单，即从某种方面防止了跨站攻击。</p>
+<p>6 使用验证码。</p>
+<p>7 避免漏洞 _(:з」∠)_</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://misic.moe/2015/08/27/2015-08-27/" data-id="ciyvo6jet0001qfqh0x1glar0" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/09/08/2015-09-08/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          CSS动画优化
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/04/20/2015-04-20/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">关于placeholder的兼容实现</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/02/07/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/19/2016-10-19/">关于当&#39;f&#39;、&#39;i&#39;两字母放一起letter-spacing不生效的问题</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/06/2016-04-06/">关于HTTP2.0</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/02/2016-04-02/">关于position属性sticky</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/23/2015-11-23/">各版本IE与标准浏览器差异小结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 月落<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
