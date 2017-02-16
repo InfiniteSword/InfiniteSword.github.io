@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JavaScript事件机制 | Misic-月落音阑</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="早些时候，Netscape和微软还在浏览器战争的时候，Netscape主张捕获方式，而微软则主张冒泡。后来在w3c制定标准的时候，选择了折中的方式，先捕获再冒泡。
+事件的触发阶段
+document 往事件触发地点，捕获前进，遇到相同注册事件立即触发执行
+到达事件位置，触发事件，如果该处既注册了冒泡事件，也注册了捕获事件，则按照注册顺序执行
+事件触发地点往 document 方向，冒泡前进，遇到相同">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript事件机制">
+<meta property="og:url" content="http://misic.moe/2017/02/16/2017-02-16/index.html">
+<meta property="og:site_name" content="Misic-月落音阑">
+<meta property="og:description" content="早些时候，Netscape和微软还在浏览器战争的时候，Netscape主张捕获方式，而微软则主张冒泡。后来在w3c制定标准的时候，选择了折中的方式，先捕获再冒泡。
+事件的触发阶段
+document 往事件触发地点，捕获前进，遇到相同注册事件立即触发执行
+到达事件位置，触发事件，如果该处既注册了冒泡事件，也注册了捕获事件，则按照注册顺序执行
+事件触发地点往 document 方向，冒泡前进，遇到相同">
+<meta property="og:updated_time" content="2017-02-16T13:43:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript事件机制">
+<meta name="twitter:description" content="早些时候，Netscape和微软还在浏览器战争的时候，Netscape主张捕获方式，而微软则主张冒泡。后来在w3c制定标准的时候，选择了折中的方式，先捕获再冒泡。
+事件的触发阶段
+document 往事件触发地点，捕获前进，遇到相同注册事件立即触发执行
+到达事件位置，触发事件，如果该处既注册了冒泡事件，也注册了捕获事件，则按照注册顺序执行
+事件触发地点往 document 方向，冒泡前进，遇到相同">
+  
+    <link rel="alternate" href="/atom.xml" title="Misic-月落音阑" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Misic-月落音阑</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">关于如何在二次元与二进制之间穿行的探索</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://misic.moe"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2017-02-16" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/16/2017-02-16/" class="article-date">
+  <time datetime="2017-02-16T12:55:00.000Z" itemprop="datePublished">2017-02-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaScript事件机制
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>早些时候，Netscape和微软还在浏览器战争的时候，Netscape主张捕获方式，而微软则主张冒泡。后来在w3c制定标准的时候，选择了折中的方式，先捕获再冒泡。</p>
+<h2 id="事件的触发阶段"><a href="#事件的触发阶段" class="headerlink" title="事件的触发阶段"></a>事件的触发阶段</h2><ul>
+<li>document 往事件触发地点，捕获前进，遇到相同注册事件立即触发执行</li>
+<li>到达事件位置，触发事件，如果该处既注册了冒泡事件，也注册了捕获事件，则按照注册顺序执行</li>
+<li>事件触发地点往 document 方向，冒泡前进，遇到相同注册事件立即触发</li>
+</ul>
+<p>在注册事件的时候，我们通常会选择捕获和冒泡的一种：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ele.addEventListener(<span class="string">"click"</span>, func, <span class="literal">true</span>); <span class="comment">// 捕获方式</span></div><div class="line">ele.addEventListener(<span class="string">"click"</span>, func, <span class="literal">false</span>); <span class="comment">// 冒泡方式</span></div></pre></td></tr></table></figure></p>
+<p>事件触发也只会因捕获或冒泡触发一次，如果同时注册了捕获或者冒泡，那么会按注册顺序执行。</p>
+<h2 id="事件的相关问题"><a href="#事件的相关问题" class="headerlink" title="事件的相关问题"></a>事件的相关问题</h2><h4 id="1、stopPropagation-与-stopImmediatePropagation"><a href="#1、stopPropagation-与-stopImmediatePropagation" class="headerlink" title="1、stopPropagation 与 stopImmediatePropagation"></a>1、stopPropagation 与 stopImmediatePropagation</h4><p>event.stopPropagation()阻止事件的冒泡并且会阻止事件的继续捕获，但是该函数不阻止当前元素上绑定的其他事件。</p>
+<p>而event.stopImmediatePropagation()阻止事件继续传播的同时还会阻止当前元素上绑定的其他事件。</p>
+<h4 id="2-setCapture-和-releaseCapture"><a href="#2-setCapture-和-releaseCapture" class="headerlink" title="2. setCapture 和 releaseCapture"></a>2. setCapture 和 releaseCapture</h4><p>这两个是 IE 下的事件绑定函数，只要我们在某个元素上 setCapture 了，那么你在任何地方的鼠标操作都会在这个元素上触发（前提是你在这个元素上绑定了事件），releaseCapture 或者本窗口失去聚焦才会释放这个绑定。</p>
+<p>setCapture不支持键盘事件, 只能捕获以下鼠标事件：onmousedown、onmouseup、onmousemove、onclick、ondblclick、onmouseover和onmouseout。</p>
+<p>Mozilla 也有类似的方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.captureEvents(Event.eventType) </div><div class="line"><span class="built_in">window</span>.releaseEvents(Event.eventType)</div></pre></td></tr></table></figure></p>
+<p>参考文章：<a href="http://www.cnblogs.com/hustskyking/p/problem-javascript-event.html" target="_blank" rel="external">http://www.cnblogs.com/hustskyking/p/problem-javascript-event.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://misic.moe/2017/02/16/2017-02-16/" data-id="ciz8ih4bh000bd8qhyhlk5t0z" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/02/16/2017-02-16-1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          同源策略及其规避
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/02/07/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/02/16/2017-02-16-1/">同源策略及其规避</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/16/2017-02-16/">JavaScript事件机制</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/07/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/19/2016-10-19/">关于当&#39;f&#39;、&#39;i&#39;两字母放一起letter-spacing不生效的问题</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/06/2016-04-06/">关于HTTP2.0</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 月落<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
