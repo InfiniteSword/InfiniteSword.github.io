@@ -3,42 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>同源策略及其规避 | Misic-月落音阑</title>
+  <title>Archives: 2015 | Misic-月落音阑</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="同源策略同源的定义为：协议、域名、端口三者均相同。
-在非同源的情况下，以下三种行为会受限
-
-Cookie、LocalStorage 和 IndexDB 无法读取。
-DOM 无法获得。
-AJAX 请求不能发送。
-
-规避对于 cookie假如两个网页一级域名相同，只是二级域名不同，浏览器允许通过设置document.domain来共享Cookie（两个页面都要设置）。
-对于 iframe如果两个页面只">
-<meta property="og:type" content="article">
-<meta property="og:title" content="同源策略及其规避">
-<meta property="og:url" content="http://misic.moe/2017/02/16/2017-02-16-1/index.html">
+  <meta name="description" content="前端,前端博客,javascript,css,web">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Misic-月落音阑">
+<meta property="og:url" content="http://misic.moe/archives/2015/page/2/index.html">
 <meta property="og:site_name" content="Misic-月落音阑">
-<meta property="og:description" content="同源策略同源的定义为：协议、域名、端口三者均相同。
-在非同源的情况下，以下三种行为会受限
-
-Cookie、LocalStorage 和 IndexDB 无法读取。
-DOM 无法获得。
-AJAX 请求不能发送。
-
-规避对于 cookie假如两个网页一级域名相同，只是二级域名不同，浏览器允许通过设置document.domain来共享Cookie（两个页面都要设置）。
-对于 iframe如果两个页面只">
-<meta property="og:updated_time" content="2017-02-16T14:50:47.000Z">
+<meta property="og:description" content="前端,前端博客,javascript,css,web">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="同源策略及其规避">
-<meta name="twitter:description" content="同源策略同源的定义为：协议、域名、端口三者均相同。
-在非同源的情况下，以下三种行为会受限
-
-Cookie、LocalStorage 和 IndexDB 无法读取。
-DOM 无法获得。
-AJAX 请求不能发送。
-
-规避对于 cookie假如两个网页一级域名相同，只是二级域名不同，浏览器允许通过设置document.domain来共享Cookie（两个页面都要设置）。
-对于 iframe如果两个页面只">
+<meta name="twitter:title" content="Misic-月落音阑">
+<meta name="twitter:description" content="前端,前端博客,javascript,css,web">
   
     <link rel="alternate" href="/atom.xml" title="Misic-月落音阑" type="application/atom+xml">
   
@@ -91,75 +66,82 @@ AJAX 请求不能发送。
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-2017-02-16-1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/02/16/2017-02-16-1/" class="article-date">
-  <time datetime="2017-02-16T13:33:00.000Z" itemprop="datePublished">2017-02-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      同源策略及其规避
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2015" class="archive-year">2015</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/09/08/2015-09-08/" class="archive-article-date">
+  <time datetime="2015-09-08T13:39:00.000Z" itemprop="datePublished">Sep 8</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/09/08/2015-09-08/">CSS动画优化</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><p>同源的定义为：协议、域名、端口三者均相同。</p>
-<p>在非同源的情况下，以下三种行为会受限</p>
-<ul>
-<li>Cookie、LocalStorage 和 IndexDB 无法读取。</li>
-<li>DOM 无法获得。</li>
-<li>AJAX 请求不能发送。</li>
-</ul>
-<h2 id="规避"><a href="#规避" class="headerlink" title="规避"></a>规避</h2><h4 id="对于-cookie"><a href="#对于-cookie" class="headerlink" title="对于 cookie"></a>对于 cookie</h4><p>假如两个网页一级域名相同，只是二级域名不同，浏览器允许通过设置document.domain来共享Cookie（两个页面都要设置）。</p>
-<h4 id="对于-iframe"><a href="#对于-iframe" class="headerlink" title="对于 iframe"></a>对于 iframe</h4><p>如果两个页面只是二级域名不同，那么也可以通过document.domain进行跨域。</p>
-<p>除此之外，还有以下方法：</p>
-<ul>
-<li>hashchange</li>
-<li>window.name</li>
-<li>window.postMessage</li>
-</ul>
-<p>其中第三种方法为正统的跨文档通信API。使用window.postMessage即可实现跨窗口通信，不论是否同源。</p>
-<h4 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h4><p>AJAX的跨域方案除去服务器代理，常用的有以下三种</p>
-<ul>
-<li>JSONP</li>
-<li>CORS</li>
-<li>Websocket</li>
-</ul>
-<p>其中JSONP只能发送GET请求。Websocket则不实行同源策略。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/02/16/2017-02-16-1/" data-id="ciza4zq0h000ac8qhsgq6xd11" class="article-share-link">Partager</a>
-      
-      
-    </footer>
+    </header>
   </div>
+</article>
   
     
-<nav id="article-nav">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/08/27/2015-08-27/" class="archive-article-date">
+  <time datetime="2015-08-27T14:15:00.000Z" itemprop="datePublished">Aug 27</time>
+</a>
+      
   
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/08/27/2015-08-27/">XSS相关</a>
+    </h1>
   
-    <a href="/2017/02/16/2017-02-16/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ancien</strong>
-      <div class="article-nav-title">JavaScript事件机制</div>
-    </a>
-  
-</nav>
 
-  
+    </header>
+  </div>
 </article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/04/20/2015-04-20/" class="archive-article-date">
+  <time datetime="2015-04-20T12:12:00.000Z" itemprop="datePublished">Apr 20</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/04/20/2015-04-20/">关于placeholder的兼容实现</a>
+    </h1>
+  
 
+    </header>
+  </div>
+</article>
+  
+  
+    </div></section>
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/archives/2015/">&laquo; Prev</a><a class="page-number" href="/archives/2015/">1</a><span class="page-number current">2</span>
+  </nav>
 </section>
         
           <aside id="sidebar">
