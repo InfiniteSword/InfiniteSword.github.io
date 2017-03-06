@@ -55,9 +55,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://misic.moe"></form>
@@ -67,6 +67,49 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-2015-11-19" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/19/2015-11-19/" class="article-date">
+  <time datetime="2015-11-19T15:42:00.000Z" itemprop="datePublished">2015-11-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/19/2015-11-19/">console.log的细节问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>某个好友写了个遍历函数模仿数组方法forEach，发现把console.log作输入函数时会报如下错：</p>
+<p><em>Uncaught TypeError: Illegal invocation</em></p>
+<p>而将console.log放到另一个函数里包裹起来就能正常输出：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">_print</span> (<span class="params">x</span>)</span>&#123; </div><div class="line">    <span class="built_in">console</span>.log(x)</div><div class="line">&#125;</div><div class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].forEach(_print);</div><div class="line"><span class="comment">// 1</span></div><div class="line"><span class="comment">// 2</span></div><div class="line"><span class="comment">// 3</span></div></pre></td></tr></table></figure>
+<p>百度原因，发现与console.log的内部实现有关。</p>
+<p>console.log的运行上下文必须为console，当其this指针不是指向console时就会产生错误。所以要解决问题只需要在使用时把this指针绑回console就行了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].forEach(<span class="built_in">console</span>.log.bind(<span class="built_in">console</span>));</div><div class="line"><span class="comment">// 1 0 [1, 2, 3]</span></div><div class="line"><span class="comment">// 2 1 [1, 2, 3]</span></div><div class="line"><span class="comment">// 3 2 [1, 2, 3]</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://misic.moe/2015/11/19/2015-11-19/" data-id="cizybke7i00049pqhyj9m1r6e" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-2015-11-08" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -103,7 +146,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2015/11/08/2015-11-08/" data-id="ciza4zq040004c8qhhpke2huk" class="article-share-link">Partager</a>
+      <a data-url="http://misic.moe/2015/11/08/2015-11-08/" data-id="cizybke7h00039pqh29xxbvv2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -160,7 +203,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2015/10/21/2015-10-21/" data-id="ciza4zq040003c8qhthz70l7a" class="article-share-link">Partager</a>
+      <a data-url="http://misic.moe/2015/10/21/2015-10-21/" data-id="cizybke7f00029pqhusllon6t" class="article-share-link">Share</a>
       
       
     </footer>
@@ -257,55 +300,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2015/09/08/2015-09-08/" data-id="ciza4zq020002c8qhxwwku0ur" class="article-share-link">Partager</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2015-08-27" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/08/27/2015-08-27/" class="article-date">
-  <time datetime="2015-08-27T14:15:00.000Z" itemprop="datePublished">2015-08-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/27/2015-08-27/">XSS相关</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>跨站脚本(Cross-site Scripting)即XSS，为不和层叠样式表(Cascading Style Sheets)的缩写混淆，故缩写为XSS。指攻击者向目标Web站点注入HTML标签或者脚本这类安全问题。</p>
-<p>在之前身边发生了某个关于注入的事件，记忆深刻…所以写下这篇来提醒自己。</p>
-<h3 id="关于XSS过滤"><a href="#关于XSS过滤" class="headerlink" title="关于XSS过滤"></a>关于XSS过滤</h3><p>说到XSS过滤，我们应该想到的是有多少种绕过过滤的方法。过滤<code>&lt;script&gt;</code>标签可以防止部分js代码的注入，但绝对并不周全。除了直接插入js代码，还有通过事件处理器插入js代码的方法，比如<code>&lt;body onload=&quot;xxx&quot;&gt;</code>以及<code>&lt;img src=&quot;&quot; onerror=&quot;xxx&quot;&gt;</code>等。对此，作为前端的学习者，避免使用内联的事件处理是必要的。</p>
-<p>有一个用js写的XSS攻击代码过滤模块，github地址: <em><a href="https://github.com/leizongmin/js-xss" target="_blank" rel="external">https://github.com/leizongmin/js-xss</a></em>，可以通过 <em>npm install xss</em> 来安装。</p>
-<p>###防止XSS攻击</p>
-<p>1 防止XSS攻击，通常是在使用不可信数据动态创建文档内容前移除HTML标签。如将<code>&lt;script&gt;</code>等标签的尖括号替换为它们对应的HTML实体。这种方法可归于输入过滤。通过html标签注入是较常见XSS注入攻击，入口常为表单元素以及内联样式表。通常表单项会经过正则匹配对提交内容进行过滤，PHP中可以使用htmlspecialchars或者htmlentities函数进行转义。</p>
-<p>2 对用户提交的数据进行重编码。在用户提交表单之后，将数据通过HtmlEncoder等工具编码后再输出到目标页面。重编码之后，攻击者输入的代码会被当做普通的文字，这样来防止浏览器执行代码。</p>
-<p>3 IE8中定义了一个toStaticHTML()方法，用于移除<code>&lt;script&gt;</code>标签以及其他潜在可执行内容而不修改不可执行的HTML。HTML5为<code>&lt;iframe&gt;</code>元素定义了一个sandbox属性。实现之后允许显示不可信的内容，并自动禁用脚本。</p>
-<p>4 防止攻击者获取cookie信息。避免在cookie中出现用户名、密码等隐私信息，将cookie通过算法进行多次散列再存放，以及将cookie与id进行绑定。其实在实际项目中，更多的是后台使用session来存储重要信息，而为了安全cookie只用来辅助存储非重要信息。</p>
-<p>5 在表单中添加hash值，在thinkphp中称为表单令牌的验证，这种处理除了防止表单的重复提交，也能防止从该页面之外的地方提交表单，即从某种方面防止了跨站攻击。</p>
-<p>6 使用验证码。</p>
-<p>7 避免漏洞 _(:з」∠)_</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://misic.moe/2015/08/27/2015-08-27/" data-id="ciza4zpzz0001c8qh45a3sb56" class="article-share-link">Partager</a>
+      <a data-url="http://misic.moe/2015/09/08/2015-09-08/" data-id="cizybke7l00059pqh0vyktjkv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -344,9 +339,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/02/23/2017-02-23-1/">观察者模式</a>
+          </li>
         
           <li>
             <a href="/2017/02/16/2017-02-16-1/">同源策略及其规避</a>
@@ -364,10 +363,6 @@
             <a href="/2016/10/19/2016-10-19/">关于当&#39;f&#39;、&#39;i&#39;两字母放一起letter-spacing不生效的问题</a>
           </li>
         
-          <li>
-            <a href="/2016/04/06/2016-04-06/">关于HTTP2.0</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -381,7 +376,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 月落<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

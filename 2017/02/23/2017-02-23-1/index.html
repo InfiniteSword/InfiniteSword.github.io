@@ -3,17 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Misic-月落音阑</title>
+  <title>观察者模式 | Misic-月落音阑</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前端,前端博客,javascript,css,web">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Misic-月落音阑">
-<meta property="og:url" content="http://misic.moe/index.html">
+  <meta name="description" content="观察者模式又叫发布订阅模式（Publish/Subscribe），他定义对象间一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知。
+
+基本实现（原型）12345678910111213141516171819202122232425262728293031323334353637383940414243function Observer()&amp;#123;    thi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="观察者模式">
+<meta property="og:url" content="http://misic.moe/2017/02/23/2017-02-23-1/index.html">
 <meta property="og:site_name" content="Misic-月落音阑">
-<meta property="og:description" content="前端,前端博客,javascript,css,web">
+<meta property="og:description" content="观察者模式又叫发布订阅模式（Publish/Subscribe），他定义对象间一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知。
+
+基本实现（原型）12345678910111213141516171819202122232425262728293031323334353637383940414243function Observer()&amp;#123;    thi">
+<meta property="og:updated_time" content="2017-03-06T16:25:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Misic-月落音阑">
-<meta name="twitter:description" content="前端,前端博客,javascript,css,web">
+<meta name="twitter:title" content="观察者模式">
+<meta name="twitter:description" content="观察者模式又叫发布订阅模式（Publish/Subscribe），他定义对象间一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知。
+
+基本实现（原型）12345678910111213141516171819202122232425262728293031323334353637383940414243function Observer()&amp;#123;    thi">
   
     <link rel="alternate" href="/atom.xml" title="Misic-月落音阑" type="application/atom+xml">
   
@@ -66,9 +73,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-2017-02-23-1" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-2017-02-23-1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/02/23/2017-02-23-1/" class="article-date">
   <time datetime="2017-02-23T15:21:00.000Z" itemprop="datePublished">2017-02-23</time>
@@ -81,8 +86,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/23/2017-02-23-1/">观察者模式</a>
+    <h1 class="article-title" itemprop="name">
+      观察者模式
     </h1>
   
 
@@ -104,162 +109,20 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-2017-02-16-1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/02/16/2017-02-16-1/" class="article-date">
-  <time datetime="2017-02-16T13:33:00.000Z" itemprop="datePublished">2017-02-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/16/2017-02-16-1/">同源策略及其规避</a>
-    </h1>
+    <a href="/2017/02/16/2017-02-16-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">同源策略及其规避</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><p>同源的定义为：协议、域名、端口三者均相同。</p>
-<p>在非同源的情况下，以下三种行为会受限</p>
-<ul>
-<li>Cookie、LocalStorage 和 IndexDB 无法读取。</li>
-<li>DOM 无法获得。</li>
-<li>AJAX 请求不能发送。</li>
-</ul>
-<h2 id="规避"><a href="#规避" class="headerlink" title="规避"></a>规避</h2><h4 id="对于-cookie"><a href="#对于-cookie" class="headerlink" title="对于 cookie"></a>对于 cookie</h4><p>假如两个网页一级域名相同，只是二级域名不同，浏览器允许通过设置document.domain来共享Cookie（两个页面都要设置）。</p>
-<h4 id="对于-iframe"><a href="#对于-iframe" class="headerlink" title="对于 iframe"></a>对于 iframe</h4><p>如果两个页面只是二级域名不同，那么也可以通过document.domain进行跨域。</p>
-<p>除此之外，还有以下方法：</p>
-<ul>
-<li>hashchange</li>
-<li>window.name</li>
-<li>window.postMessage</li>
-</ul>
-<p>其中第三种方法为正统的跨文档通信API。使用window.postMessage即可实现跨窗口通信，不论是否同源。</p>
-<h4 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h4><p>AJAX的跨域方案除去服务器代理，常用的有以下三种</p>
-<ul>
-<li>JSONP</li>
-<li>CORS</li>
-<li>Websocket</li>
-</ul>
-<p>其中JSONP只能发送GET请求。Websocket则不实行同源策略。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/02/16/2017-02-16-1/" data-id="cizybke7y000a9pqhp8aokqmh" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
 
-
-  
-    <article id="post-2017-02-16" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/02/16/2017-02-16/" class="article-date">
-  <time datetime="2017-02-16T12:55:00.000Z" itemprop="datePublished">2017-02-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/16/2017-02-16/">JavaScript事件机制</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>早些时候，Netscape和微软还在浏览器战争的时候，Netscape主张捕获方式，而微软则主张冒泡。后来在w3c制定标准的时候，选择了折中的方式，先捕获再冒泡。</p>
-<h2 id="事件的触发阶段"><a href="#事件的触发阶段" class="headerlink" title="事件的触发阶段"></a>事件的触发阶段</h2><ul>
-<li>document 往事件触发地点，捕获前进，遇到相同注册事件立即触发执行</li>
-<li>到达事件位置，触发事件，如果该处既注册了冒泡事件，也注册了捕获事件，则按照注册顺序执行</li>
-<li>事件触发地点往 document 方向，冒泡前进，遇到相同注册事件立即触发</li>
-</ul>
-<p>在注册事件的时候，我们通常会选择捕获和冒泡的一种：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ele.addEventListener(<span class="string">"click"</span>, func, <span class="literal">true</span>); <span class="comment">// 捕获方式</span></div><div class="line">ele.addEventListener(<span class="string">"click"</span>, func, <span class="literal">false</span>); <span class="comment">// 冒泡方式</span></div></pre></td></tr></table></figure></p>
-<p>事件触发也只会因捕获或冒泡触发一次，如果同时注册了捕获或者冒泡，那么会按注册顺序执行。</p>
-<h2 id="事件的相关问题"><a href="#事件的相关问题" class="headerlink" title="事件的相关问题"></a>事件的相关问题</h2><h4 id="1、stopPropagation-与-stopImmediatePropagation"><a href="#1、stopPropagation-与-stopImmediatePropagation" class="headerlink" title="1、stopPropagation 与 stopImmediatePropagation"></a>1、stopPropagation 与 stopImmediatePropagation</h4><p>event.stopPropagation()阻止事件的冒泡并且会阻止事件的继续捕获，但是该函数不阻止当前元素上绑定的其他事件。</p>
-<p>而event.stopImmediatePropagation()阻止事件继续传播的同时还会阻止当前元素上绑定的其他事件。</p>
-<h4 id="2-setCapture-和-releaseCapture"><a href="#2-setCapture-和-releaseCapture" class="headerlink" title="2. setCapture 和 releaseCapture"></a>2. setCapture 和 releaseCapture</h4><p>这两个是 IE 下的事件绑定函数，只要我们在某个元素上 setCapture 了，那么你在任何地方的鼠标操作都会在这个元素上触发（前提是你在这个元素上绑定了事件），releaseCapture 或者本窗口失去聚焦才会释放这个绑定。</p>
-<p>setCapture不支持键盘事件, 只能捕获以下鼠标事件：onmousedown、onmouseup、onmousemove、onclick、ondblclick、onmouseover和onmouseout。</p>
-<p>Mozilla 也有类似的方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.captureEvents(Event.eventType) </div><div class="line"><span class="built_in">window</span>.releaseEvents(Event.eventType)</div></pre></td></tr></table></figure></p>
-<p>参考文章：<a href="http://www.cnblogs.com/hustskyking/p/problem-javascript-event.html" target="_blank" rel="external">http://www.cnblogs.com/hustskyking/p/problem-javascript-event.html</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/02/16/2017-02-16/" data-id="cizybke80000b9pqhq6kztvpj" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/02/07/hello-world/" class="article-date">
-  <time datetime="2017-02-07T09:18:46.000Z" itemprop="datePublished">2017-02-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/07/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>终于下手弄了这个博客，首先把以前写过的东西搬进来，在慢慢填补新内容。</p>
-<p>希望自己以谦虚、探求的态度对待知识。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/02/07/hello-world/" data-id="cizybke84000d9pqh996ufk55" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-  </nav>
 </section>
         
           <aside id="sidebar">
