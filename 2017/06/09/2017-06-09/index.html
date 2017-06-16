@@ -3,24 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>避免AngularJS自动字符转义 | Misic-月落音阑</title>
+  <title>构造函数时new运算符做了啥？ | Misic-月落音阑</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今天在用ionic写东西的时候，发现加载的HTML模板直接显示出了源代码。百度之后才知道AngularJS有自动字符转义。
-示例HTML
-12345&amp;lt;ion-view view-title=&quot;示例&quot;&amp;gt;  &amp;lt;ion-content&amp;gt;    &amp;lt;div ng-bind-html=&quot;content&quot;&amp;gt;&amp;lt;/div&amp;gt;  &amp;lt;/ion-content&amp;gt;&amp;">
+  <meta name="description" content="1234567function Printer(msg)&amp;#123;    this.msg = msg;    this.print = function()&amp;#123;        console.log(this.msg);    &amp;#125;&amp;#125;var printer = new Printer(&apos;Hello!&apos;);
+在上面这段代码中，我们创建了一个Printer构造函数，并用n">
 <meta property="og:type" content="article">
-<meta property="og:title" content="避免AngularJS自动字符转义">
-<meta property="og:url" content="http://misic.moe/2015/11/08/2015-11-08/index.html">
+<meta property="og:title" content="构造函数时new运算符做了啥？">
+<meta property="og:url" content="http://misic.moe/2017/06/09/2017-06-09/index.html">
 <meta property="og:site_name" content="Misic-月落音阑">
-<meta property="og:description" content="今天在用ionic写东西的时候，发现加载的HTML模板直接显示出了源代码。百度之后才知道AngularJS有自动字符转义。
-示例HTML
-12345&amp;lt;ion-view view-title=&quot;示例&quot;&amp;gt;  &amp;lt;ion-content&amp;gt;    &amp;lt;div ng-bind-html=&quot;content&quot;&amp;gt;&amp;lt;/div&amp;gt;  &amp;lt;/ion-content&amp;gt;&amp;">
-<meta property="og:updated_time" content="2015-11-08T13:40:56.000Z">
+<meta property="og:description" content="1234567function Printer(msg)&amp;#123;    this.msg = msg;    this.print = function()&amp;#123;        console.log(this.msg);    &amp;#125;&amp;#125;var printer = new Printer(&apos;Hello!&apos;);
+在上面这段代码中，我们创建了一个Printer构造函数，并用n">
+<meta property="og:updated_time" content="2017-06-15T08:49:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="避免AngularJS自动字符转义">
-<meta name="twitter:description" content="今天在用ionic写东西的时候，发现加载的HTML模板直接显示出了源代码。百度之后才知道AngularJS有自动字符转义。
-示例HTML
-12345&amp;lt;ion-view view-title=&quot;示例&quot;&amp;gt;  &amp;lt;ion-content&amp;gt;    &amp;lt;div ng-bind-html=&quot;content&quot;&amp;gt;&amp;lt;/div&amp;gt;  &amp;lt;/ion-content&amp;gt;&amp;">
+<meta name="twitter:title" content="构造函数时new运算符做了啥？">
+<meta name="twitter:description" content="1234567function Printer(msg)&amp;#123;    this.msg = msg;    this.print = function()&amp;#123;        console.log(this.msg);    &amp;#125;&amp;#125;var printer = new Printer(&apos;Hello!&apos;);
+在上面这段代码中，我们创建了一个Printer构造函数，并用n">
   
     <link rel="alternate" href="/atom.xml" title="Misic-月落音阑" type="application/atom+xml">
   
@@ -73,10 +70,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-2015-11-08" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-2017-06-09" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/11/08/2015-11-08/" class="article-date">
-  <time datetime="2015-11-08T13:24:00.000Z" itemprop="datePublished">2015-11-08</time>
+    <a href="/2017/06/09/2017-06-09/" class="article-date">
+  <time datetime="2017-06-09T07:36:00.000Z" itemprop="datePublished">2017-06-09</time>
 </a>
     
   </div>
@@ -87,7 +84,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      避免AngularJS自动字符转义
+      构造函数时new运算符做了啥？
     </h1>
   
 
@@ -95,20 +92,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天在用ionic写东西的时候，发现加载的HTML模板直接显示出了源代码。百度之后才知道AngularJS有自动字符转义。</p>
-<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p>HTML</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ion-view</span> <span class="attr">view-title</span>=<span class="string">"示例"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">ion-content</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-bind-html</span>=<span class="string">"content"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ion-content</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ion-view</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>JS</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$scope.content = test;</div><div class="line"><span class="keyword">var</span> test = <span class="string">'&lt;div class="test"&gt;测试&lt;/div&gt;'</span>;</div></pre></td></tr></table></figure>
-<p>以上代码会直接在页面显示<code>&lt;div class=&quot;test&quot;&gt;测试&lt;/div&gt;</code></p>
-<h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h4><p>要输出HTML需要使用 $sce 安全机制，比如示例js可修改如下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$scope.content = $sce.trustAsHtml(test);;</div><div class="line"><span class="keyword">var</span> test = <span class="string">'&lt;div class="test"&gt;测试&lt;/div&gt;'</span>;</div></pre></td></tr></table></figure>
-<p>这样就能在页面显示想要输出的内容了。</p>
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Printer</span>(<span class="params">msg</span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.msg = msg;</div><div class="line">    <span class="keyword">this</span>.print = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.msg);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> printer = <span class="keyword">new</span> Printer(<span class="string">'Hello!'</span>);</div></pre></td></tr></table></figure>
+<p>在上面这段代码中，我们创建了一个Printer构造函数，并用new运算符实例化了一个printer，那么在这个过程中发生了什么呢。</p>
+<p>其实是经历了以下四个步骤：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj  =&#123;&#125;;</div><div class="line">obj.__proto__ = Printer.prototype;</div><div class="line"><span class="keyword">var</span> res = Printer.call(obj,<span class="string">'Hello!'</span>);</div><div class="line"><span class="keyword">return</span> <span class="keyword">typeof</span> res === <span class="string">'object'</span> ? res : obj;</div></pre></td></tr></table></figure>
+<p>1、创建一个空对象<code>obj</code>。</p>
+<p>2、将<code>obj</code>的<code>__proto__</code>指向构造函数对象<code>Obj</code>的<code>prototype</code>成员对象，此时<code>obj</code>的原型链为<code>obj -&gt; Printer.prototype -&gt; Object.prototype -&gt; null</code>。</p>
+<p>3、将构造函数<code>Printer</code>的作用域赋给新对象，在<code>obj</code>的上下文中调用<code>Printer</code>函数并传出参数<code>&#39;Hello!&#39;</code>。于是我们就给<code>obj</code>对象创建了变量<code>msg</code>，变量的值是<code>&#39;Hello!&#39;</code>。</p>
+<p>4、检查构造函数的返回值，如果返回值为对象，则将返回的这个对象作为返回值，否则返回刚创建的<code>obj</code>。</p>
+<p>所以我们最后得到的<code>printer</code>就是第4步返回的那个对象。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2015/11/08/2015-11-08/" data-id="cj3zktf4j0005s5qhurwfhtjk" class="article-share-link">Delen</a>
+      <a data-url="http://misic.moe/2017/06/09/2017-06-09/" data-id="cj3zktf53000ds5qhao2vcdk1" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -117,19 +114,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/11/19/2015-11-19/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/06/12/2017-06-12/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Nieuwer</strong>
       <div class="article-nav-title">
         
-          console.log的细节问题
+          rem 布局原理
         
       </div>
     </a>
   
   
-    <a href="/2015/10/21/2015-10-21/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/02/23/2017-02-23-1/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Ouder</strong>
-      <div class="article-nav-title">JS 内存泄露</div>
+      <div class="article-nav-title">观察者模式</div>
     </a>
   
 </nav>

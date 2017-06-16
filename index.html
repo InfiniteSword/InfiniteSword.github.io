@@ -55,9 +55,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://misic.moe"></form>
@@ -67,6 +67,112 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-2017-06-12" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/12/2017-06-12/" class="article-date">
+  <time datetime="2017-06-12T02:56:00.000Z" itemprop="datePublished">2017-06-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/12/2017-06-12/">rem 布局原理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>rem -&gt; “font size of the root element”</p>
+</blockquote>
+<p>在说rem之前，我们得先说到em，em是相对长度单位，他是相对于当前对象内文本的字体尺寸。如当前对行内文本的字体尺寸未被人为设置，则相对于浏览器的默认字体尺寸。</p>
+<p>当我们使用em进行布局时，我们需要知道其父元素的字体大小，这让我们在多次使用中很容易出现错误，且不易进行调整。</p>
+<p>而rem则表示根元素，也就是<code>&lt;html&gt;</code>的字体大小，使用时更加安全且容易。</p>
+<h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><h4 id="物理像素-physical-pixel"><a href="#物理像素-physical-pixel" class="headerlink" title="物理像素(physical pixel)"></a>物理像素(physical pixel)</h4><p>一个物理像素是显示器(手机屏幕)上最小的物理显示单元，可以理解为我们平时说的分辨率。</p>
+<h4 id="设备独立像素-density-independent-pixel"><a href="#设备独立像素-density-independent-pixel" class="headerlink" title="设备独立像素(density-independent pixel)"></a>设备独立像素(density-independent pixel)</h4><p>设备独立像素(也叫密度无关像素)，可以认为是计算机坐标系统中得一个点，这个点代表一个可以由程序使用的虚拟像素(比如: css像素)，然后由相关系统转换为物理像素，在这里可以理解为我们说的视觉视口的大小。</p>
+<h4 id="设备像素比-device-pixel-ratio"><a href="#设备像素比-device-pixel-ratio" class="headerlink" title="设备像素比(device pixel ratio)"></a>设备像素比(device pixel ratio)</h4><p>设备像素比(简称dpr)定义了物理像素和设备独立像素的对应关系，它的值可以按如下的公式的得到：设备像素比 = 物理像素 / 设备独立像素。(在某一方向上，x方向或者y方向)</p>
+<p>设备像素比也是设备生产的时候设置好的，在javascript中，可以通window.devicePixelRatio获取到当前设备的dpr。</p>
+<h4 id="视口（viewport）"><a href="#视口（viewport）" class="headerlink" title="视口（viewport）"></a>视口（viewport）</h4><p>pc端视口指浏览器窗口内的内容区域，不包含工具条，滚动条。</p>
+<p>移动浏览器中视口分为以下情况:</p>
+<ul>
+<li><code>&lt;metaname=&quot;viewport&quot;content=“width=device-width,minimum-scale=1.0,maximum-scale=1.0”/&gt;</code>中content所设置的视口，称为<strong>布局视口(layout viewport)</strong>，最大值由浏览器厂商规定 ,可以<code>document.documentElement.clientWidth</code>获取其宽度。</li>
+<li>我们看到的浏览器的窗口，网页区域的大小，称为<strong>视觉视口(visual viewport)</strong>，视觉视口的宽度可以通过<code>window.innerWidth</code>来获取。</li>
+<li>现在越来越多的网站都会为移动设备进行单独的设计，所以必须还要有一个能完美适配移动设备的viewport——<strong>理想视口(ideal viewport)</strong>。理想视口的宽度等于移动设备的屏幕宽度。它的意义在于，无论在何种分辨率的屏幕下，那些针对理想视口而设计的网站，不需要用户手动缩放，也不需要出现横向滚动条，都可以完美的呈现给用户。</li>
+</ul>
+<p>相关视口的更多细节可在这篇文章进行了解：<a href="https://www.cnblogs.com/2050/p/3877280.html" target="_blank" rel="external">移动前端开发之viewport的深入理解</a></p>
+<h2 id="淘宝的布局方案"><a href="#淘宝的布局方案" class="headerlink" title="淘宝的布局方案"></a>淘宝的布局方案</h2><p>通过dpr设置缩放比，实现布局视口大小</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> scale = <span class="number">1</span> / devicePixelRatio; </div><div class="line"> </div><div class="line"><span class="built_in">document</span>.querySelector(<span class="string">'meta[name="viewport"]'</span>).setAttribute(<span class="string">'content'</span>,<span class="string">'initial-scale='</span>+ scale + <span class="string">', maximum-scale='</span> + scale + <span class="string">', minimum-scale='</span> + scale + <span class="string">', user-scalable=no'</span>);</div></pre></td></tr></table></figure>
+<p>动态计算html的font-size</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.documentElement.style.fontSize = <span class="built_in">document</span>.documentElement.clientWidth / <span class="number">10</span> + <span class="string">'px'</span>;</div></pre></td></tr></table></figure>
+<p>clientWidth / 10 得到是布局视口下的rem基准值。</p>
+<p>详见：<a href="https://github.com/amfe/article/issues/17" target="_blank" rel="external">使用Flexible实现手淘H5页面的终端适配</a></p>
+<p>参考资料：<br><a href="http://mobile.51cto.com/web-484304.htm" target="_blank" rel="external">解惑好文：移动端H5页面高清多屏适配方案</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://misic.moe/2017/06/12/2017-06-12/" data-id="cj3zktf56000es5qhpy5cxy1p" class="article-share-link">Delen</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-06-09" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/09/2017-06-09/" class="article-date">
+  <time datetime="2017-06-09T07:36:00.000Z" itemprop="datePublished">2017-06-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/09/2017-06-09/">构造函数时new运算符做了啥？</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Printer</span>(<span class="params">msg</span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.msg = msg;</div><div class="line">    <span class="keyword">this</span>.print = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.msg);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> printer = <span class="keyword">new</span> Printer(<span class="string">'Hello!'</span>);</div></pre></td></tr></table></figure>
+<p>在上面这段代码中，我们创建了一个Printer构造函数，并用new运算符实例化了一个printer，那么在这个过程中发生了什么呢。</p>
+<p>其实是经历了以下四个步骤：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj  =&#123;&#125;;</div><div class="line">obj.__proto__ = Printer.prototype;</div><div class="line"><span class="keyword">var</span> res = Printer.call(obj,<span class="string">'Hello!'</span>);</div><div class="line"><span class="keyword">return</span> <span class="keyword">typeof</span> res === <span class="string">'object'</span> ? res : obj;</div></pre></td></tr></table></figure>
+<p>1、创建一个空对象<code>obj</code>。</p>
+<p>2、将<code>obj</code>的<code>__proto__</code>指向构造函数对象<code>Obj</code>的<code>prototype</code>成员对象，此时<code>obj</code>的原型链为<code>obj -&gt; Printer.prototype -&gt; Object.prototype -&gt; null</code>。</p>
+<p>3、将构造函数<code>Printer</code>的作用域赋给新对象，在<code>obj</code>的上下文中调用<code>Printer</code>函数并传出参数<code>&#39;Hello!&#39;</code>。于是我们就给<code>obj</code>对象创建了变量<code>msg</code>，变量的值是<code>&#39;Hello!&#39;</code>。</p>
+<p>4、检查构造函数的返回值，如果返回值为对象，则将返回的这个对象作为返回值，否则返回刚创建的<code>obj</code>。</p>
+<p>所以我们最后得到的<code>printer</code>就是第4步返回的那个对象。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://misic.moe/2017/06/09/2017-06-09/" data-id="cj3zktf53000ds5qhao2vcdk1" class="article-share-link">Delen</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-2017-02-23-1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -98,7 +204,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/02/23/2017-02-23-1/" data-id="cj13lo82h000drcqhawlh8nsi" class="article-share-link">Partager</a>
+      <a data-url="http://misic.moe/2017/02/23/2017-02-23-1/" data-id="cj3zktf50000bs5qhug4fnw3l" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -157,95 +263,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/02/16/2017-02-16-1/" data-id="cj13lo82c000arcqh7yxucho1" class="article-share-link">Partager</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2017-02-16" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/02/16/2017-02-16/" class="article-date">
-  <time datetime="2017-02-16T12:55:00.000Z" itemprop="datePublished">2017-02-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/16/2017-02-16/">JavaScript事件机制</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>早些时候，Netscape和微软还在浏览器战争的时候，Netscape主张捕获方式，而微软则主张冒泡。后来在w3c制定标准的时候，选择了折中的方式，先捕获再冒泡。</p>
-<h2 id="事件的触发阶段"><a href="#事件的触发阶段" class="headerlink" title="事件的触发阶段"></a>事件的触发阶段</h2><ul>
-<li>document 往事件触发地点，捕获前进，遇到相同注册事件立即触发执行</li>
-<li>到达事件位置，触发事件，如果该处既注册了冒泡事件，也注册了捕获事件，则按照注册顺序执行</li>
-<li>事件触发地点往 document 方向，冒泡前进，遇到相同注册事件立即触发</li>
-</ul>
-<p>在注册事件的时候，我们通常会选择捕获和冒泡的一种：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ele.addEventListener(<span class="string">"click"</span>, func, <span class="literal">true</span>); <span class="comment">// 捕获方式</span></div><div class="line">ele.addEventListener(<span class="string">"click"</span>, func, <span class="literal">false</span>); <span class="comment">// 冒泡方式</span></div></pre></td></tr></table></figure></p>
-<p>事件触发也只会因捕获或冒泡触发一次，如果同时注册了捕获或者冒泡，那么会按注册顺序执行。</p>
-<h2 id="事件的相关问题"><a href="#事件的相关问题" class="headerlink" title="事件的相关问题"></a>事件的相关问题</h2><h4 id="1、stopPropagation-与-stopImmediatePropagation"><a href="#1、stopPropagation-与-stopImmediatePropagation" class="headerlink" title="1、stopPropagation 与 stopImmediatePropagation"></a>1、stopPropagation 与 stopImmediatePropagation</h4><p>event.stopPropagation()阻止事件的冒泡并且会阻止事件的继续捕获，但是该函数不阻止当前元素上绑定的其他事件。</p>
-<p>而event.stopImmediatePropagation()阻止事件继续传播的同时还会阻止当前元素上绑定的其他事件。</p>
-<h4 id="2-setCapture-和-releaseCapture"><a href="#2-setCapture-和-releaseCapture" class="headerlink" title="2. setCapture 和 releaseCapture"></a>2. setCapture 和 releaseCapture</h4><p>这两个是 IE 下的事件绑定函数，只要我们在某个元素上 setCapture 了，那么你在任何地方的鼠标操作都会在这个元素上触发（前提是你在这个元素上绑定了事件），releaseCapture 或者本窗口失去聚焦才会释放这个绑定。</p>
-<p>setCapture不支持键盘事件, 只能捕获以下鼠标事件：onmousedown、onmouseup、onmousemove、onclick、ondblclick、onmouseover和onmouseout。</p>
-<p>Mozilla 也有类似的方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.captureEvents(Event.eventType) </div><div class="line"><span class="built_in">window</span>.releaseEvents(Event.eventType)</div></pre></td></tr></table></figure></p>
-<p>参考文章：<a href="http://www.cnblogs.com/hustskyking/p/problem-javascript-event.html" target="_blank" rel="external">http://www.cnblogs.com/hustskyking/p/problem-javascript-event.html</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/02/16/2017-02-16/" data-id="cj13lo82e000brcqhug3g9l5q" class="article-share-link">Partager</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/02/07/hello-world/" class="article-date">
-  <time datetime="2017-02-07T09:18:46.000Z" itemprop="datePublished">2017-02-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/07/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>终于下手弄了这个博客，首先把以前写过的东西搬进来，在慢慢填补新内容。</p>
-<p>希望自己以谦虚、探求的态度对待知识。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/02/07/hello-world/" data-id="cj13lo82g000crcqhqva0exg3" class="article-share-link">Partager</a>
+      <a data-url="http://misic.moe/2017/02/16/2017-02-16-1/" data-id="cj3zktf4v000as5qhna4bxqpn" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -274,9 +292,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archieven</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li></ul>
     </div>
   </div>
 
@@ -284,9 +302,17 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recente berichten</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/06/12/2017-06-12/">rem 布局原理</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/09/2017-06-09/">构造函数时new运算符做了啥？</a>
+          </li>
         
           <li>
             <a href="/2017/02/23/2017-02-23-1/">观察者模式</a>
@@ -298,14 +324,6 @@
         
           <li>
             <a href="/2017/02/16/2017-02-16/">JavaScript事件机制</a>
-          </li>
-        
-          <li>
-            <a href="/2017/02/07/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2016/10/19/2016-10-19/">关于当&#39;f&#39;、&#39;i&#39;两字母放一起letter-spacing不生效的问题</a>
           </li>
         
       </ul>
@@ -321,7 +339,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 月落<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
