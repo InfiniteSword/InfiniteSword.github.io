@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2015 | Misic-月落音阑</title>
+  <title>Misic-月落音阑</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前端,前端博客,javascript,css,web">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Misic-月落音阑">
-<meta property="og:url" content="http://misic.moe/archives/2015/page/2/index.html">
+<meta property="og:url" content="http://misic.moe/page/5/index.html">
 <meta property="og:site_name" content="Misic-月落音阑">
 <meta property="og:description" content="前端,前端博客,javascript,css,web">
 <meta name="twitter:card" content="summary">
@@ -68,79 +68,52 @@
       <div class="outer">
         <section id="main">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/09/08/2015-09-08/" class="archive-article-date">
-  <time datetime="2015-09-08T13:39:00.000Z" itemprop="datePublished">Sep 8</time>
+    <article id="post-2015-04-20" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/20/2015-04-20/" class="article-date">
+  <time datetime="2015-04-20T12:12:00.000Z" itemprop="datePublished">2015-04-20</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/09/08/2015-09-08/">CSS动画优化</a>
+      <a class="article-title" href="/2015/04/20/2015-04-20/">关于placeholder的兼容实现</a>
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/08/27/2015-08-27/" class="archive-article-date">
-  <time datetime="2015-08-27T14:15:00.000Z" itemprop="datePublished">Aug 27</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/08/27/2015-08-27/">XSS相关</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/04/20/2015-04-20/" class="archive-article-date">
-  <time datetime="2015-04-20T12:12:00.000Z" itemprop="datePublished">Apr 20</time>
-</a>
+        <p>今天写一个表单样式的时候遇到了js事件监听函数的兼容性问题，记录下来。</p>
+<p>由于input标签的placeholder属性在早期的ie浏览器是没有的，于是我采用js修改input标签的value值来模拟placeholder的效果。</p>
+<p>我的思路是先判断浏览器是否支持addEventListener,如果支持，则使用它，而且火狐和谷歌浏览器对placeholder属性都能很好地支持，不支持addEventListener就使用attachEvent来添加事件，同时用js模拟placeholder效果。这样理应是没问题的，但是在ie9下的input里始终是空白的，ie10和ie8都会出现内容。</p>
+<p>反复检查代码之后，想到了一种可能性，于是把判断改成了先判断浏览器是否支持attachEvent，不支持则用另一个。果然，ie9下成功出现了placeholder的效果。</p>
+<p>如我想的一样，ie9已经开始支持addEventListener的事件监听，但是却并不支持placeholder属性，在我之前的思路里，它根本没有经过我模拟placeholder的代码。</p>
+<p>附代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="built_in">document</span>.attachEvent) &#123;</div><div class="line">	num.value = <span class="string">" Number"</span>;</div><div class="line">	email.value = <span class="string">" Email"</span>;</div><div class="line">	num.attachEvent(<span class="string">"onfocusin"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		num.value = <span class="string">""</span>;</div><div class="line">	&#125;);</div><div class="line">	num.attachEvent(<span class="string">"onfocusout"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		num.value = <span class="string">" Number"</span>;</div><div class="line">	&#125;);</div><div class="line">	email.attachEvent(<span class="string">"onfocusin"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		email.value = <span class="string">""</span>;</div><div class="line">	&#125;);</div><div class="line">	email.attachEvent(<span class="string">"onfocusout"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		email.value = <span class="string">" Email"</span>;</div><div class="line">	&#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/04/20/2015-04-20/">关于placeholder的兼容实现</a>
-    </h1>
-  
-
-    </header>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://misic.moe/2015/04/20/2015-04-20/" data-id="cj4jnp1ro00014jqhbhfliis3" class="article-share-link">Partager</a>
+      
+      
+    </footer>
   </div>
+  
 </article>
-  
-  
-    </div></section>
+
+
   
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/archives/2015/">&laquo; Prev</a><a class="page-number" href="/archives/2015/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
   </nav>
 </section>
         

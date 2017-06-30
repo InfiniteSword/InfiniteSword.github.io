@@ -55,9 +55,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://misic.moe"></form>
@@ -67,6 +67,65 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-2017-02-16-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/16/2017-02-16-1/" class="article-date">
+  <time datetime="2017-02-16T13:33:00.000Z" itemprop="datePublished">2017-02-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/16/2017-02-16-1/">同源策略及其规避</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><p>同源的定义为：协议、域名、端口三者均相同。</p>
+<p>在非同源的情况下，以下三种行为会受限</p>
+<ul>
+<li>Cookie、LocalStorage 和 IndexDB 无法读取。</li>
+<li>DOM 无法获得。</li>
+<li>AJAX 请求不能发送。</li>
+</ul>
+<h2 id="规避"><a href="#规避" class="headerlink" title="规避"></a>规避</h2><h4 id="对于-cookie"><a href="#对于-cookie" class="headerlink" title="对于 cookie"></a>对于 cookie</h4><p>假如两个网页一级域名相同，只是二级域名不同，浏览器允许通过设置document.domain来共享Cookie（两个页面都要设置）。</p>
+<h4 id="对于-iframe"><a href="#对于-iframe" class="headerlink" title="对于 iframe"></a>对于 iframe</h4><p>如果两个页面只是二级域名不同，那么也可以通过document.domain进行跨域。</p>
+<p>除此之外，还有以下方法：</p>
+<ul>
+<li>hashchange</li>
+<li>window.name</li>
+<li>window.postMessage</li>
+</ul>
+<p>其中第三种方法为正统的跨文档通信API。使用window.postMessage即可实现跨窗口通信，不论是否同源。</p>
+<h4 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h4><p>AJAX的跨域方案除去服务器代理，常用的有以下三种</p>
+<ul>
+<li>JSONP</li>
+<li>CORS</li>
+<li>Websocket</li>
+</ul>
+<p>其中JSONP只能发送GET请求。Websocket则不实行同源策略。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://misic.moe/2017/02/16/2017-02-16-1/" data-id="cj4jnp1s800094jqhakdxc2pu" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-2017-02-16" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -108,7 +167,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/02/16/2017-02-16/" data-id="cj3zktf52000cs5qh96e8h3oz" class="article-share-link">Delen</a>
+      <a data-url="http://misic.moe/2017/02/16/2017-02-16/" data-id="cj4jnp1sc000b4jqhj2kn2an9" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -146,7 +205,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/02/07/hello-world/" data-id="cj3zktf58000fs5qh2ouq1ym4" class="article-share-link">Delen</a>
+      <a data-url="http://misic.moe/2017/02/07/hello-world/" data-id="cj4jnp1sj000g4jqhc1mm0hk1" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -184,101 +243,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2016/10/19/2016-10-19/" data-id="cj3zktf4r0009s5qhik2vgbaf" class="article-share-link">Delen</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016-04-06" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/04/06/2016-04-06/" class="article-date">
-  <time datetime="2016-04-06T05:30:00.000Z" itemprop="datePublished">2016-04-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/06/2016-04-06/">关于HTTP2.0</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>HTTP/2 是万维网（WWW）基础协议 HTTP 16年来的首次重大升级。正式版http2规格标准叫做RFC 7540，发布于2015年5月15日。</p>
-</blockquote>
-<h2 id="HTTP-1-1"><a href="#HTTP-1-1" class="headerlink" title="HTTP/1.1"></a>HTTP/1.1</h2><p>在 HTTP/1.0 下，每完成一次请求及响应，TCP 连接就会断开，然而客户端的每次请求都只能请求一个文件，在进行下一次请求是又得重新建立连接。可是 TCP 连接是有往返时延的，这样要加载一个页面就太慢了。</p>
-<p>于是在 HTTP/1.1 中，TCP 连接变得持♂久了，在完成整个页面的加载（同域名下的所有资源请求/响应完毕）之后才会断开连接，这样就减少了建立连接和关闭连接的消耗与延迟。</p>
-<p>HTTP/1.1 还允许客户端不用等待上一次请求结果返回，就可以发出下一次请求，但服务器端必须按照接收到客户端请求的先后顺序依次回送响应结果，以保证客户端能够区分出每次请求的响应内容，这样也显著地减少了整个下载过程所需要的时间（HTTP Pipelining）。</p>
-<h2 id="HTTP-1-1存在的一些问题"><a href="#HTTP-1-1存在的一些问题" class="headerlink" title="HTTP/1.1存在的一些问题"></a>HTTP/1.1存在的一些问题</h2><p>HTTP/1.1 对网络延迟非常敏感。虽然近几年来网络带宽增长非常快，然而我们却并没有看到网络延迟有对应程度的降低。HTTP 性能的关键在于低延迟而不是高带宽，大多数 HTTP 连接的时间都很短，而且是突发性的，但 TCP 只在长时间连接传输大块数据时效率才最高。</p>
-<p>由于 HTTP/1.1 允许 HTTP Pipelining 技术，然而你却并不知道服务器对前一个请求的响应需要多久，服务器毕竟是顺序处理请求，如果前一个请求非常耗时，那么后续请求都会受到影响（线头阻塞）。虽然某些情况下你可以选择新建一个 TCP 连接，浏览器一般也支持同时打开多个连接，然而新建 TCP 的开销特别大，并且并不能有效解决延迟问题。</p>
-<h2 id="Now-HTTP-2-0"><a href="#Now-HTTP-2-0" class="headerlink" title="Now, HTTP/2.0"></a>Now, HTTP/2.0</h2><h4 id="二进制分帧"><a href="#二进制分帧" class="headerlink" title="二进制分帧"></a>二进制分帧</h4><p>HTTP/2.0 是一个二进制协议。</p>
-<p>基于二进制的 HTTP/2.0 可以使成帧的使用变得更为便捷。在 HTTP/1.1 和其他基于文本的协议中，对帧的起始和结束识别起来相当复杂。而通过移除掉可选的空白符以及其他冗余后，再来实现这些会变得更容易。</p>
-<p><img src="/2016/04/06/2016-04-06/binary.png" alt=""></p>
-<p>如图，在高层 HTTP API 和低层 TCP 连接中引入了一个二进制分帧层，在二进制分帧层上， HTTP/2.0 会将所有传输的信息分割为更小的消息和帧,并对它们采用二进制格式的编码 ，其中HTTP/1.x 的首部信息会被封装到 Headers 帧， request body 则封装到 Data 帧里面。</p>
-<h4 id="帧"><a href="#帧" class="headerlink" title="帧"></a>帧</h4><p>HTTP/2 中数据传输的最小单位，因此 HTTP/2 中的帧不仅要细分表达 HTTP/1.x 中的各个部份，也优化了 HTTP/1.x 表达得不好的地方，同时还增加了 HTTP/1.x 表达不了的方式。</p>
-<p>每一帧都包含几个字段，有 length、type、flags、stream identifier、frame playload 等，其中 typ e代表帧的类型，在 HTTP/2 的标准中定义了10种不同的类型，包括上面所说的 HEADERS frame 和 DATA frame。此外还有</p>
-<ul>
-<li>PRIORITY（设置流的优先级）</li>
-<li>RST_STREAM（终止流）</li>
-<li>SETTINGS（设置此连接的参数）</li>
-<li>PUSH_PROMISE（服务器推送）</li>
-<li>PING（测量RTT）</li>
-<li>GOAWAY（终止连接）</li>
-<li>WINDOW_UPDATE（流量控制）</li>
-<li>CONTINUATION（继续传输头部数据）</li>
-</ul>
-<h4 id="流与多路复用"><a href="#流与多路复用" class="headerlink" title="流与多路复用"></a>流与多路复用</h4><p>HTTP/2 连接上传输的每个帧都关联到一个“流”（Stream），流是一个逻辑上的联合，一个独立的，双向的帧序列，可以通过一个 HTTP/2 的连接在服务端与客户端之间不断的交换数据。</p>
-<p>每个单独的 HTTP/2 连接都可以包含多个并发的流，这些流中交错的包含着来自两端的帧。流既可以被客户端/服务器端单方面的建立和使用，也可以被双方共享，或者被任意一边关闭。在流里面，每一帧发送的顺序非常关键。接收方会按照收到帧的顺序来进行处理。</p>
-<p>在一个 TCP 连接上，我们可以向对方不断发送一个个的消息，这里每一个消息看成是一帧，而每一帧有个 stream identifier 的字段标明这一帧属于哪个“流”，然后在对方接收时，根据 stream identifier 拼接每个“流”的所有帧组成一整块数据。</p>
-<p>在 HTTP/2.0 中，多个任务组并发地执行请求，这样即使前一个任务花费太多时间也不会影响之后任务的请求与响应（规避了线头阻塞）。</p>
-<p><em>由客户端发起的流 Stream ID 为奇数，由服务器发起的流 Stream ID 为偶数。</em></p>
-<p>关于流与多路复用：<a href="http://www.blogjava.net/yongboy/archive/2015/03/19/423611.html" target="_blank" rel="external">HTTP/2笔记之流和多路复用</a></p>
-<h4 id="优先级和依赖性"><a href="#优先级和依赖性" class="headerlink" title="优先级和依赖性"></a>优先级和依赖性</h4><p>既然 HTTP/2.0 存在多路复用，那会不会加载页面时先加载了许多无关紧要的内容而把关键的 css 等文件放在最后呢？</p>
-<p>然而事实是并不会╮(╯▽╰)╭，HTTP/2.0 中每个流都包含一个优先级（也就是“权重”），它被用来告诉对端哪个流更重要。当资源有限的时候，服务器会根据优先级来选择应该先发送哪些流。流的优先级用于发起流的终端（客户端/服务器）向对端（接收的一方）表达需要多大比重的资源支持，但这只是一个建议，不能强制要求对端一定会遵守。</p>
-<p>借助于 PRIORITY 帧，客户端同样可以告知服务器当前的流依赖于其他哪个流。该功能让客户端能建立一个优先级“树”，所有“子流”会依赖于“父流”的传输完成情况。</p>
-<p>虽然高优先级的帧应该优先发送，但却不会是绝对的，若是绝对遵守的话则可能引起阻塞问题（高优先级的请求、响应消耗太多时间影响之后资源的传输）。</p>
-<h4 id="头部压缩"><a href="#头部压缩" class="headerlink" title="头部压缩"></a>头部压缩</h4><p>HTTP 是一种无状态的协议，每个请求必须要携带服务器需要的所有细节，而不是让服务器保存住之前请求的元数据。因为 HTTP/2.0 并没有改变这个范式，所以它也必须要携带所有细节。当一个客户端从同一服务器请求了大量资源（例如页面的图片）的时候，所有这些请求看起来几乎都是一致的，而这些大量一致的东西则正好值得被压缩。</p>
-<p>HPACK ，HTTP/2 头部压缩，专为 HTTP/2.0 头部设计的压缩格式。在服务器和客户端各维护一个“首部表”，表中用索引代表首部名，或者首部键-值对，上一次发送两端都会记住已发送过哪些首部，下一次发送只需要传输差异的数据，相同的数据直接用索引表示即可。通信期间几乎不会改变的通用键-值对只需发送一次。</p>
-<p>如果首部发生变化了，那么只需要发送变化了数据在 Headers 帧里面，新增或修改的首部帧会被追加到“首部表”。首部表在 HTTP/2.0 的连接存续期内始终存在,由客户端和服务器共同渐进地更新 。</p>
-<p>关于头部压缩：<a href="https://imququ.com/post/header-compression-in-http2.html" target="_blank" rel="external">HTTP/2 头部压缩技术介绍</a></p>
-<h4 id="服务器推送"><a href="#服务器推送" class="headerlink" title="服务器推送"></a>服务器推送</h4><p>这个功能通常被称作“缓存推送”。主要的思想是：当一个客户端请求资源X，而服务器知道它很可能也需要资源Z的情况下，服务器可以在客户端发送请求前，主动将资源Z推送给客户端。这个功能帮助客户端将Z放进缓存以备将来之需。</p>
-<p>比如当服务器响应了一个 HTML 请求后，知道了客户端还会发送 CSS 请求、JS 请求，这时服务器可以采用推送的方式，主动发起资源，客户端可以选择缓存收到的资源，当然，也可以拒绝这个资源。</p>
-<p>服务器必须遵循请求-响应的循环，只能借着请求的响应来推送资源，也就是说，如果客户端没有发送请求，服务器是没法先手推送的。在整个过程中，有一种类型为 PUSH_PROMISE 的帧，当客户端解析到这个帧时，就会准备接收服务端将要推送的流。PUSH_PROMISE 帧必须在返回响应（DATA 帧）之前发送，因为万一客户端请求的恰好是服务器打算推送的资源，那传输过程就会混乱了。</p>
-<p>服务器推送需要客户端显式的允许服务器提供该功能。但即使如此，客户端依然能自主选择是否需要中断该推送的流。如果不需要的话，客户端可以通过发送一个 RST_STREAM 帧来中止。</p>
-<p><em>在http2里面，我们可以通过发送 RST_STREAM 帧来终止当前传输的消息并重新发送一个新的，从而避免浪费带宽和中断已有的连接</em></p>
-<h2 id="学习总结与思考"><a href="#学习总结与思考" class="headerlink" title="学习总结与思考"></a>学习总结与思考</h2><p>HTTP/2.0 具有许多 HTTP/1.x 所没有的优点，却不会改动 HTTP 的语义，HTTP 方法、状态码、URI 及首部字段等核心概念，致力于突破上一代标准的性能限制，改进传输性能，实现低延迟和高吞吐量。</p>
-<p>同时，许多针对 HTTP/1.x 的优化手段都不再必要，甚至有的会显得累赘。</p>
-<h4 id="CSS-Sprites-、拼接以及内联资源"><a href="#CSS-Sprites-、拼接以及内联资源" class="headerlink" title="CSS Sprites 、拼接以及内联资源"></a>CSS Sprites 、拼接以及内联资源</h4><p>CSS Sprites（雪碧图）是一种将很多较小的图片合并成一张大图，再将小图重新“切割”出来的技术，目的是为了减少请求，但在 HTTP/2.0 新起请求不费事，但拆分开来倒可以更好地利用浏览器缓存。</p>
-<p>Concatenation（拼接）是指一些前端工具可以帮助开发人员将大量的JavaScript文件合并为一个大的文件，从而让浏览器能只花费一个请求就将其下载完，而不是发无数请求去分别下载那些琐碎的JavaScript文件。同 Sprites 一样，在 HTTP/2.0 里并不必要，反而是增加了自己的工作量。</p>
-<p>Inlining （内联）是另外一种防止发送很多小图请求的技巧，比如将图片的原始数据嵌入在CSS文件里面的URL里。在 HTTP/2.0 里可以用服务器推送，也同样可以更好地利用缓存。</p>
-<h4 id="域名分区"><a href="#域名分区" class="headerlink" title="域名分区"></a>域名分区</h4><p>“域名分区”是把你的服务分散在尽可能多的主机上。在 HTTP1.x 上如果一个只用一个持久链接，请求只能一个一个顺序请求，为了高效地并行下载资源，浏览器允许我们打开多个 TCP 会话，但是一个域名下限制6个链接。为了突破这些限制，我们可以域名分区，提高并行下载资源能力。</p>
-<p>而在 HTTP/2.0 中,“域名分区”这种优化手段是无用的，因为资源都是并行交错发送，且没有限制，不需要额外的多域名并行下载。本来可以用一个连接完成，却要用多个连接，这样就有性能损耗了。</p>
-<p><em>本文仅为自己的学习笔记，加深学习印象，如有错误，求告知</em></p>
-<p>参考文章</p>
-<ul>
-<li><a href="http://aotu.io/notes/2016/03/17/http2-char/" target="_blank" rel="external">前端开发与 HTTP/2 的羁绊——安利篇</a></li>
-<li><a href="http://www.2cto.com/kf/201510/446824.html" target="_blank" rel="external">Web性能优化与Http2</a></li>
-<li><a href="http://www.alloyteam.com/2015/03/http2-0-di-qi-miao-ri-chang/" target="_blank" rel="external">HTTP2.0的奇妙日常</a></li>
-<li><a href="https://www.gitbook.com/book/ye11ow/http2-explained/details" target="_blank" rel="external">http2讲解</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://misic.moe/2016/04/06/2016-04-06/" data-id="cj3zktf4p0008s5qh784lkolh" class="article-share-link">Delen</a>
+      <a data-url="http://misic.moe/2016/10/19/2016-10-19/" data-id="cj4jnp1s600084jqh5x7fulru" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -291,7 +256,7 @@
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
   </nav>
 </section>
         
@@ -307,7 +272,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li></ul>
     </div>
@@ -317,9 +282,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/06/30/2017-06-30/">使用AI将文字转成svg</a>
+          </li>
         
           <li>
             <a href="/2017/06/12/2017-06-12/">rem 布局原理</a>
@@ -337,10 +306,6 @@
             <a href="/2017/02/16/2017-02-16-1/">同源策略及其规避</a>
           </li>
         
-          <li>
-            <a href="/2017/02/16/2017-02-16/">JavaScript事件机制</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -354,7 +319,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 月落<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

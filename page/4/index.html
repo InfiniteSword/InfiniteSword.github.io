@@ -55,9 +55,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://misic.moe"></form>
@@ -67,6 +67,51 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-2015-11-08" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/08/2015-11-08/" class="article-date">
+  <time datetime="2015-11-08T13:24:00.000Z" itemprop="datePublished">2015-11-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/08/2015-11-08/">避免AngularJS自动字符转义</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天在用ionic写东西的时候，发现加载的HTML模板直接显示出了源代码。百度之后才知道AngularJS有自动字符转义。</p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p>HTML</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ion-view</span> <span class="attr">view-title</span>=<span class="string">"示例"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">ion-content</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-bind-html</span>=<span class="string">"content"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ion-content</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ion-view</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>JS</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$scope.content = test;</div><div class="line"><span class="keyword">var</span> test = <span class="string">'&lt;div class="test"&gt;测试&lt;/div&gt;'</span>;</div></pre></td></tr></table></figure>
+<p>以上代码会直接在页面显示<code>&lt;div class=&quot;test&quot;&gt;测试&lt;/div&gt;</code></p>
+<h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h4><p>要输出HTML需要使用 $sce 安全机制，比如示例js可修改如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$scope.content = $sce.trustAsHtml(test);;</div><div class="line"><span class="keyword">var</span> test = <span class="string">'&lt;div class="test"&gt;测试&lt;/div&gt;'</span>;</div></pre></td></tr></table></figure>
+<p>这样就能在页面显示想要输出的内容了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://misic.moe/2015/11/08/2015-11-08/" data-id="cj4jnp1rv00034jqhsm3mquvb" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-2015-10-21" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -115,7 +160,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2015/10/21/2015-10-21/" data-id="cj3zktf4f0003s5qhsy3kd75d" class="article-share-link">Delen</a>
+      <a data-url="http://misic.moe/2015/10/21/2015-10-21/" data-id="cj4jnp1s300054jqhot0s7tus" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -212,7 +257,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2015/09/08/2015-09-08/" data-id="cj3zktf4c0002s5qhn6mri5qd" class="article-share-link">Delen</a>
+      <a data-url="http://misic.moe/2015/09/08/2015-09-08/" data-id="cj4jnp1rq00024jqhfqs15gho" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -260,49 +305,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2015/08/27/2015-08-27/" data-id="cj3zktf490001s5qhwshjgyxa" class="article-share-link">Delen</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2015-04-20" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/04/20/2015-04-20/" class="article-date">
-  <time datetime="2015-04-20T12:12:00.000Z" itemprop="datePublished">2015-04-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/20/2015-04-20/">关于placeholder的兼容实现</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天写一个表单样式的时候遇到了js事件监听函数的兼容性问题，记录下来。</p>
-<p>由于input标签的placeholder属性在早期的ie浏览器是没有的，于是我采用js修改input标签的value值来模拟placeholder的效果。</p>
-<p>我的思路是先判断浏览器是否支持addEventListener,如果支持，则使用它，而且火狐和谷歌浏览器对placeholder属性都能很好地支持，不支持addEventListener就使用attachEvent来添加事件，同时用js模拟placeholder效果。这样理应是没问题的，但是在ie9下的input里始终是空白的，ie10和ie8都会出现内容。</p>
-<p>反复检查代码之后，想到了一种可能性，于是把判断改成了先判断浏览器是否支持attachEvent，不支持则用另一个。果然，ie9下成功出现了placeholder的效果。</p>
-<p>如我想的一样，ie9已经开始支持addEventListener的事件监听，但是却并不支持placeholder属性，在我之前的思路里，它根本没有经过我模拟placeholder的代码。</p>
-<p>附代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="built_in">document</span>.attachEvent) &#123;</div><div class="line">	num.value = <span class="string">" Number"</span>;</div><div class="line">	email.value = <span class="string">" Email"</span>;</div><div class="line">	num.attachEvent(<span class="string">"onfocusin"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		num.value = <span class="string">""</span>;</div><div class="line">	&#125;);</div><div class="line">	num.attachEvent(<span class="string">"onfocusout"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		num.value = <span class="string">" Number"</span>;</div><div class="line">	&#125;);</div><div class="line">	email.attachEvent(<span class="string">"onfocusin"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		email.value = <span class="string">""</span>;</div><div class="line">	&#125;);</div><div class="line">	email.attachEvent(<span class="string">"onfocusout"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		email.value = <span class="string">" Email"</span>;</div><div class="line">	&#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://misic.moe/2015/04/20/2015-04-20/" data-id="cj3zktf440000s5qh8al7ul10" class="article-share-link">Delen</a>
+      <a data-url="http://misic.moe/2015/08/27/2015-08-27/" data-id="cj4jnp1rj00004jqhded6eohw" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -315,7 +318,7 @@
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
   </nav>
 </section>
         
@@ -331,7 +334,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li></ul>
     </div>
@@ -341,9 +344,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/06/30/2017-06-30/">使用AI将文字转成svg</a>
+          </li>
         
           <li>
             <a href="/2017/06/12/2017-06-12/">rem 布局原理</a>
@@ -361,10 +368,6 @@
             <a href="/2017/02/16/2017-02-16-1/">同源策略及其规避</a>
           </li>
         
-          <li>
-            <a href="/2017/02/16/2017-02-16/">JavaScript事件机制</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -378,7 +381,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 月落<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
