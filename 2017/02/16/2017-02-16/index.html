@@ -5,28 +5,16 @@
   
   <title>JavaScript事件机制 | Misic-月落音阑</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="早些时候，Netscape和微软还在浏览器战争的时候，Netscape主张捕获方式，而微软则主张冒泡。后来在w3c制定标准的时候，选择了折中的方式，先捕获再冒泡。
-事件的触发阶段
-document 往事件触发地点，捕获前进，遇到相同注册事件立即触发执行
-到达事件位置，触发事件，如果该处既注册了冒泡事件，也注册了捕获事件，则按照注册顺序执行
-事件触发地点往 document 方向，冒泡前进，遇到相同">
+  <meta name="description" content="早些时候，Netscape和微软还在浏览器战争的时候，Netscape主张捕获方式，而微软则主张冒泡。后来在w3c制定标准的时候，选择了折中的方式，先捕获再冒泡。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript事件机制">
 <meta property="og:url" content="http://misic.moe/2017/02/16/2017-02-16/index.html">
 <meta property="og:site_name" content="Misic-月落音阑">
-<meta property="og:description" content="早些时候，Netscape和微软还在浏览器战争的时候，Netscape主张捕获方式，而微软则主张冒泡。后来在w3c制定标准的时候，选择了折中的方式，先捕获再冒泡。
-事件的触发阶段
-document 往事件触发地点，捕获前进，遇到相同注册事件立即触发执行
-到达事件位置，触发事件，如果该处既注册了冒泡事件，也注册了捕获事件，则按照注册顺序执行
-事件触发地点往 document 方向，冒泡前进，遇到相同">
-<meta property="og:updated_time" content="2017-02-16T13:43:10.000Z">
+<meta property="og:description" content="早些时候，Netscape和微软还在浏览器战争的时候，Netscape主张捕获方式，而微软则主张冒泡。后来在w3c制定标准的时候，选择了折中的方式，先捕获再冒泡。">
+<meta property="og:updated_time" content="2017-07-09T16:06:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript事件机制">
-<meta name="twitter:description" content="早些时候，Netscape和微软还在浏览器战争的时候，Netscape主张捕获方式，而微软则主张冒泡。后来在w3c制定标准的时候，选择了折中的方式，先捕获再冒泡。
-事件的触发阶段
-document 往事件触发地点，捕获前进，遇到相同注册事件立即触发执行
-到达事件位置，触发事件，如果该处既注册了冒泡事件，也注册了捕获事件，则按照注册顺序执行
-事件触发地点往 document 方向，冒泡前进，遇到相同">
+<meta name="twitter:description" content="早些时候，Netscape和微软还在浏览器战争的时候，Netscape主张捕获方式，而微软则主张冒泡。后来在w3c制定标准的时候，选择了折中的方式，先捕获再冒泡。">
   
     <link rel="alternate" href="/atom.xml" title="Misic-月落音阑" type="application/atom+xml">
   
@@ -68,9 +56,9 @@ document 往事件触发地点，捕获前进，遇到相同注册事件立即�
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://misic.moe"></form>
@@ -102,6 +90,7 @@ document 往事件触发地点，捕获前进，遇到相同注册事件立即�
     <div class="article-entry" itemprop="articleBody">
       
         <p>早些时候，Netscape和微软还在浏览器战争的时候，Netscape主张捕获方式，而微软则主张冒泡。后来在w3c制定标准的时候，选择了折中的方式，先捕获再冒泡。</p>
+<a id="more"></a>
 <h2 id="事件的触发阶段"><a href="#事件的触发阶段" class="headerlink" title="事件的触发阶段"></a>事件的触发阶段</h2><ul>
 <li>document 往事件触发地点，捕获前进，遇到相同注册事件立即触发执行</li>
 <li>到达事件位置，触发事件，如果该处既注册了冒泡事件，也注册了捕获事件，则按照注册顺序执行</li>
@@ -119,7 +108,7 @@ document 往事件触发地点，捕获前进，遇到相同注册事件立即�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/02/16/2017-02-16/" data-id="cj4jnp1sc000b4jqhj2kn2an9" class="article-share-link">Partager</a>
+      <a data-url="http://misic.moe/2017/02/16/2017-02-16/" data-id="cj4wwxdx1000b9kqhldfbt8ru" class="article-share-link">Share</a>
       
       
     </footer>
@@ -129,7 +118,7 @@ document 往事件触发地点，捕获前进，遇到相同注册事件立即�
 <nav id="article-nav">
   
     <a href="/2017/02/16/2017-02-16-1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Récent</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           同源策略及其规避
@@ -139,7 +128,7 @@ document 往事件触发地点，捕获前进，遇到相同注册事件立即�
   
   
     <a href="/2017/02/07/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ancien</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">Hello World</div>
     </a>
   
@@ -172,7 +161,7 @@ document 往事件触发地点，捕获前进，遇到相同注册事件立即�
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -209,7 +198,7 @@ document 往事件触发地点，捕获前进，遇到相同注册事件立即�
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 月落<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

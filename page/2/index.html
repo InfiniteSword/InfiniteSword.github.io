@@ -55,9 +55,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://misic.moe"></form>
@@ -90,7 +90,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><p>同源的定义为：协议、域名、端口三者均相同。</p>
+        <a id="more"></a>
+<h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><p>同源的定义为：协议、域名、端口三者均相同。</p>
 <p>在非同源的情况下，以下三种行为会受限</p>
 <ul>
 <li>Cookie、LocalStorage 和 IndexDB 无法读取。</li>
@@ -117,7 +118,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/02/16/2017-02-16-1/" data-id="cj4jnp1s800094jqhakdxc2pu" class="article-share-link">Partager</a>
+      <a data-url="http://misic.moe/2017/02/16/2017-02-16-1/" data-id="cj4wwxdwx00099kqhbv29mkfm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -150,24 +151,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>早些时候，Netscape和微软还在浏览器战争的时候，Netscape主张捕获方式，而微软则主张冒泡。后来在w3c制定标准的时候，选择了折中的方式，先捕获再冒泡。</p>
-<h2 id="事件的触发阶段"><a href="#事件的触发阶段" class="headerlink" title="事件的触发阶段"></a>事件的触发阶段</h2><ul>
-<li>document 往事件触发地点，捕获前进，遇到相同注册事件立即触发执行</li>
-<li>到达事件位置，触发事件，如果该处既注册了冒泡事件，也注册了捕获事件，则按照注册顺序执行</li>
-<li>事件触发地点往 document 方向，冒泡前进，遇到相同注册事件立即触发</li>
-</ul>
-<p>在注册事件的时候，我们通常会选择捕获和冒泡的一种：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ele.addEventListener(<span class="string">"click"</span>, func, <span class="literal">true</span>); <span class="comment">// 捕获方式</span></div><div class="line">ele.addEventListener(<span class="string">"click"</span>, func, <span class="literal">false</span>); <span class="comment">// 冒泡方式</span></div></pre></td></tr></table></figure></p>
-<p>事件触发也只会因捕获或冒泡触发一次，如果同时注册了捕获或者冒泡，那么会按注册顺序执行。</p>
-<h2 id="事件的相关问题"><a href="#事件的相关问题" class="headerlink" title="事件的相关问题"></a>事件的相关问题</h2><h4 id="1、stopPropagation-与-stopImmediatePropagation"><a href="#1、stopPropagation-与-stopImmediatePropagation" class="headerlink" title="1、stopPropagation 与 stopImmediatePropagation"></a>1、stopPropagation 与 stopImmediatePropagation</h4><p>event.stopPropagation()阻止事件的冒泡并且会阻止事件的继续捕获，但是该函数不阻止当前元素上绑定的其他事件。</p>
-<p>而event.stopImmediatePropagation()阻止事件继续传播的同时还会阻止当前元素上绑定的其他事件。</p>
-<h4 id="2-setCapture-和-releaseCapture"><a href="#2-setCapture-和-releaseCapture" class="headerlink" title="2. setCapture 和 releaseCapture"></a>2. setCapture 和 releaseCapture</h4><p>这两个是 IE 下的事件绑定函数，只要我们在某个元素上 setCapture 了，那么你在任何地方的鼠标操作都会在这个元素上触发（前提是你在这个元素上绑定了事件），releaseCapture 或者本窗口失去聚焦才会释放这个绑定。</p>
-<p>setCapture不支持键盘事件, 只能捕获以下鼠标事件：onmousedown、onmouseup、onmousemove、onclick、ondblclick、onmouseover和onmouseout。</p>
-<p>Mozilla 也有类似的方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.captureEvents(Event.eventType) </div><div class="line"><span class="built_in">window</span>.releaseEvents(Event.eventType)</div></pre></td></tr></table></figure></p>
-<p>参考文章：<a href="http://www.cnblogs.com/hustskyking/p/problem-javascript-event.html" target="_blank" rel="external">http://www.cnblogs.com/hustskyking/p/problem-javascript-event.html</a></p>
-
+        
+          <p class="article-more-link">
+            <a href="/2017/02/16/2017-02-16/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/02/16/2017-02-16/" data-id="cj4jnp1sc000b4jqhj2kn2an9" class="article-share-link">Partager</a>
+      <a data-url="http://misic.moe/2017/02/16/2017-02-16/" data-id="cj4wwxdx1000b9kqhldfbt8ru" class="article-share-link">Share</a>
       
       
     </footer>
@@ -205,7 +197,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/02/07/hello-world/" data-id="cj4jnp1sj000g4jqhc1mm0hk1" class="article-share-link">Partager</a>
+      <a data-url="http://misic.moe/2017/02/07/hello-world/" data-id="cj4wwxdxa000g9kqh5qe04htq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -243,7 +235,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2016/10/19/2016-10-19/" data-id="cj4jnp1s600084jqh5x7fulru" class="article-share-link">Partager</a>
+      <a data-url="http://misic.moe/2016/10/19/2016-10-19/" data-id="cj4wwxdwv00089kqhv8iyezzj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -282,7 +274,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -319,7 +311,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 月落<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

@@ -5,22 +5,16 @@
   
   <title>关于placeholder的兼容实现 | Misic-月落音阑</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今天写一个表单样式的时候遇到了js事件监听函数的兼容性问题，记录下来。
-由于input标签的placeholder属性在早期的ie浏览器是没有的，于是我采用js修改input标签的value值来模拟placeholder的效果。
-我的思路是先判断浏览器是否支持addEventListener,如果支持，则使用它，而且火狐和谷歌浏览器对placeholder属性都能很好地支持，不支持addEvent">
+  <meta name="description" content="今天写一个表单样式的时候遇到了js事件监听函数的兼容性问题，记录下来。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于placeholder的兼容实现">
 <meta property="og:url" content="http://misic.moe/2015/04/20/2015-04-20/index.html">
 <meta property="og:site_name" content="Misic-月落音阑">
-<meta property="og:description" content="今天写一个表单样式的时候遇到了js事件监听函数的兼容性问题，记录下来。
-由于input标签的placeholder属性在早期的ie浏览器是没有的，于是我采用js修改input标签的value值来模拟placeholder的效果。
-我的思路是先判断浏览器是否支持addEventListener,如果支持，则使用它，而且火狐和谷歌浏览器对placeholder属性都能很好地支持，不支持addEvent">
-<meta property="og:updated_time" content="2017-02-07T15:16:29.000Z">
+<meta property="og:description" content="今天写一个表单样式的时候遇到了js事件监听函数的兼容性问题，记录下来。">
+<meta property="og:updated_time" content="2017-07-09T16:03:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于placeholder的兼容实现">
-<meta name="twitter:description" content="今天写一个表单样式的时候遇到了js事件监听函数的兼容性问题，记录下来。
-由于input标签的placeholder属性在早期的ie浏览器是没有的，于是我采用js修改input标签的value值来模拟placeholder的效果。
-我的思路是先判断浏览器是否支持addEventListener,如果支持，则使用它，而且火狐和谷歌浏览器对placeholder属性都能很好地支持，不支持addEvent">
+<meta name="twitter:description" content="今天写一个表单样式的时候遇到了js事件监听函数的兼容性问题，记录下来。">
   
     <link rel="alternate" href="/atom.xml" title="Misic-月落音阑" type="application/atom+xml">
   
@@ -62,9 +56,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://misic.moe"></form>
@@ -96,6 +90,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>今天写一个表单样式的时候遇到了js事件监听函数的兼容性问题，记录下来。</p>
+<a id="more"></a>
 <p>由于input标签的placeholder属性在早期的ie浏览器是没有的，于是我采用js修改input标签的value值来模拟placeholder的效果。</p>
 <p>我的思路是先判断浏览器是否支持addEventListener,如果支持，则使用它，而且火狐和谷歌浏览器对placeholder属性都能很好地支持，不支持addEventListener就使用attachEvent来添加事件，同时用js模拟placeholder效果。这样理应是没问题的，但是在ie9下的input里始终是空白的，ie10和ie8都会出现内容。</p>
 <p>反复检查代码之后，想到了一种可能性，于是把判断改成了先判断浏览器是否支持attachEvent，不支持则用另一个。果然，ie9下成功出现了placeholder的效果。</p>
@@ -105,7 +100,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2015/04/20/2015-04-20/" data-id="cj4jnp1ro00014jqhbhfliis3" class="article-share-link">Partager</a>
+      <a data-url="http://misic.moe/2015/04/20/2015-04-20/" data-id="cj4wwxdw900019kqhkab7qy00" class="article-share-link">Share</a>
       
       
     </footer>
@@ -115,7 +110,7 @@
 <nav id="article-nav">
   
     <a href="/2015/08/27/2015-08-27/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Récent</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           XSS相关
@@ -153,7 +148,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -190,7 +185,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 月落<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

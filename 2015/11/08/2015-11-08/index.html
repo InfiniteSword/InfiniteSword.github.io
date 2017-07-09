@@ -5,22 +5,16 @@
   
   <title>避免AngularJS自动字符转义 | Misic-月落音阑</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今天在用ionic写东西的时候，发现加载的HTML模板直接显示出了源代码。百度之后才知道AngularJS有自动字符转义。
-示例HTML
-12345&amp;lt;ion-view view-title=&quot;示例&quot;&amp;gt;  &amp;lt;ion-content&amp;gt;    &amp;lt;div ng-bind-html=&quot;content&quot;&amp;gt;&amp;lt;/div&amp;gt;  &amp;lt;/ion-content&amp;gt;&amp;">
+  <meta name="description" content="今天在用ionic写东西的时候，发现加载的HTML模板直接显示出了源代码。百度之后才知道AngularJS有自动字符转义。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="避免AngularJS自动字符转义">
 <meta property="og:url" content="http://misic.moe/2015/11/08/2015-11-08/index.html">
 <meta property="og:site_name" content="Misic-月落音阑">
-<meta property="og:description" content="今天在用ionic写东西的时候，发现加载的HTML模板直接显示出了源代码。百度之后才知道AngularJS有自动字符转义。
-示例HTML
-12345&amp;lt;ion-view view-title=&quot;示例&quot;&amp;gt;  &amp;lt;ion-content&amp;gt;    &amp;lt;div ng-bind-html=&quot;content&quot;&amp;gt;&amp;lt;/div&amp;gt;  &amp;lt;/ion-content&amp;gt;&amp;">
-<meta property="og:updated_time" content="2015-11-08T13:40:56.000Z">
+<meta property="og:description" content="今天在用ionic写东西的时候，发现加载的HTML模板直接显示出了源代码。百度之后才知道AngularJS有自动字符转义。">
+<meta property="og:updated_time" content="2017-07-09T16:04:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="避免AngularJS自动字符转义">
-<meta name="twitter:description" content="今天在用ionic写东西的时候，发现加载的HTML模板直接显示出了源代码。百度之后才知道AngularJS有自动字符转义。
-示例HTML
-12345&amp;lt;ion-view view-title=&quot;示例&quot;&amp;gt;  &amp;lt;ion-content&amp;gt;    &amp;lt;div ng-bind-html=&quot;content&quot;&amp;gt;&amp;lt;/div&amp;gt;  &amp;lt;/ion-content&amp;gt;&amp;">
+<meta name="twitter:description" content="今天在用ionic写东西的时候，发现加载的HTML模板直接显示出了源代码。百度之后才知道AngularJS有自动字符转义。">
   
     <link rel="alternate" href="/atom.xml" title="Misic-月落音阑" type="application/atom+xml">
   
@@ -62,9 +56,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://misic.moe"></form>
@@ -96,6 +90,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>今天在用ionic写东西的时候，发现加载的HTML模板直接显示出了源代码。百度之后才知道AngularJS有自动字符转义。</p>
+<a id="more"></a>
 <h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p>HTML</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ion-view</span> <span class="attr">view-title</span>=<span class="string">"示例"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">ion-content</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-bind-html</span>=<span class="string">"content"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ion-content</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ion-view</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>JS</p>
@@ -108,7 +103,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2015/11/08/2015-11-08/" data-id="cj4jnp1rv00034jqhsm3mquvb" class="article-share-link">Partager</a>
+      <a data-url="http://misic.moe/2015/11/08/2015-11-08/" data-id="cj4wwxdwo00049kqht4cwyh9m" class="article-share-link">Share</a>
       
       
     </footer>
@@ -118,7 +113,7 @@
 <nav id="article-nav">
   
     <a href="/2015/11/19/2015-11-19/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Récent</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           console.log的细节问题
@@ -128,7 +123,7 @@
   
   
     <a href="/2015/10/21/2015-10-21/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ancien</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">JS 内存泄露</div>
     </a>
   
@@ -161,7 +156,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -198,7 +193,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 月落<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

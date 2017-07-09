@@ -5,52 +5,16 @@
   
   <title>CSS动画优化 | Misic-月落音阑</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近写了个自定义样式的audio播放器，在设置外观的时候遇到了严重的卡顿问题，于是整理了下css的动画优化。
-部分内容收集自前端性能优化（CSS动画篇），高性能 CSS3 动画。
-关于页面绘制原理现代浏览器在使用CSS3动画时，以下四种情形绘制的效率较高，分别是：
-
-改变位置
-改变大小
-旋转
-改变透明度
-
-浏览器在渲染一个页面时会经过6个步骤：
-
-获取DOM后分割为多个图层
-对每个图层的节点计算样">
+  <meta name="description" content="最近写了个自定义样式的audio播放器，在设置外观的时候遇到了严重的卡顿问题，于是整理了下css的动画优化。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS动画优化">
 <meta property="og:url" content="http://misic.moe/2015/09/08/2015-09-08/index.html">
 <meta property="og:site_name" content="Misic-月落音阑">
-<meta property="og:description" content="最近写了个自定义样式的audio播放器，在设置外观的时候遇到了严重的卡顿问题，于是整理了下css的动画优化。
-部分内容收集自前端性能优化（CSS动画篇），高性能 CSS3 动画。
-关于页面绘制原理现代浏览器在使用CSS3动画时，以下四种情形绘制的效率较高，分别是：
-
-改变位置
-改变大小
-旋转
-改变透明度
-
-浏览器在渲染一个页面时会经过6个步骤：
-
-获取DOM后分割为多个图层
-对每个图层的节点计算样">
-<meta property="og:updated_time" content="2015-10-20T11:18:26.000Z">
+<meta property="og:description" content="最近写了个自定义样式的audio播放器，在设置外观的时候遇到了严重的卡顿问题，于是整理了下css的动画优化。">
+<meta property="og:updated_time" content="2017-07-09T16:03:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS动画优化">
-<meta name="twitter:description" content="最近写了个自定义样式的audio播放器，在设置外观的时候遇到了严重的卡顿问题，于是整理了下css的动画优化。
-部分内容收集自前端性能优化（CSS动画篇），高性能 CSS3 动画。
-关于页面绘制原理现代浏览器在使用CSS3动画时，以下四种情形绘制的效率较高，分别是：
-
-改变位置
-改变大小
-旋转
-改变透明度
-
-浏览器在渲染一个页面时会经过6个步骤：
-
-获取DOM后分割为多个图层
-对每个图层的节点计算样">
+<meta name="twitter:description" content="最近写了个自定义样式的audio播放器，在设置外观的时候遇到了严重的卡顿问题，于是整理了下css的动画优化。">
   
     <link rel="alternate" href="/atom.xml" title="Misic-月落音阑" type="application/atom+xml">
   
@@ -92,9 +56,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://misic.moe"></form>
@@ -126,6 +90,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>最近写了个自定义样式的audio播放器，在设置外观的时候遇到了严重的卡顿问题，于是整理了下css的动画优化。</p>
+<a id="more"></a>
 <p>部分内容收集自<a href="http://segmentfault.com/a/1190000000490328" target="_blank" rel="external">前端性能优化（CSS动画篇）</a>，<a href="http://www.w3cfuns.com/article-5598175-1-1.html" target="_blank" rel="external">高性能 CSS3 动画</a>。</p>
 <h2 id="关于页面绘制"><a href="#关于页面绘制" class="headerlink" title="关于页面绘制"></a>关于页面绘制</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>现代浏览器在使用CSS3动画时，以下四种情形绘制的效率较高，分别是：</p>
 <ul>
@@ -190,7 +155,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2015/09/08/2015-09-08/" data-id="cj4jnp1rq00024jqhfqs15gho" class="article-share-link">Partager</a>
+      <a data-url="http://misic.moe/2015/09/08/2015-09-08/" data-id="cj4wwxdwc00029kqhr91s4d58" class="article-share-link">Share</a>
       
       
     </footer>
@@ -200,7 +165,7 @@
 <nav id="article-nav">
   
     <a href="/2015/10/21/2015-10-21/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Récent</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           JS 内存泄露
@@ -210,7 +175,7 @@
   
   
     <a href="/2015/08/27/2015-08-27/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ancien</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">XSS相关</div>
     </a>
   
@@ -243,7 +208,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -280,7 +245,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 月落<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

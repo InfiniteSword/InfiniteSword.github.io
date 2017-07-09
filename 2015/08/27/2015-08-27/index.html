@@ -6,21 +6,18 @@
   <title>XSS相关 | Misic-月落音阑</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="跨站脚本(Cross-site Scripting)即XSS，为不和层叠样式表(Cascading Style Sheets)的缩写混淆，故缩写为XSS。指攻击者向目标Web站点注入HTML标签或者脚本这类安全问题。
-在之前身边发生了某个关于注入的事件，记忆深刻…所以写下这篇来提醒自己。
-关于XSS过滤说到XSS过滤，我们应该想到的是有多少种绕过过滤的方法。过滤&amp;lt;script&amp;gt;标签可以">
+在之前身边发生了某个关于注入的事件，记忆深刻…所以写下这篇来提醒自己。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XSS相关">
 <meta property="og:url" content="http://misic.moe/2015/08/27/2015-08-27/index.html">
 <meta property="og:site_name" content="Misic-月落音阑">
 <meta property="og:description" content="跨站脚本(Cross-site Scripting)即XSS，为不和层叠样式表(Cascading Style Sheets)的缩写混淆，故缩写为XSS。指攻击者向目标Web站点注入HTML标签或者脚本这类安全问题。
-在之前身边发生了某个关于注入的事件，记忆深刻…所以写下这篇来提醒自己。
-关于XSS过滤说到XSS过滤，我们应该想到的是有多少种绕过过滤的方法。过滤&amp;lt;script&amp;gt;标签可以">
-<meta property="og:updated_time" content="2015-08-29T03:06:54.000Z">
+在之前身边发生了某个关于注入的事件，记忆深刻…所以写下这篇来提醒自己。">
+<meta property="og:updated_time" content="2017-07-09T16:03:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XSS相关">
 <meta name="twitter:description" content="跨站脚本(Cross-site Scripting)即XSS，为不和层叠样式表(Cascading Style Sheets)的缩写混淆，故缩写为XSS。指攻击者向目标Web站点注入HTML标签或者脚本这类安全问题。
-在之前身边发生了某个关于注入的事件，记忆深刻…所以写下这篇来提醒自己。
-关于XSS过滤说到XSS过滤，我们应该想到的是有多少种绕过过滤的方法。过滤&amp;lt;script&amp;gt;标签可以">
+在之前身边发生了某个关于注入的事件，记忆深刻…所以写下这篇来提醒自己。">
   
     <link rel="alternate" href="/atom.xml" title="Misic-月落音阑" type="application/atom+xml">
   
@@ -62,9 +59,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://misic.moe"></form>
@@ -97,6 +94,7 @@
       
         <p>跨站脚本(Cross-site Scripting)即XSS，为不和层叠样式表(Cascading Style Sheets)的缩写混淆，故缩写为XSS。指攻击者向目标Web站点注入HTML标签或者脚本这类安全问题。</p>
 <p>在之前身边发生了某个关于注入的事件，记忆深刻…所以写下这篇来提醒自己。</p>
+<a id="more"></a>
 <h3 id="关于XSS过滤"><a href="#关于XSS过滤" class="headerlink" title="关于XSS过滤"></a>关于XSS过滤</h3><p>说到XSS过滤，我们应该想到的是有多少种绕过过滤的方法。过滤<code>&lt;script&gt;</code>标签可以防止部分js代码的注入，但绝对并不周全。除了直接插入js代码，还有通过事件处理器插入js代码的方法，比如<code>&lt;body onload=&quot;xxx&quot;&gt;</code>以及<code>&lt;img src=&quot;&quot; onerror=&quot;xxx&quot;&gt;</code>等。对此，作为前端的学习者，避免使用内联的事件处理是必要的。</p>
 <p>有一个用js写的XSS攻击代码过滤模块，github地址: <em><a href="https://github.com/leizongmin/js-xss" target="_blank" rel="external">https://github.com/leizongmin/js-xss</a></em>，可以通过 <em>npm install xss</em> 来安装。</p>
 <p>###防止XSS攻击</p>
@@ -111,7 +109,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2015/08/27/2015-08-27/" data-id="cj4jnp1rj00004jqhded6eohw" class="article-share-link">Partager</a>
+      <a data-url="http://misic.moe/2015/08/27/2015-08-27/" data-id="cj4wwxdw400009kqhsfn8dr92" class="article-share-link">Share</a>
       
       
     </footer>
@@ -121,7 +119,7 @@
 <nav id="article-nav">
   
     <a href="/2015/09/08/2015-09-08/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Récent</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           CSS动画优化
@@ -131,7 +129,7 @@
   
   
     <a href="/2015/04/20/2015-04-20/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ancien</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">关于placeholder的兼容实现</div>
     </a>
   
@@ -164,7 +162,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -201,7 +199,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 月落<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

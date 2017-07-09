@@ -5,19 +5,16 @@
   
   <title>各版本IE与标准浏览器差异小结 | Misic-月落音阑</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是看司徒正美的《JavaScript框架设计》时写的记录。包含但不深究低版本IE未实现的属性或方法。
-类型判定1234567891011typeof window.alert; // IE678 &quot;object&quot;// 旧版本下IE下DOM与BOM对象的constructor属性是没有暴露出来的alert(window.constructor); // IE67 undefined// IE下会有">
+  <meta name="description" content="这是看司徒正美的《JavaScript框架设计》时写的记录。包含但不深究低版本IE未实现的属性或方法。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="各版本IE与标准浏览器差异小结">
 <meta property="og:url" content="http://misic.moe/2015/11/23/2015-11-23/index.html">
 <meta property="og:site_name" content="Misic-月落音阑">
-<meta property="og:description" content="这是看司徒正美的《JavaScript框架设计》时写的记录。包含但不深究低版本IE未实现的属性或方法。
-类型判定1234567891011typeof window.alert; // IE678 &quot;object&quot;// 旧版本下IE下DOM与BOM对象的constructor属性是没有暴露出来的alert(window.constructor); // IE67 undefined// IE下会有">
-<meta property="og:updated_time" content="2015-11-23T13:44:15.000Z">
+<meta property="og:description" content="这是看司徒正美的《JavaScript框架设计》时写的记录。包含但不深究低版本IE未实现的属性或方法。">
+<meta property="og:updated_time" content="2017-07-09T16:05:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="各版本IE与标准浏览器差异小结">
-<meta name="twitter:description" content="这是看司徒正美的《JavaScript框架设计》时写的记录。包含但不深究低版本IE未实现的属性或方法。
-类型判定1234567891011typeof window.alert; // IE678 &quot;object&quot;// 旧版本下IE下DOM与BOM对象的constructor属性是没有暴露出来的alert(window.constructor); // IE67 undefined// IE下会有">
+<meta name="twitter:description" content="这是看司徒正美的《JavaScript框架设计》时写的记录。包含但不深究低版本IE未实现的属性或方法。">
   
     <link rel="alternate" href="/atom.xml" title="Misic-月落音阑" type="application/atom+xml">
   
@@ -59,9 +56,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://misic.moe"></form>
@@ -93,6 +90,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>这是看司徒正美的《JavaScript框架设计》时写的记录。包含但不深究低版本IE未实现的属性或方法。</p>
+<a id="more"></a>
 <h4 id="类型判定"><a href="#类型判定" class="headerlink" title="类型判定"></a>类型判定</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">typeof</span> <span class="built_in">window</span>.alert; <span class="comment">// IE678 "object"</span></div><div class="line"></div><div class="line"><span class="comment">// 旧版本下IE下DOM与BOM对象的constructor属性是没有暴露出来的</span></div><div class="line">alert(<span class="built_in">window</span>.constructor); <span class="comment">// IE67 undefined</span></div><div class="line"></div><div class="line"><span class="comment">// IE下会有typeof返回unknow的情况</span></div><div class="line"></div><div class="line"><span class="comment">// 通过比较window和document可以判断IE</span></div><div class="line"><span class="built_in">window</span> == <span class="built_in">document</span>; <span class="comment">// IE678 true</span></div><div class="line"><span class="built_in">document</span> == <span class="built_in">window</span>; <span class="comment">// IE678 false</span></div></pre></td></tr></table></figure>
 <h4 id="字符串与数组"><a href="#字符串与数组" class="headerlink" title="字符串与数组"></a>字符串与数组</h4><p>IE6、IE7不支持用中括号取它的每一个字符，需要用charAt方法；IE6、IE7、IE8不支持垂直分表符。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> isIE678 = !+<span class="string">"\v1"</span>;</div></pre></td></tr></table></figure>
@@ -109,7 +107,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2015/11/23/2015-11-23/" data-id="cj4jnp1s200044jqhdtotrlu0" class="article-share-link">Partager</a>
+      <a data-url="http://misic.moe/2015/11/23/2015-11-23/" data-id="cj4wwxdws00069kqhykasaimn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -119,7 +117,7 @@
 <nav id="article-nav">
   
     <a href="/2016/04/02/2016-04-02/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Récent</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           关于position属性sticky
@@ -129,7 +127,7 @@
   
   
     <a href="/2015/11/19/2015-11-19/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ancien</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">console.log的细节问题</div>
     </a>
   
@@ -162,7 +160,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -199,7 +197,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 月落<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

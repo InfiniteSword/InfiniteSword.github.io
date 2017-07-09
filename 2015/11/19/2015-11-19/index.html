@@ -6,24 +6,18 @@
   <title>console.log的细节问题 | Misic-月落音阑</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="某个好友写了个遍历函数模仿数组方法forEach，发现把console.log作输入函数时会报如下错：
-Uncaught TypeError: Illegal invocation
-而将console.log放到另一个函数里包裹起来就能正常输出：
-1234567function _print (x)&amp;#123;     console.log(x)&amp;#125;[1,2,3].forEach(_pr">
+Uncaught TypeError: Illegal invocation">
 <meta property="og:type" content="article">
 <meta property="og:title" content="console.log的细节问题">
 <meta property="og:url" content="http://misic.moe/2015/11/19/2015-11-19/index.html">
 <meta property="og:site_name" content="Misic-月落音阑">
 <meta property="og:description" content="某个好友写了个遍历函数模仿数组方法forEach，发现把console.log作输入函数时会报如下错：
-Uncaught TypeError: Illegal invocation
-而将console.log放到另一个函数里包裹起来就能正常输出：
-1234567function _print (x)&amp;#123;     console.log(x)&amp;#125;[1,2,3].forEach(_pr">
-<meta property="og:updated_time" content="2015-11-19T15:59:20.000Z">
+Uncaught TypeError: Illegal invocation">
+<meta property="og:updated_time" content="2017-07-09T16:04:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="console.log的细节问题">
 <meta name="twitter:description" content="某个好友写了个遍历函数模仿数组方法forEach，发现把console.log作输入函数时会报如下错：
-Uncaught TypeError: Illegal invocation
-而将console.log放到另一个函数里包裹起来就能正常输出：
-1234567function _print (x)&amp;#123;     console.log(x)&amp;#125;[1,2,3].forEach(_pr">
+Uncaught TypeError: Illegal invocation">
   
     <link rel="alternate" href="/atom.xml" title="Misic-月落音阑" type="application/atom+xml">
   
@@ -65,9 +59,9 @@ Uncaught TypeError: Illegal invocation
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://misic.moe"></form>
@@ -100,6 +94,7 @@ Uncaught TypeError: Illegal invocation
       
         <p>某个好友写了个遍历函数模仿数组方法forEach，发现把console.log作输入函数时会报如下错：</p>
 <p><em>Uncaught TypeError: Illegal invocation</em></p>
+<a id="more"></a>
 <p>而将console.log放到另一个函数里包裹起来就能正常输出：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">_print</span> (<span class="params">x</span>)</span>&#123; </div><div class="line">    <span class="built_in">console</span>.log(x)</div><div class="line">&#125;</div><div class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].forEach(_print);</div><div class="line"><span class="comment">// 1</span></div><div class="line"><span class="comment">// 2</span></div><div class="line"><span class="comment">// 3</span></div></pre></td></tr></table></figure>
 <p>百度原因，发现与console.log的内部实现有关。</p>
@@ -109,7 +104,7 @@ Uncaught TypeError: Illegal invocation
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2015/11/19/2015-11-19/" data-id="cj4jnp1s400064jqhqwn9c56y" class="article-share-link">Partager</a>
+      <a data-url="http://misic.moe/2015/11/19/2015-11-19/" data-id="cj4wwxdwq00059kqha7kf84mk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -119,7 +114,7 @@ Uncaught TypeError: Illegal invocation
 <nav id="article-nav">
   
     <a href="/2015/11/23/2015-11-23/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Récent</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           各版本IE与标准浏览器差异小结
@@ -129,7 +124,7 @@ Uncaught TypeError: Illegal invocation
   
   
     <a href="/2015/11/08/2015-11-08/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ancien</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">避免AngularJS自动字符转义</div>
     </a>
   
@@ -162,7 +157,7 @@ Uncaught TypeError: Illegal invocation
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -199,7 +194,7 @@ Uncaught TypeError: Illegal invocation
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 月落<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
