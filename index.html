@@ -97,7 +97,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/07/14/2017-07-14/" data-id="cj53bs9xw000gocqhfev7am3v" class="article-share-link">Share</a>
+      <a data-url="http://misic.moe/2017/07/14/2017-07-14/" data-id="cj53bxbrq000gi3qhkfllrmj2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -138,7 +138,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/06/30/2017-06-30/" data-id="cj53bs9xv000focqhy1am52aq" class="article-share-link">Share</a>
+      <a data-url="http://misic.moe/2017/06/30/2017-06-30/" data-id="cj53bxbro000fi3qhqvoc0zu5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -181,7 +181,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/06/12/2017-06-12/" data-id="cj53bs9xu000eocqhf5grdeps" class="article-share-link">Share</a>
+      <a data-url="http://misic.moe/2017/06/12/2017-06-12/" data-id="cj53bxbrn000ei3qh9f534o1e" class="article-share-link">Share</a>
       
       
     </footer>
@@ -213,21 +213,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Printer</span>(<span class="params">msg</span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.msg = msg;</div><div class="line">    <span class="keyword">this</span>.print = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.msg);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> printer = <span class="keyword">new</span> Printer(<span class="string">'Hello!'</span>);</div></pre></td></tr></table></figure>
-<p>在上面这段代码中，我们创建了一个Printer构造函数，并用new运算符实例化了一个printer，那么在这个过程中发生了什么呢。</p>
-<p>其实是经历了以下四个步骤：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj  =&#123;&#125;;</div><div class="line">obj.__proto__ = Printer.prototype;</div><div class="line"><span class="keyword">var</span> res = Printer.call(obj,<span class="string">'Hello!'</span>);</div><div class="line"><span class="keyword">return</span> <span class="keyword">typeof</span> res === <span class="string">'object'</span> ? res : obj;</div></pre></td></tr></table></figure>
-<p>1、创建一个空对象<code>obj</code>。</p>
-<p>2、将<code>obj</code>的<code>__proto__</code>指向构造函数对象<code>Obj</code>的<code>prototype</code>成员对象，此时<code>obj</code>的原型链为<code>obj -&gt; Printer.prototype -&gt; Object.prototype -&gt; null</code>。</p>
-<p>3、将构造函数<code>Printer</code>的作用域赋给新对象，在<code>obj</code>的上下文中调用<code>Printer</code>函数并传出参数<code>&#39;Hello!&#39;</code>。于是我们就给<code>obj</code>对象创建了变量<code>msg</code>，变量的值是<code>&#39;Hello!&#39;</code>。</p>
-<p>4、检查构造函数的返回值，如果返回值为对象，则将返回的这个对象作为返回值，否则返回刚创建的<code>obj</code>。</p>
-<p>所以我们最后得到的<code>printer</code>就是第4步返回的那个对象。</p>
-
+        <p>是关于构造函数new这个过程的学习记录。<br></p>
+        
+          <p class="article-more-link">
+            <a href="/2017/06/09/2017-06-09/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/06/09/2017-06-09/" data-id="cj53bs9xs000docqh3vscjxye" class="article-share-link">Share</a>
+      <a data-url="http://misic.moe/2017/06/09/2017-06-09/" data-id="cj53bxbrk000ci3qht9xdh7rz" class="article-share-link">Share</a>
       
       
     </footer>
