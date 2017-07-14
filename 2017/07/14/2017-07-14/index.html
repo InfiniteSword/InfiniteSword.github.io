@@ -3,18 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>关于placeholder的兼容实现 | Misic-月落音阑</title>
+  <title>反柯里化-uncurryThis | Misic-月落音阑</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今天写一个表单样式的时候遇到了js事件监听函数的兼容性问题，记录下来。">
+  <meta name="description" content="一个工具函数，用来将obj.func(arg)转换成_func(obj,arg)，在引用未知库时能让自己的代码更安全(前提是Function.call没有被重写)。
+用法:var _func = uncurryThis(func);
+实现:12345678910var call = Function.call;function uncurryThis(f) &amp;#123;    return fun">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于placeholder的兼容实现">
-<meta property="og:url" content="http://misic.moe/2015/04/20/2015-04-20/index.html">
+<meta property="og:title" content="反柯里化-uncurryThis">
+<meta property="og:url" content="http://misic.moe/2017/07/14/2017-07-14/index.html">
 <meta property="og:site_name" content="Misic-月落音阑">
-<meta property="og:description" content="今天写一个表单样式的时候遇到了js事件监听函数的兼容性问题，记录下来。">
-<meta property="og:updated_time" content="2017-07-09T16:03:23.000Z">
+<meta property="og:description" content="一个工具函数，用来将obj.func(arg)转换成_func(obj,arg)，在引用未知库时能让自己的代码更安全(前提是Function.call没有被重写)。
+用法:var _func = uncurryThis(func);
+实现:12345678910var call = Function.call;function uncurryThis(f) &amp;#123;    return fun">
+<meta property="og:updated_time" content="2017-07-14T03:50:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于placeholder的兼容实现">
-<meta name="twitter:description" content="今天写一个表单样式的时候遇到了js事件监听函数的兼容性问题，记录下来。">
+<meta name="twitter:title" content="反柯里化-uncurryThis">
+<meta name="twitter:description" content="一个工具函数，用来将obj.func(arg)转换成_func(obj,arg)，在引用未知库时能让自己的代码更安全(前提是Function.call没有被重写)。
+用法:var _func = uncurryThis(func);
+实现:12345678910var call = Function.call;function uncurryThis(f) &amp;#123;    return fun">
   
     <link rel="alternate" href="/atom.xml" title="Misic-月落音阑" type="application/atom+xml">
   
@@ -67,10 +73,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-2015-04-20" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-2017-07-14" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/04/20/2015-04-20/" class="article-date">
-  <time datetime="2015-04-20T12:12:00.000Z" itemprop="datePublished">2015-04-20</time>
+    <a href="/2017/07/14/2017-07-14/" class="article-date">
+  <time datetime="2017-07-14T03:22:00.000Z" itemprop="datePublished">2017-07-14</time>
 </a>
     
   </div>
@@ -81,7 +87,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      关于placeholder的兼容实现
+      反柯里化-uncurryThis
     </h1>
   
 
@@ -89,18 +95,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天写一个表单样式的时候遇到了js事件监听函数的兼容性问题，记录下来。</p>
-<a id="more"></a>
-<p>由于input标签的placeholder属性在早期的ie浏览器是没有的，于是我采用js修改input标签的value值来模拟placeholder的效果。</p>
-<p>我的思路是先判断浏览器是否支持addEventListener,如果支持，则使用它，而且火狐和谷歌浏览器对placeholder属性都能很好地支持，不支持addEventListener就使用attachEvent来添加事件，同时用js模拟placeholder效果。这样理应是没问题的，但是在ie9下的input里始终是空白的，ie10和ie8都会出现内容。</p>
-<p>反复检查代码之后，想到了一种可能性，于是把判断改成了先判断浏览器是否支持attachEvent，不支持则用另一个。果然，ie9下成功出现了placeholder的效果。</p>
-<p>如我想的一样，ie9已经开始支持addEventListener的事件监听，但是却并不支持placeholder属性，在我之前的思路里，它根本没有经过我模拟placeholder的代码。</p>
-<p>附代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="built_in">document</span>.attachEvent) &#123;</div><div class="line">	num.value = <span class="string">" Number"</span>;</div><div class="line">	email.value = <span class="string">" Email"</span>;</div><div class="line">	num.attachEvent(<span class="string">"onfocusin"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		num.value = <span class="string">""</span>;</div><div class="line">	&#125;);</div><div class="line">	num.attachEvent(<span class="string">"onfocusout"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		num.value = <span class="string">" Number"</span>;</div><div class="line">	&#125;);</div><div class="line">	email.attachEvent(<span class="string">"onfocusin"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		email.value = <span class="string">""</span>;</div><div class="line">	&#125;);</div><div class="line">	email.attachEvent(<span class="string">"onfocusout"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		email.value = <span class="string">" Email"</span>;</div><div class="line">	&#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <p>一个工具函数，用来将<code>obj.func(arg)</code>转换成<code>_func(obj,arg)</code>，在引用未知库时能让自己的代码更安全(前提是Function.call没有被重写)。</p>
+<p>用法:<code>var _func = uncurryThis(func);</code></p>
+<p>实现:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> call = <span class="built_in">Function</span>.call;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">uncurryThis</span>(<span class="params">f</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> call.apply(f, <span class="built_in">arguments</span>);</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// equivalent but slower one</span></div><div class="line"><span class="comment">// uncurryThis = Function_bind.bind(Function_bind.call);</span></div><div class="line"><span class="comment">// http://jsperf.com/uncurrythis</span></div></pre></td></tr></table></figure></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2015/04/20/2015-04-20/" data-id="cj53bs9wv0000ocqhcmsldnr8" class="article-share-link">Share</a>
+      <a data-url="http://misic.moe/2017/07/14/2017-07-14/" data-id="cj53bs9xw000gocqhfev7am3v" class="article-share-link">Share</a>
       
       
     </footer>
@@ -109,15 +111,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/08/27/2015-08-27/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          XSS相关
-        
-      </div>
-    </a>
   
+    <a href="/2017/06/30/2017-06-30/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">使用AI将文字转成svg</div>
+    </a>
   
 </nav>
 
