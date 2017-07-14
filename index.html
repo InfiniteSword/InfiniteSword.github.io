@@ -90,14 +90,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>一个工具函数，用来将<code>obj.func(arg)</code>转换成<code>_func(obj,arg)</code>，在引用未知库时能让自己的代码更安全(前提是Function.call没有被重写)。</p>
-<p>用法:<code>var _func = uncurryThis(func);</code></p>
-<p>实现:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> call = <span class="built_in">Function</span>.call;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">uncurryThis</span>(<span class="params">f</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> call.apply(f, <span class="built_in">arguments</span>);</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// equivalent but slower one</span></div><div class="line"><span class="comment">// uncurryThis = Function_bind.bind(Function_bind.call);</span></div><div class="line"><span class="comment">// http://jsperf.com/uncurrythis</span></div></pre></td></tr></table></figure></p>
-
+        <p>一个工具函数，用来将<code>obj.func(arg)</code>转换成<code>_func(obj,arg)</code>，在引用未知库时能让自己的代码更安全(前提是Function.call没有被重写)。<br></p>
+        
+          <p class="article-more-link">
+            <a href="/2017/07/14/2017-07-14/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/07/14/2017-07-14/" data-id="cj53bxbrq000gi3qhkfllrmj2" class="article-share-link">Share</a>
+      <a data-url="http://misic.moe/2017/07/14/2017-07-14/" data-id="cj53by7o8000ftuqhqna00mmn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -138,7 +140,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/06/30/2017-06-30/" data-id="cj53bxbro000fi3qhqvoc0zu5" class="article-share-link">Share</a>
+      <a data-url="http://misic.moe/2017/06/30/2017-06-30/" data-id="cj53by7oe000gtuqhgvqsa3ho" class="article-share-link">Share</a>
       
       
     </footer>
@@ -181,7 +183,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/06/12/2017-06-12/" data-id="cj53bxbrn000ei3qh9f534o1e" class="article-share-link">Share</a>
+      <a data-url="http://misic.moe/2017/06/12/2017-06-12/" data-id="cj53by7o6000etuqhgmsb4olo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -222,7 +224,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/06/09/2017-06-09/" data-id="cj53bxbrk000ci3qht9xdh7rz" class="article-share-link">Share</a>
+      <a data-url="http://misic.moe/2017/06/09/2017-06-09/" data-id="cj53by7n8000atuqhodm0i4qp" class="article-share-link">Share</a>
       
       
     </footer>
