@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Misic-月落音阑</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="title: Koa2源码阅读记录date:2017-07-20 11:50:10
+
+Koa 是一个轻量级的、极富表现力的 http 框架。一个web request会通过 Koa 的中间件栈，来动态完成 response 的处理。Koa2 采用了 async 和 await 的语法来增强中间件的表现力。Koa 不在内核方法中绑定任何中间件，它仅仅提供了一个轻量优雅的函数库。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Misic-月落音阑">
+<meta property="og:url" content="http://misic.moe/2017/07/20/2017-07-20/index.html">
+<meta property="og:site_name" content="Misic-月落音阑">
+<meta property="og:description" content="title: Koa2源码阅读记录date:2017-07-20 11:50:10
+
+Koa 是一个轻量级的、极富表现力的 http 框架。一个web request会通过 Koa 的中间件栈，来动态完成 response 的处理。Koa2 采用了 async 和 await 的语法来增强中间件的表现力。Koa 不在内核方法中绑定任何中间件，它仅仅提供了一个轻量优雅的函数库。">
+<meta property="og:updated_time" content="2017-07-22T08:38:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Misic-月落音阑">
+<meta name="twitter:description" content="title: Koa2源码阅读记录date:2017-07-20 11:50:10
+
+Koa 是一个轻量级的、极富表现力的 http 框架。一个web request会通过 Koa 的中间件栈，来动态完成 response 的处理。Koa2 采用了 async 和 await 的语法来增强中间件的表现力。Koa 不在内核方法中绑定任何中间件，它仅仅提供了一个轻量优雅的函数库。">
+  
+    <link rel="alternate" href="/atom.xml" title="Misic-月落音阑" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Misic-月落音阑</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">关于如何在二次元与二进制之间穿行的探索</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://misic.moe"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2017-07-20" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/20/2017-07-20/" class="article-date">
+  <time datetime="2017-07-20T03:50:10.000Z" itemprop="datePublished">2017-07-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>title: Koa2源码阅读记录<br>date:2017-07-20 11:50:10</p>
+<blockquote>
+<p>Koa 是一个轻量级的、极富表现力的 http 框架。<br>一个web request会通过 Koa 的中间件栈，来动态完成 response 的处理。<br>Koa2 采用了 async 和 await 的语法来增强中间件的表现力。<br>Koa 不在内核方法中绑定任何中间件，它仅仅提供了一个轻量优雅的函数库。<br><a id="more"></a></p>
+</blockquote>
+<p>根据<a href="https://github.com/koajs/koa/tree/master/lib" target="_blank" rel="external">koa(v2.3.0)的lib目录</a>分为4个模块:application、context、request、response。</p>
+<ul>
+<li>application.js：框架入口；负责管理中间件，以及处理请求</li>
+<li>context.js：context对象的原型，代理request与response对象上的方法和属性</li>
+<li>request.js：request对象的原型，提供请求相关的方法和属性</li>
+<li>response.js：response对象的原型，提供响应相关的方法和属性</li>
+</ul>
+<h4 id="request-amp-response"><a href="#request-amp-response" class="headerlink" title="request &amp; response"></a>request &amp; response</h4><p>request 和 response 部分主要是对请求和响应的属性及方法的封装，部分是直接取自 req 和 res，大部分是采用getter 和 setter 的方式进行的封装，比如<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    ...</div><div class="line">    get header() &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.req.headers;</div><div class="line">    &#125;,</div><div class="line">    set header(val) &#123;</div><div class="line">        <span class="keyword">this</span>.req.headers = val;</div><div class="line">    &#125;,</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>他们在 application 部分通过 <code>createContext</code> 方法挂在 context 底下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> context = <span class="built_in">Object</span>.create(<span class="keyword">this</span>.context);</div><div class="line"><span class="keyword">const</span> request = context.request = <span class="built_in">Object</span>.create(<span class="keyword">this</span>.request);</div><div class="line"><span class="keyword">const</span> response = context.response = <span class="built_in">Object</span>.create(<span class="keyword">this</span>.response);</div><div class="line">context.req = request.req = response.req = req;</div><div class="line">context.res = request.res = response.res = res;</div><div class="line">request.response = response;</div><div class="line">response.request = request;</div></pre></td></tr></table></figure></p>
+<h4 id="context"><a href="#context" class="headerlink" title="context"></a>context</h4><p>context 中除去错误处理，主要是使用 <a href="https://github.com/tj/node-delegates/blob/master/index.js" target="_blank" rel="external">node-delegates</a> 模块将 context 上的 request 和 response 方法和属性代理到了 context 上。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">delegate(proto, <span class="string">'response'</span>)</div><div class="line">  .method(<span class="string">'attachment'</span>)</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  .access(<span class="string">'status'</span>)</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  .getter(<span class="string">'headerSent'</span>)</div><div class="line">  <span class="comment">// ...</span></div></pre></td></tr></table></figure>
+<p>其中，method 是对方法的代理，access 是对属性的代理，且可读可写，getter则表示只读。</p>
+<h4 id="application"><a href="#application" class="headerlink" title="application"></a>application</h4><p>application.js 是 koa 的主要入口文件，暴露了一个继承自 EventEmitter 的 class。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="class"><span class="keyword">class</span> <span class="title">Application</span> <span class="keyword">extends</span> <span class="title">Emitter</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>() &#123;</div><div class="line">    <span class="keyword">super</span>();</div><div class="line"></div><div class="line">    <span class="keyword">this</span>.proxy = <span class="literal">false</span>; <span class="comment">// 是否信任 proxy header 参数，默认为 false</span></div><div class="line">    </div><div class="line">    <span class="keyword">this</span>.middleware = []; <span class="comment">//保存通过app.use(middleware)注册的中间件</span></div><div class="line">    </div><div class="line">    <span class="keyword">this</span>.subdomainOffset = <span class="number">2</span>; <span class="comment">// 子域默认偏移量，默认为 2</span></div><div class="line">    </div><div class="line">    <span class="keyword">this</span>.env = process.env.NODE_ENV || <span class="string">'development'</span>; <span class="comment">// 环境参数，默认为 NODE_ENV 或 ‘development’</span></div><div class="line">    </div><div class="line">    <span class="keyword">this</span>.context = <span class="built_in">Object</span>.create(context); <span class="comment">//context模块，通过context.js创建</span></div><div class="line">    </div><div class="line">    <span class="keyword">this</span>.request = <span class="built_in">Object</span>.create(request); <span class="comment">//request模块，通过request.js创建</span></div><div class="line">    </div><div class="line">    <span class="keyword">this</span>.response = <span class="built_in">Object</span>.create(response); <span class="comment">//response模块，通过response.js创建</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>application 中除了以上构造器以外，主要还包含了 use 和 listen 这两个 api 的定义。</p>
+<p>use 方法会判断传入的中间件是不是一个 generator 函数，是的话会报个警告说 generator 的支持会在 v3 被移除，然后把这个 generator 形式的中间件用 koa-convert 转成 promise 形式的中间件，在放入存放 middleware 数组里。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">use(fn) &#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn !== <span class="string">'function'</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'middleware must be a function!'</span>);</div><div class="line">    <span class="keyword">if</span> (isGeneratorFunction(fn)) &#123;</div><div class="line">        deprecate(<span class="string">'Support for generators will be removed in v3. '</span> +</div><div class="line">            <span class="string">'See the documentation for examples of how to convert old middleware '</span> +</div><div class="line">            <span class="string">'https://github.com/koajs/koa/blob/master/docs/migration.md'</span>);</div><div class="line">        fn = convert(fn);</div><div class="line">    &#125;</div><div class="line">    debug(<span class="string">'use %s'</span>, fn._name || fn.name || <span class="string">'-'</span>);</div><div class="line">    <span class="keyword">this</span>.middleware.push(fn);</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>listen 方法会调用 this.callback 方法返回一个函数作为 http.createServe 的回调，并进行监听。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">listen(...args) &#123;</div><div class="line">    debug(<span class="string">'listen'</span>);</div><div class="line">    <span class="keyword">const</span> server = http.createServer(<span class="keyword">this</span>.callback());</div><div class="line">    <span class="keyword">return</span> server.listen(...args);</div><div class="line">&#125;</div><div class="line">callback() &#123;</div><div class="line">    <span class="keyword">const</span> fn = compose(<span class="keyword">this</span>.middleware);</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.listeners(<span class="string">'error'</span>).length) <span class="keyword">this</span>.on(<span class="string">'error'</span>, <span class="keyword">this</span>.onerror);</div><div class="line">    </div><div class="line">    <span class="keyword">const</span> handleRequest = <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</div><div class="line">        res.statusCode = <span class="number">404</span>;</div><div class="line">        <span class="keyword">const</span> ctx = <span class="keyword">this</span>.createContext(req, res);</div><div class="line">        <span class="keyword">const</span> onerror = <span class="function"><span class="params">err</span> =&gt;</span> ctx.onerror(err);</div><div class="line">        <span class="keyword">const</span> handleResponse = <span class="function"><span class="params">()</span> =&gt;</span> respond(ctx);</div><div class="line">        onFinished(res, onerror);</div><div class="line">        <span class="keyword">return</span> fn(ctx).then(handleResponse).catch(onerror);</div><div class="line">    &#125;;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> handleRequest;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>callback 方法使用了 koa-compose 将中间件组合成 fn 函数，然后返回 handleRequest 作为 http.createServe 的回调。以下是 koa-compose 的源码。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// koa-compose</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">compose</span> (<span class="params">middleware</span>) </span>&#123;</div><div class="line">    <span class="comment">// 传入的middleware必须是一个数组</span></div><div class="line">    <span class="keyword">if</span> (!<span class="built_in">Array</span>.isArray(middleware)) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'Middleware stack must be an array!'</span>)</div><div class="line">    <span class="comment">// 传入的middleware的每一个元素都必须是函数</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> fn <span class="keyword">of</span> middleware) &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> fn !== <span class="string">'function'</span>) </div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'Middleware must be composed of functions!'</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">context, next</span>) </span>&#123;</div><div class="line">        <span class="keyword">let</span> index = <span class="number">-1</span></div><div class="line">        <span class="keyword">return</span> dispatch(<span class="number">0</span>)</div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">dispatch</span> (<span class="params">i</span>) </span>&#123;</div><div class="line">            <span class="keyword">if</span> (i &lt;= index) </div><div class="line">                <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'next() called multiple times'</span>))</div><div class="line">            index = i</div><div class="line">            <span class="keyword">let</span> fn = middleware[i]</div><div class="line">            <span class="comment">// 下面两个判断是处理最后一个中间件还有next的情况的，如果存在就直接返回Resolved状态的Promise</span></div><div class="line">            <span class="keyword">if</span> (i === middleware.length) </div><div class="line">                fn = next</div><div class="line">            <span class="keyword">if</span> (!fn) </div><div class="line">                <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve() </div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                <span class="comment">// 这里就是传入next执行中间件代码了</span></div><div class="line">                <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve(fn(context, <span class="function"><span class="keyword">function</span> <span class="title">next</span> (<span class="params"></span>) </span>&#123;</div><div class="line">                    <span class="keyword">return</span> dispatch(i + <span class="number">1</span>)</div><div class="line">                &#125;))</div><div class="line">            &#125; <span class="keyword">catch</span> (err) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(err)</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>callback 中 handleRequest 函数，先把状态码默认设置为404，然后用 createContext 函数把 http server 返回的 req 和 res 进行封装创建出 context，然后通过 onFinished 监听 http response，当请求结束时执行回调。这里传入的回调是 context.onerror(err)，即当错误发生时才执行。以下是 createContext 函数的实现，这里包含了对 request 和 respose 的挂载以及其他属性的创建。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">createContext(req, res) &#123;</div><div class="line">    <span class="keyword">const</span> context = <span class="built_in">Object</span>.create(<span class="keyword">this</span>.context);</div><div class="line">    <span class="keyword">const</span> request = context.request = <span class="built_in">Object</span>.create(<span class="keyword">this</span>.request);</div><div class="line">    <span class="keyword">const</span> response = context.response = <span class="built_in">Object</span>.create(<span class="keyword">this</span>.response);</div><div class="line">    context.app = request.app = response.app = <span class="keyword">this</span>;</div><div class="line">    context.req = request.req = response.req = req;</div><div class="line">    context.res = request.res = response.res = res;</div><div class="line">    request.ctx = response.ctx = context;</div><div class="line">    request.response = response;</div><div class="line">    response.request = request;</div><div class="line">    context.originalUrl = request.originalUrl = req.url;</div><div class="line">    context.cookies = <span class="keyword">new</span> Cookies(req, res, &#123;</div><div class="line">        <span class="attr">keys</span>: <span class="keyword">this</span>.keys,</div><div class="line">        <span class="attr">secure</span>: request.secure</div><div class="line">    &#125;);</div><div class="line">    request.ip = request.ips[<span class="number">0</span>] || req.socket.remoteAddress || <span class="string">''</span>;</div><div class="line">    context.accept = request.accept = accepts(req);</div><div class="line">    context.state = &#123;&#125;;</div><div class="line">    <span class="keyword">return</span> context;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>callback 方法最后返回 fn(ctx).then(handleResponse).catch(onerror) 的执行结果，fn 就是之前用 koa-compose 组合成的函数，返回的是个 Resolved 状态的 Promise，之后执行 handleResponse，即 respond(ctx)。以下是 respond 函数，主要是一些收尾的处理。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">respond</span>(<span class="params">ctx</span>) </span>&#123;</div><div class="line">    <span class="comment">// allow bypassing koa</span></div><div class="line">    <span class="keyword">if</span> (<span class="literal">false</span> === ctx.respond) </div><div class="line">        <span class="keyword">return</span>;</div><div class="line"></div><div class="line">    <span class="keyword">const</span> res = ctx.res;</div><div class="line">    <span class="keyword">if</span> (!ctx.writable) </div><div class="line">        <span class="keyword">return</span>;</div><div class="line"></div><div class="line">    <span class="keyword">let</span> body = ctx.body;</div><div class="line">    <span class="keyword">const</span> code = ctx.status;</div><div class="line"></div><div class="line">    <span class="comment">// ignore body</span></div><div class="line">    <span class="keyword">if</span> (statuses.empty[code]) &#123;</div><div class="line">        <span class="comment">// strip headers</span></div><div class="line">        ctx.body = <span class="literal">null</span>;</div><div class="line">        <span class="keyword">return</span> res.end();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (<span class="string">'HEAD'</span> == ctx.method) &#123;</div><div class="line">        <span class="keyword">if</span> (!res.headersSent &amp;&amp; isJSON(body)) &#123;</div><div class="line">            ctx.length = Buffer.byteLength(<span class="built_in">JSON</span>.stringify(body));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res.end();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// status body</span></div><div class="line">    <span class="keyword">if</span> (<span class="literal">null</span> == body) &#123;</div><div class="line">        body = ctx.message || <span class="built_in">String</span>(code);</div><div class="line">        <span class="keyword">if</span> (!res.headersSent) &#123;</div><div class="line">            ctx.type = <span class="string">'text'</span>;</div><div class="line">            ctx.length = Buffer.byteLength(body);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res.end(body);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// responses</span></div><div class="line">    <span class="keyword">if</span> (Buffer.isBuffer(body)) </div><div class="line">        <span class="keyword">return</span> res.end(body);</div><div class="line">    <span class="keyword">if</span> (<span class="string">'string'</span> == <span class="keyword">typeof</span> body) </div><div class="line">        <span class="keyword">return</span> res.end(body);</div><div class="line">    <span class="keyword">if</span> (body <span class="keyword">instanceof</span> Stream) </div><div class="line">        <span class="keyword">return</span> body.pipe(res);</div><div class="line"></div><div class="line">    <span class="comment">// body: json</span></div><div class="line">    body = <span class="built_in">JSON</span>.stringify(body);</div><div class="line">    <span class="keyword">if</span> (!res.headersSent) &#123;</div><div class="line">        ctx.length = Buffer.byteLength(body);</div><div class="line">    &#125;</div><div class="line">    res.end(body);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>从 callback 方法处我们可以得知，koa 在请求到来时，通过 res 和 req 来创建 context，然后执行中间件，在中间件执行结束后收尾。</p>
+<p>文章部分内容参考：<br><a href="https://segmentfault.com/a/1190000009875733" target="_blank" rel="external">Koa2源码阅读笔记</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://misic.moe/2017/07/20/2017-07-20/" data-id="cj5fi06qz000j67qh465joia4" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/07/19/2017-07-19/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/07/20/2017-07-20/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/19/2017-07-19/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/18/2017-07-18/">Promise 的简易实现</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/14/2017-07-14/">反柯里化-uncurryThis</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/30/2017-06-30/">使用AI将文字转成svg</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 月落<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

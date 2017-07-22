@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Misic-月落音阑</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="title: 事件循环(Event loop)&amp;amp;延伸延伸再延伸date:2017-07-19 10:25:36
+
+It does’t work……why?It works……why?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Misic-月落音阑">
+<meta property="og:url" content="http://misic.moe/2017/07/19/2017-07-19/index.html">
+<meta property="og:site_name" content="Misic-月落音阑">
+<meta property="og:description" content="title: 事件循环(Event loop)&amp;amp;延伸延伸再延伸date:2017-07-19 10:25:36
+
+It does’t work……why?It works……why?">
+<meta property="og:image" content="http://misic.moe/2017/07/19/2017-07-19/./_image/IMG_3104.JPG">
+<meta property="og:image" content="http://misic.moe/2017/07/19/2017-07-19/./_image/2017-07-19-14-35-41.jpg">
+<meta property="og:image" content="http://misic.moe/2017/07/19/2017-07-19/./_image/2017-07-21-11-11-29.jpg">
+<meta property="og:updated_time" content="2017-07-21T10:56:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Misic-月落音阑">
+<meta name="twitter:description" content="title: 事件循环(Event loop)&amp;amp;延伸延伸再延伸date:2017-07-19 10:25:36
+
+It does’t work……why?It works……why?">
+<meta name="twitter:image" content="http://misic.moe/2017/07/19/2017-07-19/./_image/IMG_3104.JPG">
+  
+    <link rel="alternate" href="/atom.xml" title="Misic-月落音阑" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Misic-月落音阑</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">关于如何在二次元与二进制之间穿行的探索</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://misic.moe"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2017-07-19" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/19/2017-07-19/" class="article-date">
+  <time datetime="2017-07-19T02:25:36.000Z" itemprop="datePublished">2017-07-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>title: 事件循环(Event loop)&amp;延伸延伸再延伸<br>date:2017-07-19 10:25:36</p>
+<blockquote>
+<p>It does’t work……why?<br>It works……why?<br><a id="more"></a></p>
+</blockquote>
+<p><img src="/2017/07/19/2017-07-19/./_image/IMG_3104.JPG" alt=""></p>
+<p>曾经我和几个非前端的室友聊天的时候聊到，“JavaScript到底是单线程还是多线程的啊？”，我说“单线程啊。”，“那碰到网络请求不就阻塞了啊？”，“异步啊。”，“异步不就是多线程的了啊”，“不不不…嗯？异步就是多线程吗？？？”喵喵喵？？？</p>
+<p>嘛，我们先不说多线程的问题，咱从与异步有关的事件循环(Event loop)说起。</p>
+<h2 id="并发模型与事件循环"><a href="#并发模型与事件循环" class="headerlink" title="并发模型与事件循环"></a>并发模型与事件循环</h2><blockquote>
+<p>JavaScript 的并发模型基于 “事件循环”。这个模型与像 C 或者 Java 这些语言中的模型着实不同。</p>
+</blockquote>
+<p><img src="/2017/07/19/2017-07-19/./_image/2017-07-19-14-35-41.jpg" alt=""><br>(截自<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop" target="_blank" rel="external">MDN</a>)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">b</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> a = <span class="number">10</span>;</div><div class="line">  <span class="keyword">return</span> a + b + <span class="number">11</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params">x</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> y = <span class="number">3</span>;</div><div class="line">  <span class="keyword">return</span> foo(x * y);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(bar(<span class="number">7</span>));</div></pre></td></tr></table></figure>
+<p>函数的调用是个由许多帧(frame)形成的栈(stack)结构，我们简单称它为调用栈。</p>
+<ul>
+<li>调用bar时，创建了第一个帧，其中包含了bar的参数和局部变量，入栈。</li>
+<li>bar调用foo时，创建了第二个帧，包含foo的参数和局部变量，入栈。</li>
+<li>foo返回时，foo出栈。</li>
+<li>bar返回时，bar出栈，栈空。</li>
+</ul>
+<blockquote>
+<p>if we step into a function, we put something on to the stack, if we return from a function, we pop off the top of the stack that’s all the stack can do.</p>
+</blockquote>
+<p>当一个函数被调用时，就将他压入栈中，当一个函数返回时，就将他从栈中取出。</p>
+<p>那么，setTimeout呢？我们都说JS是单线程的，这个说法是没错的，我们并不能在setTimeout的同时运行其他的代码，那setTimeout是怎么做到延时执行而不阻塞其后的代码呢？</p>
+<p>其实虽然JS从设计起就一直是单线程且以后也肯定一直是单线程，但是JS的运行环境(浏览器/Node等)却不是。而语言的单线程，则是指引擎中负责解释和执行JS代码的线程只有一个，我们可以叫他主线程。浏览器还会给我们一下其他的Web API (Node则是C++ API)，让我们能够在别的工作线程里处理类似AJAX请求之类的异步操作。</p>
+<p>事实上，在V8引擎里面并没有setTimeout的相关代码，并且DOM和AJAX相关的内容也都没有，这些都是浏览器额外提供的Web API。</p>
+<p>当代码执行到setTimeout的时候，setTimeout入栈，此时他就已经执行结束了，返回一个timeoutID，然后出栈，这时浏览器会有一个定时器，当time out的时间结束的时候会将setTimeout的回调函数放入任务队列尾部。</p>
+<p>啊啊，新的名词出现了，任务队列~试想一下，当我们time out时间结束时，如果我们之前的代码还没有执行完，它能中途插入没执行完的代码吗？当然是不行的，这也是setTimeout延时并不一定准确的原因，这个延时代表的是最小延时而不是确切的延时。</p>
+<p>这个时候就该事件循环出场了，这篇文章的关键角色，虽然它的工作很简单:不断地查看调用栈和任务队列是否为空，当调用栈为空就将任务队列的下一个放入调用栈。</p>
+<p>被放入任务队列尾部的setTimeout回调需要一直等到它前面的所有任务执行完才能执行。AJAX的回调同理，当我们主线程执行到一个异步的AJAX请求时，相应的工作线程会接手这个请求任务并让主线程立即返回，工作进程结束任务后将回调函数放入任务队列，主线程通过事件循环执行这个回调函数。</p>
+<p>由以上的执行流程可知，所有的异步操作的回调函数都不会在本轮事件循环里执行，即使是setTimeout 0也只能将回调放在任务队列的尾部，最快也得等下轮循环。</p>
+<p>总结起来，主线程要做的只是通过事件循环不断的从任务队列里取任务、执行任务，而异步的操作则都是在工作线程里执行，并在执行结束后将回调函数放入任务队列里。</p>
+<h2 id="macrotask-amp-microtask"><a href="#macrotask-amp-microtask" class="headerlink" title="macrotask &amp; microtask"></a>macrotask &amp; microtask</h2><p>在第一部分我们已经简单了解了Event loop的执行机制，我们来看下面的代码，猜猜它应该是怎样的输出顺序:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>);</div><div class="line"></div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>);</div><div class="line">&#125;, <span class="number">0</span>);</div><div class="line"></div><div class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'promise1'</span>);</div><div class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'promise2'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>);</div></pre></td></tr></table></figure>
+<p>正确的输出应该是: script start, script end, promise1, promise2, setTimeout</p>
+<p>也许你会发现，在你的浏览器里输出不是这个样子的，这并不是你浏览器是假的，可能只是一些实现上的差异而已。</p>
+<p>在<a href="https://promisesaplus.com/#notes" target="_blank" rel="external">Promises/A+规范的Notes 3.1</a>中提及了promise的then方法可以采用“宏任务(macrotask)”机制或者“微任务(microtask)”机制来实现。所以promise在不同浏览器的差异正源于此，有的浏览器将then放入了macrotask队列，有的放入了microtask队列。</p>
+<p>macrotask和microtask的执行机制如下:</p>
+<ul>
+<li>JavaScript引擎从macrotask队列中取出一个任务，将其完成</li>
+<li>将microtask队列中的所有任务取出，按顺序全部执行</li>
+<li>循环上面两步</li>
+</ul>
+<p>通常认为(V8)microtask任务包括以下几种：</p>
+<ul>
+<li>process.nextTick</li>
+<li>promises.then</li>
+<li>Object.observe</li>
+<li>MutationObserver</li>
+</ul>
+<p>而macrotast包括:</p>
+<ul>
+<li>script(整体代码)</li>
+<li>setTimeout</li>
+<li>setInterval</li>
+<li>setImmediate</li>
+<li>I/O</li>
+<li>UI rendering</li>
+</ul>
+<p>PS: 在Node中，process.nextTick 永远比 promise.then 先执行，原因是，_tickCallback在每一次执行完TaskQueue中的一个任务后被调用，而这个_tickCallback中实质上干了两件事：</p>
+<ol>
+<li>执行nextTickQueue中所有任务</li>
+<li>执行_runMicrotasks函数，执行microtask中的部分(promise.then注册的回调)<br>所以process.nextTick 一定比 promise.then 先执行。</li>
+</ol>
+<h2 id="W3C规范定义"><a href="#W3C规范定义" class="headerlink" title="W3C规范定义"></a>W3C规范定义</h2><h4 id="Event-loops"><a href="#Event-loops" class="headerlink" title="Event loops"></a>Event loops</h4><p><a href="https://www.w3.org/TR/html5/webappapis.html#event-loops" target="_blank" rel="external">W3C规范6.1.4 Event loops</a></p>
+<blockquote>
+<p>There must be at least one event loop per user agent, and at most one event loop per unit of related similar-origin browsing contexts.</p>
+</blockquote>
+<p>每一个UA至少有一个事件循环，每个<a href="https://html.spec.whatwg.org/multipage/browsers.html#groupings-of-browsing-contexts" target="_blank" rel="external">单元的近似源浏览器环境</a>最多只能有一个事件循环。对于浏览器环境(browsing context)的解释:</p>
+<blockquote>
+<p>A browsing context is an environment in which Document objects are presented to the user.A tab or window in a Web browser typically contains a browsing context, as does an iframe or frames in a frameset.</p>
+</blockquote>
+<p>浏览器环境是一个将 Document 对象呈现给用户的环境。在一个 Web 浏览器内，一个标签页或窗口会包含一个浏览器环境，一个iframe或一个frameset内的若干frame也会。</p>
+<blockquote>
+<p>An event loop has one or more task queues. A task queue is an ordered list of tasks.</p>
+</blockquote>
+<p>一个事件循环维护至少一个任务队列，可以不止一个(microtask队列只有一个)。关于任务包含哪些种类，此处就不展开了，规范里也是有写明的。</p>
+<h4 id="Event-loop的处理过程"><a href="#Event-loop的处理过程" class="headerlink" title="Event loop的处理过程"></a>Event loop的处理过程</h4><p><a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loop-processing-model" target="_blank" rel="external">Processing model</a></p>
+<p>一个event loop只要存在，就会不断执行下边的步骤:</p>
+<ol>
+<li>在tasks队列中选择最老的一个task,用户代理可以选择任何task队列，如果没有可选的任务，则跳到下边的microtasks步骤。</li>
+<li>将上边选择的task设置为正在运行的task。</li>
+<li>Run: 运行被选择的task。</li>
+<li>将event loop的currently running task变为null。</li>
+<li>从task队列里移除前边运行的task。</li>
+<li>Microtasks: 执行microtasks任务检查点。（也就是执行microtasks队列里的任务）</li>
+<li>更新渲染（Update the rendering）…</li>
+<li>如果这是一个worker event loop，但是没有任务在task队列中，并且WorkerGlobalScope对象的closing标识为true，则销毁event loop，中止这些步骤，然后进行定义在Web workers章节的run a worker。</li>
+<li>返回到第一步。</li>
+</ol>
+<h4 id="microtask"><a href="#microtask" class="headerlink" title="microtask"></a>microtask</h4><blockquote>
+<p>There are two kinds of microtasks: solitary callback microtasks, and compound microtasks.<br>This specification only has solitary callback microtasks. Specifications that use compound microtasks have to take extra care to wrap callbacks to handle spinning the event loop.</p>
+</blockquote>
+<p>共有两种microtasks：分别是solitary callback microtasks和compound microtasks。规范只覆盖solitary callback microtasks。</p>
+<p>event loop运行的第6步，执行了一个microtask checkpoint，规范里对它的说明如下:</p>
+<p>当UA去执行一个microtask checkpoint，如果microtask checkpoint的flag（标识）为false，用户代理必须运行下面的步骤：</p>
+<ol>
+<li>将microtask checkpoint的flag设为true。</li>
+<li>Microtask queue handling: 如果event loop的microtask队列为空，直接跳到第八步（Done）。</li>
+<li>在microtask队列中选择最老的一个任务。</li>
+<li>将上一步选择的任务设为event loop的<a href="https://html.spec.whatwg.org/multipage/webappapis.html#currently-running-task" target="_blank" rel="external">currently running task</a>。</li>
+<li>运行选择的任务。</li>
+<li>将event loop的currently running task变为null。</li>
+<li>将前面运行的microtask从microtask队列中删除，然后返回到第二步（Microtask queue handling）。</li>
+<li>Done: 每一个<a href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object" target="_blank" rel="external">environment settings object</a>它们的<a href="https://html.spec.whatwg.org/multipage/webappapis.html#responsible-event-loop" target="_blank" rel="external">responsible event loop</a>就是当前的event loop，会给environment settings object发一个<a href="https://html.spec.whatwg.org/multipage/webappapis.html#notify-about-rejected-promises" target="_blank" rel="external">rejected promises</a>的通知。</li>
+<li>清理<a href="https://w3c.github.io/IndexedDB/#cleanup-indexed-database-transactions" target="_blank" rel="external">IndexedDB</a>的事务。</li>
+<li>将microtask checkpoint的flag设为flase。</li>
+</ol>
+<h2 id="线程与线程"><a href="#线程与线程" class="headerlink" title="线程与线程"></a>线程与线程</h2><p>回到最开初的问题，我们已经说到JavaScript的单线程是只有一个JavaScript引擎线程，而浏览器常驻线程除了JavaScript引擎线程至少还包含一个GUI渲染线程和一个事件触发线程，除此之外还有一些执行完就终止的线程，如HTTP请求线程，而异步的机制是由两个或以上的常驻线程完成的。</p>
+<p>比如发起一个AJAX异步请求，JavaScript线程执行到一个AJAX，此时浏览器新开一个HTTP请求线程来处理请求，然后JavaScript线程将AJAX的函数返回，继续执行任务队列后面的任务，当事件触发线程监控到之前发送的HTTP请求完成了，就会把它的回调函数放到JavaScript线程的任务队列尾部。</p>
+<p>GUI渲染线程则是负责渲染浏览器界面的，它和JavaScript引擎线程是互斥的，在JS引擎执行的时候它会挂起，GUI更新会被保存在一个队列里面等待JS引擎空闲时立即执行。这样是为了避免在更新界面的同时dom元素被JS修改导致两边发生冲突。</p>
+<p>这里我们得提到一个比较特殊的Web API: Web Workers API，我们可以使用它提供的Worker()构造函数，指定一个需要运行的脚本，即可创建一个独立于原来主线程的工作线程，它与创建它的JS线程(worker也能创建worker，只要同源就行)可以通过PostMessage()来传递信息。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// our worker, which does some CPU-intensive operation</span></div><div class="line"><span class="keyword">var</span> reportResult = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    pi = SomeLib.computePiToSpecifiedDecimals(e.data);</div><div class="line">    postMessage(pi);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">onmessage = reportResult;</div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// our main code, in a &lt;script&gt;-tag in our HTML page</span></div><div class="line"><span class="keyword">var</span> piWorker = <span class="keyword">new</span> Worker(<span class="string">"pi_calculator.js"</span>);</div><div class="line"><span class="keyword">var</span> logResult = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"PI: "</span> + e.data);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">piWorker.addEventListener(<span class="string">"message"</span>, logResult, <span class="literal">false</span>);</div><div class="line">piWorker.postMessage(<span class="number">100000</span>);</div></pre></td></tr></table></figure>
+<p>(这段来自<a href="http://blog.carbonfive.com/2013/10/27/the-javascript-event-loop-explained/#gist7191992" target="_blank" rel="external">The JavaScript Event Loop: Explained</a>)</p>
+<p>由Web Workers API创建的工作线程有自己的任务队列以及事件循环，如下图:</p>
+<p><img src="/2017/07/19/2017-07-19/./_image/2017-07-21-11-11-29.jpg" alt=""></p>
+<p>工作线程与主线程的最主要差别就在于工作线程不可操作DOM，也就是说工作线程的事件循环不会触发视图更新。这也是理所当然的，我们在前文说到“JS从设计起就一直是单线程且以后也肯定一直是单线程”，其原因不仅仅是语言设计初期的硬件限制，还与其主要用途有关。作为浏览器脚本语言(暂时撇开node)，JavaScript的主要用途是与用户互动，以及操作DOM，假如JavaScript同时存在多个线程，都在同时操作DOM，那么渲染线程该以哪个线程为准呢？</p>
+<p>所以，即便Web Workers API可以创建工作线程，这个线程也是完全受主线程控制的，且不能操作DOM，并没有改变JS单线程的本质。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>感觉知识有点杂乱。有时间的话再拆分成几个部分深入了解下。</p>
+<p>参考文章:<br><a href="https://2014.jsconf.eu/speakers/philip-roberts-what-the-heck-is-the-event-loop-anyway.html" target="_blank" rel="external">Philip Roberts: What the heck is the event loop anyway?</a><br><a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/" target="_blank" rel="external">Tasks, microtasks, queues and schedules</a><br><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop" target="_blank" rel="external">Concurrency model and Event Loop</a><br><a href="http://blog.carbonfive.com/2013/10/27/the-javascript-event-loop-explained/" target="_blank" rel="external">The JavaScript Event Loop: Explained</a><br>部分标准的翻译取自:<a href="https://segmentfault.com/a/1190000009271765" target="_blank" rel="external">从event loop规范探究javaScript异步及浏览器更新渲染时机</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://misic.moe/2017/07/19/2017-07-19/" data-id="cj5fi06qx000i67qhk8kxarv4" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/07/20/2017-07-20/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/07/18/2017-07-18/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">Promise 的简易实现</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/07/20/2017-07-20/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/19/2017-07-19/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/18/2017-07-18/">Promise 的简易实现</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/14/2017-07-14/">反柯里化-uncurryThis</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/30/2017-06-30/">使用AI将文字转成svg</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 月落<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
