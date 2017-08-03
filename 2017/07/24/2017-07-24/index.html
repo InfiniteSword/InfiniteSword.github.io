@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Misic-月落音阑</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="title: JavaScript 的继承方式date:2017-07-24 09:41:30
+个人归纳总结，部分抄自高程三">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Misic-月落音阑">
+<meta property="og:url" content="http://misic.moe/2017/07/24/2017-07-24/index.html">
+<meta property="og:site_name" content="Misic-月落音阑">
+<meta property="og:description" content="title: JavaScript 的继承方式date:2017-07-24 09:41:30
+个人归纳总结，部分抄自高程三">
+<meta property="og:updated_time" content="2017-07-24T06:36:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Misic-月落音阑">
+<meta name="twitter:description" content="title: JavaScript 的继承方式date:2017-07-24 09:41:30
+个人归纳总结，部分抄自高程三">
+  
+    <link rel="alternate" href="/atom.xml" title="Misic-月落音阑" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Misic-月落音阑</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">关于如何在二次元与二进制之间穿行的探索</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://misic.moe"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2017-07-24" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/24/2017-07-24/" class="article-date">
+  <time datetime="2017-07-24T01:41:30.000Z" itemprop="datePublished">2017-07-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>title: JavaScript 的继承方式<br>date:2017-07-24 09:41:30</p>
+<p>个人归纳总结，部分抄自高程三</p>
+<a id="more"></a>
+<h4 id="class-继承-ES6"><a href="#class-继承-ES6" class="headerlink" title="class 继承(ES6)"></a>class 继承(ES6)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 父类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ball</span> </span>&#123;</div><div class="line">    constroctor (r) &#123;</div><div class="line">        <span class="keyword">this</span>.r = r;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 子类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RedBall</span> <span class="keyword">extends</span> <span class="title">Ball</span> </span>&#123;</div><div class="line">    constroctor (r) &#123;</div><div class="line">        <span class="keyword">super</span>(r);</div><div class="line">        <span class="keyword">this</span>.color = <span class="string">'red'</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Object-create实现类式继承-ES5"><a href="#Object-create实现类式继承-ES5" class="headerlink" title="Object.create实现类式继承(ES5)"></a>Object.create实现类式继承(ES5)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Shape - superclass</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Shape</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.x = <span class="number">0</span>;</div><div class="line">    <span class="keyword">this</span>.y = <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Shape.prototype.move = <span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.x += x;</div><div class="line">    <span class="keyword">this</span>.y += y;</div><div class="line">    <span class="built_in">console</span>.info(<span class="string">"Shape moved."</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// Rectangle - subclass</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Rectangle</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    Shape.call(<span class="keyword">this</span>); <span class="comment">//call super constructor.</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">Rectangle.prototype = <span class="built_in">Object</span>.create(Shape.prototype);</div><div class="line"></div><div class="line"><span class="keyword">var</span> rect = <span class="keyword">new</span> Rectangle();</div><div class="line"></div><div class="line">rect <span class="keyword">instanceof</span> Rectangle <span class="comment">//true.</span></div><div class="line">rect <span class="keyword">instanceof</span> Shape <span class="comment">//true.</span></div><div class="line"></div><div class="line">rect.move(<span class="number">1</span>, <span class="number">1</span>); <span class="comment">//Outputs, "Shape moved."</span></div></pre></td></tr></table></figure>
+<p>(from <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/create" target="_blank" rel="external">MDN</a>)</p>
+<h4 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 父类</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Super</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.prop = <span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line">Super.prototype.getSuperValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.prop;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 子类</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sub</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.subProp = <span class="literal">false</span>;</div><div class="line">&#125;</div><div class="line">Sub.prototype = <span class="keyword">new</span> Super(); <span class="comment">// 继承</span></div><div class="line">Sub.protorype.getSubValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.subProp;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>原型链实现继承时存在两个问题:<br>1、引用类型的属性会被所有实例共享。<br>2、创建子类型实例时不能给超类型传参。</p>
+<h4 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h4><p>在子类型构造函数内部调用超类型构造函数即可解决引用类型值的问题，同时还能向超类型传参。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Super</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.colors = [<span class="string">'red'</span>,,<span class="string">'blue'</span>,<span class="string">'green'</span>];</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sub</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    Super.call(<span class="keyword">this</span>, <span class="string">'Sub'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>构造函数的问题:<br>在超类型原型中定义的方法，对子类型是不可见的。</p>
+<h4 id="组合继承"><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h4><p>将上两种方法组合在一起的方法。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Super</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">    <span class="keyword">this</span>.colors = [<span class="string">'red'</span>,,<span class="string">'blue'</span>,<span class="string">'green'</span>];</div><div class="line">&#125;</div><div class="line">Super.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sub</span>(<span class="params">name, age</span>) </span>&#123;</div><div class="line">    Super.call(<span class="keyword">this</span>, name);</div><div class="line">    <span class="keyword">this</span>.age = age;</div><div class="line">&#125;</div><div class="line">Sub.prototype = <span class="keyword">new</span> Super();</div><div class="line">Sub.prototype.constructor = Sub;</div><div class="line">Sub.sayAge = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.age);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>据说是JavaScript最常用的继承模式。</p>
+<h4 id="原型式继承"><a href="#原型式继承" class="headerlink" title="原型式继承"></a>原型式继承</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">object</span>(<span class="params">o</span>) </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">    F.prototype = o;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> F();</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> Super = &#123;</div><div class="line">    <span class="attr">name</span> : <span class="string">'Super'</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> Sub = object(Super);</div></pre></td></tr></table></figure>
+<p>在ES5可以将<code>object()</code>替换成<code>Object.create()</code>。试用于没必要创建构造函数，只想一个对象和另一个对象保持相似的情况。和原型链模式一样，引用类型的属性会被共享。</p>
+<h4 id="寄生式继承"><a href="#寄生式继承" class="headerlink" title="寄生式继承"></a>寄生式继承</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createAnother</span>(<span class="params">original</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> clone = object(original); <span class="comment">// 创建对象</span></div><div class="line">    clone.sayHi = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;     <span class="comment">// 添加方法</span></div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Hi'</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> clone;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> person = &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'Nicholas'</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> anotherPerson = createAnother(person);</div></pre></td></tr></table></figure>
+<p>这种方法和构造函数一样不能做到函数复用。</p>
+<h4 id="寄生组合式继承"><a href="#寄生组合式继承" class="headerlink" title="寄生组合式继承"></a>寄生组合式继承</h4><p>之前说到组合继承是JavaScript中最常用的继承模式，但是使用时至少会调用两次超类型构造函数(call一次，new一次)。而使用寄生组合继承则不用:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">inheritPrototype</span>(<span class="params">Sub, Super</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> prototype = <span class="built_in">Object</span>(Super);</div><div class="line">    prototype.constructor = Sub;</div><div class="line">    Sub.prototype = prototype;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Super</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">    <span class="keyword">this</span>.colors = [<span class="string">'red'</span>,,<span class="string">'blue'</span>,<span class="string">'green'</span>];</div><div class="line">&#125;</div><div class="line">Super.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sub</span>(<span class="params">name, age</span>) </span>&#123;</div><div class="line">    Super.call(<span class="keyword">this</span>, name);</div><div class="line">    <span class="keyword">this</span>.age = age;</div><div class="line">&#125;</div><div class="line">inheritPrototype(Sub, Super);</div><div class="line">Sub.sayAge = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.age);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>避免了new操作再执行一次构造函数并在子类prototype上添加一些不必要的属性。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://misic.moe/2017/07/24/2017-07-24/" data-id="cj5vw9hsk000kntqhe0a8jn27" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/07/31/2017-07-31/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/07/20/2017-07-20/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/01/">January 2000</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/02/2017-08-02/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/01/2017-08-01/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/31/configs/render/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/31/template/js/index/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/31/template/js/particles/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 月落<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

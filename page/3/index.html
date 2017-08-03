@@ -55,9 +55,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://misic.moe"></form>
@@ -68,57 +68,23 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-2017-02-16-1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-configs/advanced" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/02/16/2017-02-16-1/" class="article-date">
-  <time datetime="2017-02-16T13:33:00.000Z" itemprop="datePublished">2017-02-16</time>
+    <a href="/2017/07/31/configs/advanced/" class="article-date">
+  <time datetime="2017-07-31T10:28:52.000Z" itemprop="datePublished">2017-07-31</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/16/2017-02-16-1/">同源策略及其规避</a>
-    </h1>
-  
-
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-<h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><p>同源的定义为：协议、域名、端口三者均相同。</p>
-<p>在非同源的情况下，以下三种行为会受限</p>
-<ul>
-<li>Cookie、LocalStorage 和 IndexDB 无法读取。</li>
-<li>DOM 无法获得。</li>
-<li>AJAX 请求不能发送。</li>
-</ul>
-<h2 id="规避"><a href="#规避" class="headerlink" title="规避"></a>规避</h2><h4 id="对于-cookie"><a href="#对于-cookie" class="headerlink" title="对于 cookie"></a>对于 cookie</h4><p>假如两个网页一级域名相同，只是二级域名不同，浏览器允许通过设置document.domain来共享Cookie（两个页面都要设置）。</p>
-<h4 id="对于-iframe"><a href="#对于-iframe" class="headerlink" title="对于 iframe"></a>对于 iframe</h4><p>如果两个页面只是二级域名不同，那么也可以通过document.domain进行跨域。</p>
-<p>除此之外，还有以下方法：</p>
-<ul>
-<li>hashchange</li>
-<li>window.name</li>
-<li>window.postMessage</li>
-</ul>
-<p>其中第三种方法为正统的跨文档通信API。使用window.postMessage即可实现跨窗口通信，不论是否同源。</p>
-<h4 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h4><p>AJAX的跨域方案除去服务器代理，常用的有以下三种</p>
-<ul>
-<li>JSONP</li>
-<li>CORS</li>
-<li>Websocket</li>
-</ul>
-<p>其中JSONP只能发送GET请求。Websocket则不实行同源策略。</p>
-
+        {"anti_theft_chain":false,"utc_offset":8,"sync_to_cloud":true,"main_domain":"","sync_from_cloud":true,"visitor_password":"","admin_name":"","license_function":"","cloud_space":"","domains":["misic"],"dns_mx":[],"visitor_contacts":"","single_domain":"misic","disable_robots":false,"dns_txt":[]}
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/02/16/2017-02-16-1/" data-id="cj5fi06qj000a67qh1ue65ukl" class="article-share-link">Partager</a>
+      <a data-url="http://misic.moe/2017/07/31/configs/advanced/" data-id="cj5vw9hus000pntqh9j9ss4td" class="article-share-link">Share</a>
       
       
     </footer>
@@ -128,38 +94,29 @@
 
 
   
-    <article id="post-2017-02-16" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2017-07-31" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/02/16/2017-02-16/" class="article-date">
-  <time datetime="2017-02-16T12:55:00.000Z" itemprop="datePublished">2017-02-16</time>
+    <a href="/2017/07/31/2017-07-31/" class="article-date">
+  <time datetime="2017-07-31T10:27:07.000Z" itemprop="datePublished">2017-07-31</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/16/2017-02-16/">JavaScript事件机制</a>
-    </h1>
-  
-
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>早些时候，Netscape和微软还在浏览器战争的时候，Netscape主张捕获方式，而微软则主张冒泡。后来在w3c制定标准的时候，选择了折中的方式，先捕获再冒泡。</p>
+        <p>title: 如何用JS实现一个编译器<br>date:2017-07-31 18:27:07</p>
+<p>其实是<a href="https://github.com/thejameskyle/the-super-tiny-compiler/blob/master/the-super-tiny-compiler.js">the-super-tiny-compiler.js</a>源码阅读(摘抄翻译)记录。</p>
         
           <p class="article-more-link">
-            <a href="/2017/02/16/2017-02-16/#more">Read More</a>
+            <a href="/2017/07/31/2017-07-31/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/02/16/2017-02-16/" data-id="cj5fi06ql000b67qhpb85wc1a" class="article-share-link">Partager</a>
+      <a data-url="http://misic.moe/2017/07/31/2017-07-31/" data-id="cj5vw9hst000ontqhdjxz2u7a" class="article-share-link">Share</a>
       
       
     </footer>
@@ -169,35 +126,29 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2017-07-24" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/02/07/hello-world/" class="article-date">
-  <time datetime="2017-02-07T09:18:46.000Z" itemprop="datePublished">2017-02-07</time>
+    <a href="/2017/07/24/2017-07-24/" class="article-date">
+  <time datetime="2017-07-24T01:41:30.000Z" itemprop="datePublished">2017-07-24</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/07/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>终于下手弄了这个博客，首先把以前写过的东西搬进来，在慢慢填补新内容。</p>
-<p>希望自己以谦虚、探求的态度对待知识。</p>
-
+        <p>title: JavaScript 的继承方式<br>date:2017-07-24 09:41:30</p>
+<p>个人归纳总结，部分抄自高程三</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/07/24/2017-07-24/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2017/02/07/hello-world/" data-id="cj5fi06r0000k67qhjgbcsdgb" class="article-share-link">Partager</a>
+      <a data-url="http://misic.moe/2017/07/24/2017-07-24/" data-id="cj5vw9hsk000kntqhe0a8jn27" class="article-share-link">Share</a>
       
       
     </footer>
@@ -207,35 +158,31 @@
 
 
   
-    <article id="post-2016-10-19" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2017-07-20" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/10/19/2016-10-19/" class="article-date">
-  <time datetime="2016-10-19T12:55:00.000Z" itemprop="datePublished">2016-10-19</time>
+    <a href="/2017/07/20/2017-07-20/" class="article-date">
+  <time datetime="2017-07-20T03:50:10.000Z" itemprop="datePublished">2017-07-20</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/19/2016-10-19/">关于当&#39;f&#39;、&#39;i&#39;两字母放一起letter-spacing不生效的问题</a>
-    </h1>
-  
-
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>如图，fi两字母在一起如胶似漆，letter-spacing设多大都不能把他们扯开。<br><img src="/2016/10/19/2016-10-19/1.png" alt=""><br>如果在f和i中间插入个注释倒是可以解决。</p>
-<p><img src="/2016/10/19/2016-10-19/21-00-26.jpg" alt=""><br>但是我们需要在css里将其解决，这里我们添加一个font-variant-ligatures: no-common-ligatures; 属性，就可以解决这个问题了。</p>
-
+        <p>title: Koa2源码阅读记录<br>date:2017-07-20 11:50:10</p>
+<blockquote>
+<p>Koa 是一个轻量级的、极富表现力的 http 框架。<br>一个web request会通过 Koa 的中间件栈，来动态完成 response 的处理。<br>Koa2 采用了 async 和 await 的语法来增强中间件的表现力。<br>Koa 不在内核方法中绑定任何中间件，它仅仅提供了一个轻量优雅的函数库。</p>
+</blockquote>
+        
+          <p class="article-more-link">
+            <a href="/2017/07/20/2017-07-20/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://misic.moe/2016/10/19/2016-10-19/" data-id="cj5fi06qh000967qh7nzxooyj" class="article-share-link">Partager</a>
+      <a data-url="http://misic.moe/2017/07/20/2017-07-20/" data-id="cj5vw9hsj000jntqhop04pxpo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -248,7 +195,7 @@
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
   </nav>
 </section>
         
@@ -266,7 +213,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/01/">January 2000</a></li></ul>
     </div>
   </div>
 
@@ -274,28 +221,28 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2017/07/20/2017-07-20/">(no title)</a>
+            <a href="/2017/08/02/2017-08-02/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2017/07/19/2017-07-19/">(no title)</a>
+            <a href="/2017/08/01/2017-08-01/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2017/07/18/2017-07-18/">Promise 的简易实现</a>
+            <a href="/2017/07/31/configs/render/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2017/07/14/2017-07-14/">反柯里化-uncurryThis</a>
+            <a href="/2017/07/31/template/js/index/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2017/06/30/2017-06-30/">使用AI将文字转成svg</a>
+            <a href="/2017/07/31/template/js/particles/">(no title)</a>
           </li>
         
       </ul>
@@ -311,7 +258,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 月落<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
